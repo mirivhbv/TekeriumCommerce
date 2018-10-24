@@ -1,0 +1,14 @@
+﻿[
+  {
+    "id": "TekeriumCommerce.Module.Core",
+    "version": "1.0.0"
+  },
+  {
+    "id": "TekeriumCommerce.Module.Catalog",
+    "version": "1.0.0"
+  },
+  {
+    "id": "TekeriumCommerce.Module.Search",
+    "version": "1.0.0"
+  }
+]

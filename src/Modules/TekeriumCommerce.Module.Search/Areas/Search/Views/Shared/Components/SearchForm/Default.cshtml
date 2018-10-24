@@ -1,0 +1,19 @@
+﻿@model TekeriumCommerce.Module.Search.Areas.Search.ViewModels.SearchForm
+
+<form class="" method="get" action="~/search">
+    <input type="hidden" name="category" value="Car"/>
+    <div>
+        <select name="width" asp-for="Width" asp-items="Model.AvailableWidths">
+            <option value="choose">Choose</option>
+        </select>
+        <select name="profile" asp-for="Profile" asp-items="Model.AvailableProfiles">
+            <option value="choose">Choose</option>
+        </select>
+        <select name="rimSize" asp-for="RimSize" asp-items="Model.AvailableRimSizes">
+            <option value="choose">Choose</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit" class="search-btn">Search</button>
+    </div>
+</form>

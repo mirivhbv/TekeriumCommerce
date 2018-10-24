@@ -1,0 +1,18 @@
+﻿@model TekeriumCommerce.Module.Search.Areas.Search.ViewModels.SearchResult
+
+<div>
+    <div>
+        <div>
+            <h2>Search Result for @Model.CurrentSearchOption.Width</h2>
+            <small>@Model.TotalProduct</small>
+        </div>
+    </div>
+    <div>
+        @foreach (var product in Model.Products)
+        {
+            <div>
+                <partial name="/Areas/Catalog/View/Shared/_ProductThumbnail.cshtml" model="product"/>
+            </div>
+        }
+    </div>
+</div>

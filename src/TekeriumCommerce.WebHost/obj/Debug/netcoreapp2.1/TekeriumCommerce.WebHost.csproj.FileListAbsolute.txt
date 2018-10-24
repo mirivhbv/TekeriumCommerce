@@ -1,0 +1,17 @@
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.deps.json
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.runtimeconfig.json
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.runtimeconfig.dev.json
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.dll
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.csprojAssemblyReference.cache
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.csproj.CoreCompileInputs.cache
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.RazorAssemblyInfo.cache
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.RazorAssemblyInfo.cs
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.AssemblyInfoInputs.cache
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.AssemblyInfo.cs
+C:\Users\Miri\Documents\Visual Studio 2017\Projects\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.RazorTargetAssemblyInfo.cache
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.RazorAssemblyInfo.cache
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.RazorAssemblyInfo.cs
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.AssemblyInfo.cs

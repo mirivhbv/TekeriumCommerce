@@ -1,0 +1,29 @@
+﻿@*@{
+    ViewBag.Title = Model.MetaTitle ?? Model.Name;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/">Home</a></li>
+        @if (Model.Categories.Any())
+        {
+            @await Component.InvokeAsync("CategoryBreadcrumb", new { categoryIds = Model.Categories.Select(x => x.Id) })
+        }
+        <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+    </ol>
+</nav>
+
+<div class="product-detail">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="sp-wrap">
+                @foreach (var image in Model.Images)
+                {
+                    <a href="@image.Url">
+                        <img src="@image.ThumbnailUrl" alt="" />
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>*@

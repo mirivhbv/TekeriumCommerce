@@ -1,0 +1,5 @@
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Search\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Search.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Search\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Search.RazorAssemblyInfo.cache
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Search\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Search.RazorAssemblyInfo.cs
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Search\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Search.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Search\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Search.AssemblyInfo.cs

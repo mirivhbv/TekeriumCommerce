@@ -1,0 +1,10 @@
+﻿@model TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductThumbnail
+
+<div>
+    <input type="hidden" id="productId" value="@Model.Id">
+    
+    <a href="@Model.Slug">
+        <img alt="@Model.Name" src="@Model.ThumbnailUrl">
+    </a>
+    <h3>@Model.Price</h3>
+</div>
