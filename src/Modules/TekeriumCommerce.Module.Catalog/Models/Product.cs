@@ -22,16 +22,25 @@ namespace TekeriumCommerce.Module.Catalog.Models
 
         public DateTimeOffset? SpecialPriceEnd { get; set; }
 
-        // done! todo: add class media
+        public int StockQuantity { get; set; }
+
+        public string NormalizedName { get; set; }
+
+        public int DisplayOrder { get; set; }
+
         public Media ThumbnailImage { get; set; }
 
         public IList<ProductMedia> Medias { get; protected set; } = new List<ProductMedia>();
 
-        public int StockQuantity { get; set; }
+        public Brand Brand { get; set; }
 
-        public int DisplayOrder { get; set; }
+        public long? BrandId { get; set; }
 
-        // each product specific:
+        public Category Category { get; set; }
+
+        public long? CategoryId { get; set; }
+        
+        // by me:
         public long? TyrePofileId { get; set; }
 
         public TyreProfile TyreProfile { get; set; }
@@ -43,9 +52,5 @@ namespace TekeriumCommerce.Module.Catalog.Models
         public long? TyreRimSizeId { get; set; }
 
         public TyreRimSize TyreRimSize { get; set; }
-
-        public long? TyreBrandId { get; set; }
-
-        public Brand Brand { get; set; }
     }
 }

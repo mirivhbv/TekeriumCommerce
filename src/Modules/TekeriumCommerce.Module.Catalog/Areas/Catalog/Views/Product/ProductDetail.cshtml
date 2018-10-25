@@ -1,14 +1,17 @@
-﻿@*@{
+﻿@model TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductDetail
+@{
     ViewBag.Title = Model.MetaTitle ?? Model.Name;
 }
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="~/">Home</a></li>
-        @if (Model.Categories.Any())
+        @if (Model.Category.Name.Length > 0)
         {
-            @await Component.InvokeAsync("CategoryBreadcrumb", new { categoryIds = Model.Categories.Select(x => x.Id) })
+            <li class="">@Model.Category.Name</li>
+            @*@await Component.InvokeAsync("CategoryBreadcrumb", new { categoryIds = Model.Categories.Select(x => x.Id) })*@
         }
+        @* add here a brand name also *@
         <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
     </ol>
 </nav>
@@ -26,4 +29,4 @@
             </div>
         </div>
     </div>
-</div>*@
+</div>
