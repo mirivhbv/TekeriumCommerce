@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels;
 using TekeriumCommerce.Module.Catalog.Models;
 using TekeriumCommerce.Module.Catalog.Services;
+using TekeriumCommerce.Module.Core.Areas.Core.ViewModels;
 using TekeriumCommerce.Module.Core.Services;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
@@ -26,6 +28,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             _mediator = mediator;
         }
 
+        // todo:
         //[HttpGet("product/product-overview")]
         //public async Task<IActionResult> ProductOverview(long id)
         //{
@@ -75,9 +78,21 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                     {Id = product.Category.Id, Name = product.Category.Name, Slug = product.Category.Slug},
             };
 
+            MapProductImagesToProductVm(product, model);
+
             // todo: mediator publish entity viewed
 
             return View(model);
+        }
+
+        private void MapProductImagesToProductVm(Product product, ProductDetail model)
+        {
+            model.Images = product.Medias.Where(x => x.Media.MediaType == Core.Models.MediaType.Image).Select(
+                productMedia => new MediaViewModel
+                {
+                    Url = _mediaService.GetMediaUrl(productMedia.Media),
+                    ThumbnailUrl = _mediaService.GetThumbnailUrl(productMedia.Media)
+                }).ToList();
         }
     }
 }

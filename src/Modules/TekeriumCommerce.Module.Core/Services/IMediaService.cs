@@ -10,7 +10,7 @@ namespace TekeriumCommerce.Module.Core.Services
 
         string GetMediaUrl(string fileName);
 
-        string getThumbnailUrl(Media media);
+        string GetThumbnailUrl(Media media);
 
         Task SaveMediaAsync(Stream mediaBinaryStream, string fileName, string mimeType = null);
 

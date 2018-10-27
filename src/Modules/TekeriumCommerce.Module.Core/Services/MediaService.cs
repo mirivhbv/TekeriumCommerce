@@ -29,7 +29,7 @@ namespace TekeriumCommerce.Module.Core.Services
             return _storageService.GetMediaUrl(fileName);
         }
 
-        public string getThumbnailUrl(Media media)
+        public string GetThumbnailUrl(Media media)
         {
             return GetMediaUrl(media);
         }

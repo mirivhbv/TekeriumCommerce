@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TekeriumCommerce.Module.Catalog.Models;
+using TekeriumCommerce.Module.Core.Areas.Core.ViewModels;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 {
