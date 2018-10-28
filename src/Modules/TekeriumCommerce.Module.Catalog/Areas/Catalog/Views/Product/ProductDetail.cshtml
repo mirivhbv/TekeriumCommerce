@@ -9,9 +9,15 @@
         @if (Model.Category.Name.Length > 0)
         {
             <li class="">@Model.Category.Name</li>
+            
+            // remove this laters
             @*@await Component.InvokeAsync("CategoryBreadcrumb", new { categoryIds = Model.Categories.Select(x => x.Id) })*@
         }
-        @* add here a brand name also *@
+
+        @* todo: add here a brand name also *@
+        
+        <li class="">@Model.Brand.Name</li>
+
         <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
     </ol>
 </nav>

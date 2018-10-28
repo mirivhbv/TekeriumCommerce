@@ -22,3 +22,7 @@ C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\Tek
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Core.csproj.CopyComplete
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Core.dll
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Core.pdb
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\obj\Debug\netcoreapp2.1\Razor\Areas\Core\Views\Account\Lockout.g.cshtml.cs
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\obj\Debug\netcoreapp2.1\Razor\Areas\Core\Views\Account\Login.g.cshtml.cs
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\obj\Debug\netcoreapp2.1\Razor\Areas\Core\Views\_ViewImports.g.cshtml.cs
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\obj\Debug\netcoreapp2.1\Razor\Areas\Core\Views\Account\Register.g.cshtml.cs

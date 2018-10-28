@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Infrastructure.Web;
 using TekeriumCommerce.Module.Catalog.Models;
-using TekeriumCommerce.Module.Core.Areas.ViewModels;
+using TekeriumCommerce.Module.Core.Areas.Core.ViewModels;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Components
 {

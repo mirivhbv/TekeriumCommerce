@@ -10,5 +10,9 @@
   {
     "id": "TekeriumCommerce.Module.Search",
     "version": "1.0.0"
+  },
+  {
+    "id": "TekeriumCommerce.Module.StorageLocal",
+    "version": "1.0.0" 
   }
 ]

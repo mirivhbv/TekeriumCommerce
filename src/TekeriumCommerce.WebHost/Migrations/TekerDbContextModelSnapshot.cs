@@ -89,6 +89,31 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.ToTable("Core_UserToken");
                 });
 
+            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Brand", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<bool>("IsPublished");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(450);
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(450);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Catalog_Brand");
+                });
+
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Category", b =>
                 {
                     b.Property<long>("Id")
@@ -132,6 +157,97 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.ToTable("Catalog_Category");
                 });
 
+            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Product", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("BrandId");
+
+                    b.Property<long?>("CategoryId");
+
+                    b.Property<long?>("CreatedById");
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("DisplayOrder");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<bool>("IsPublished");
+
+                    b.Property<string>("MetaDescription");
+
+                    b.Property<string>("MetaKeywords");
+
+                    b.Property<string>("MetaTitle");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(450);
+
+                    b.Property<string>("NormalizedName");
+
+                    b.Property<decimal?>("OldPrice");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<DateTimeOffset?>("PublishedOn");
+
+                    b.Property<string>("ShortDescription");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(450);
+
+                    b.Property<decimal?>("SpecialPrice");
+
+                    b.Property<DateTimeOffset?>("SpecialPriceEnd");
+
+                    b.Property<DateTimeOffset?>("SpecialPriceStart");
+
+                    b.Property<string>("Specification");
+
+                    b.Property<int>("StockQuantity");
+
+                    b.Property<long?>("ThumbnailImageId");
+
+                    b.Property<long?>("TyrePofileId");
+
+                    b.Property<long?>("TyreProfileId");
+
+                    b.Property<long?>("TyreRimSizeId");
+
+                    b.Property<long?>("TyreWidthId");
+
+                    b.Property<long?>("UpdatedById");
+
+                    b.Property<DateTimeOffset>("UpdatedOn");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ThumbnailImageId");
+
+                    b.HasIndex("TyreProfileId");
+
+                    b.HasIndex("TyreRimSizeId");
+
+                    b.HasIndex("TyreWidthId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("Catalog_Product");
+                });
+
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.ProductMedia", b =>
                 {
                     b.Property<long>("Id")
@@ -151,35 +267,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Catalog_ProductMedia");
-                });
-
-            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreBrand", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<bool>("IsPublished");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.Property<long>("TyreVendorId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TyreVendorId");
-
-                    b.ToTable("Catalog_TyreBrand");
                 });
 
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreProfile", b =>
@@ -206,19 +293,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Catalog_TyreRimSize");
-                });
-
-            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreVendor", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Catalog_TyreVendor");
                 });
 
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreWidth", b =>
@@ -273,48 +347,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                     );
                 });
 
-            modelBuilder.Entity("TekeriumCommerce.Module.Core.Models.Content", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long?>("CreatedById");
-
-                    b.Property<DateTimeOffset>("CreatedOn");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<bool>("IsPublished");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.Property<DateTimeOffset?>("PublishedOn");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.Property<long?>("UpdatedById");
-
-                    b.Property<DateTimeOffset>("UpdatedOn");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("UpdatedById");
-
-                    b.ToTable("Core_Content");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Content");
-                });
-
             modelBuilder.Entity("TekeriumCommerce.Module.Core.Models.Entity", b =>
                 {
                     b.Property<long>("Id")
@@ -359,6 +391,12 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Core_EntityType");
+
+                    b.HasData(
+                        new { Id = "Category", AreaName = "Catalog", IsMenuable = true, RoutingAction = "CategoryDetail", RoutingController = "Category" },
+                        new { Id = "Brand", AreaName = "Catalog", IsMenuable = true, RoutingAction = "BrandDetail", RoutingController = "Brand" },
+                        new { Id = "Product", AreaName = "Catalog", IsMenuable = false, RoutingAction = "ProductDetail", RoutingController = "Product" }
+                    );
                 });
 
             modelBuilder.Entity("TekeriumCommerce.Module.Core.Models.Media", b =>
@@ -405,8 +443,8 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.ToTable("Core_Role");
 
                     b.HasData(
-                        new { Id = 1L, ConcurrencyStamp = "", Name = "admin", NormalizedName = "ADMIN" },
-                        new { Id = 3L, ConcurrencyStamp = "", Name = "guest", NormalizedName = "GUEST" }
+                        new { Id = 1L, ConcurrencyStamp = "4776a1b2-dbe4-4056-82ec-8bed211d1454", Name = "admin", NormalizedName = "ADMIN" },
+                        new { Id = 3L, ConcurrencyStamp = "d4754388-8355-4018-b728-218018836817", Name = "guest", NormalizedName = "GUEST" }
                     );
                 });
 
@@ -501,45 +539,23 @@ namespace TekeriumCommerce.WebHost.Migrations
                     );
                 });
 
-            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Product", b =>
+            modelBuilder.Entity("TekeriumCommerce.Module.Search.Models.Query", b =>
                 {
-                    b.HasBaseType("TekeriumCommerce.Module.Core.Models.Content");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description");
+                    b.Property<DateTimeOffset>("CreateOn");
 
-                    b.Property<decimal?>("OldPrice");
+                    b.Property<string>("QueryText")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
-                    b.Property<decimal>("Price");
+                    b.Property<int>("ResultCount");
 
-                    b.Property<string>("ShortDescription");
+                    b.HasKey("Id");
 
-                    b.Property<decimal?>("SpecialPrice");
-
-                    b.Property<long?>("ThumbnailImageId");
-
-                    b.Property<long?>("TyreBrandId");
-
-                    b.Property<long?>("TyrePofileId");
-
-                    b.Property<long?>("TyreProfileId");
-
-                    b.Property<long?>("TyreRimSizeId");
-
-                    b.Property<long?>("TyreWidthId");
-
-                    b.HasIndex("ThumbnailImageId");
-
-                    b.HasIndex("TyreBrandId");
-
-                    b.HasIndex("TyreProfileId");
-
-                    b.HasIndex("TyreRimSizeId");
-
-                    b.HasIndex("TyreWidthId");
-
-                    b.ToTable("Catalog_Product");
-
-                    b.HasDiscriminator().HasValue("Product");
+                    b.ToTable("Search_Query");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
@@ -587,6 +603,49 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Product", b =>
+                {
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Core.Models.User", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Core.Models.Media", "ThumbnailImage")
+                        .WithMany()
+                        .HasForeignKey("ThumbnailImageId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.TyreProfile", "TyreProfile")
+                        .WithMany()
+                        .HasForeignKey("TyreProfileId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.TyreRimSize", "TyreRimSize")
+                        .WithMany()
+                        .HasForeignKey("TyreRimSizeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.TyreWidth", "TyreWidth")
+                        .WithMany()
+                        .HasForeignKey("TyreWidthId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Core.Models.User", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.ProductMedia", b =>
                 {
                     b.HasOne("TekeriumCommerce.Module.Core.Models.Media", "Media")
@@ -597,14 +656,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasOne("TekeriumCommerce.Module.Catalog.Models.Product", "Product")
                         .WithMany("Medias")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreBrand", b =>
-                {
-                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.TyreVendor", "TyreVendor")
-                        .WithMany("Brands")
-                        .HasForeignKey("TyreVendorId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -626,19 +677,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TekeriumCommerce.Module.Core.Models.Content", b =>
-                {
-                    b.HasOne("TekeriumCommerce.Module.Core.Models.User", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("TekeriumCommerce.Module.Core.Models.User", "UpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedById")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("TekeriumCommerce.Module.Core.Models.Entity", b =>
                 {
                     b.HasOne("TekeriumCommerce.Module.Core.Models.EntityType", "EntityType")
@@ -657,34 +695,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasOne("TekeriumCommerce.Module.Core.Models.User", "User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Product", b =>
-                {
-                    b.HasOne("TekeriumCommerce.Module.Core.Models.Media", "ThumbnailImage")
-                        .WithMany()
-                        .HasForeignKey("ThumbnailImageId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.TyreBrand", "TyreBrand")
-                        .WithMany()
-                        .HasForeignKey("TyreBrandId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.TyreProfile", "TyreProfile")
-                        .WithMany()
-                        .HasForeignKey("TyreProfileId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.TyreRimSize", "TyreRimSize")
-                        .WithMany()
-                        .HasForeignKey("TyreRimSizeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.TyreWidth", "TyreWidth")
-                        .WithMany()
-                        .HasForeignKey("TyreWidthId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618

@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TekeriumCommerce.Infrastructure.Data;
-using TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers;
 using TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels;
 using TekeriumCommerce.Module.Catalog.Models;
 using TekeriumCommerce.Module.Core.Services;
@@ -13,28 +10,24 @@ using TekeriumCommerce.Module.Search.Areas.Search.ViewModels;
 
 namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 {
+    [Area("search")]
     public class SearchController : Controller
     {
         private readonly int _pageSize;
 
-        private readonly IRepository<TyreWidth> _tyreWidthRepository;
-        private readonly IRepository<TyreRimSize> _tyreRimSizeRepository;
         private readonly IRepository<Product> _productRepository;
         private readonly IMediaService _mediaService;
 
-        public SearchController(IRepository<TyreWidth> tyreWidthRepository,
-                IRepository<TyreRimSize> tyreRimSizeRepository,
-                IRepository<Product> productRepository,
+        public SearchController(IRepository<Product> productRepository,
                 IMediaService mediaService,
                 IConfiguration config)
         {
-            _tyreWidthRepository = tyreWidthRepository;
-            _tyreRimSizeRepository = tyreRimSizeRepository;
             _productRepository = productRepository;
             _mediaService = mediaService;
             _pageSize = config.GetValue<int>("Catalog.ProductPageSize");
         }
 
+        [HttpGet("search")]
         public IActionResult Index(SearchOption searchOption)
         {
             if (string.IsNullOrWhiteSpace(searchOption.Width) || string.IsNullOrWhiteSpace(searchOption.Profile) ||
@@ -49,6 +42,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             };
 
             var query = _productRepository.Query().Where(x =>
+                x.Category.Name == searchOption.Category &&
                 x.TyreWidth.Size == searchOption.Width && x.TyreProfile.Size == searchOption.Profile &&
                 x.TyreRimSize.Size == searchOption.RimSize && x.IsPublished);
 
@@ -82,7 +76,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
             foreach (var product in products)
             {
-                product.ThumbnailUrl = _mediaService.getThumbnailUrl(product.ThumbnailImage);
+                product.ThumbnailUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage);
             }
 
             model.Products = products;
@@ -90,40 +84,6 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             model.CurrentSearchOption.Page = currentPageNum;
 
             return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult SelectWidth([FromBody] SearchCriteria searchCriteria)
-        {
-            List<TyreWidth> list = null;
-
-            list = _tyreWidthRepository.Query().Where(x => x.Size == searchCriteria.Width)
-                .Include(x => x.TyreWidthProfileRimSizes).ThenInclude(x => x.TyreProfile).ToList();
-
-            var g = (from c in list
-                     from m in c.TyreWidthProfileRimSizes
-                     select m.TyreProfile).Distinct().Select(x => x.Size);
-
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(g);
-        }
-
-        [HttpPost]
-        public IActionResult SelectProfile([FromBody] SearchCriteria searchCriteria)
-        {
-            List<TyreRimSize> listRimSizes = null;
-
-            listRimSizes = this._tyreRimSizeRepository.Query()
-                .Include(x => x.TyreWidthProfileRimSizes).ThenInclude(a => a.TyreProfile)
-                .Include(x => x.TyreWidthProfileRimSizes).ThenInclude(a => a.TyreWidth).ToList();
-
-            var g = (from c in listRimSizes
-                     from m in c.TyreWidthProfileRimSizes
-                     where m.TyreProfile.Size == searchCriteria.Profile && m.TyreWidth.Size == searchCriteria.Width
-                     select m.TyreRimSize).Distinct().Select(x => x.Size);
-
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(g);
         }
     }
 }

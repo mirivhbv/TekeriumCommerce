@@ -13,9 +13,55 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#line 1 "C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\Areas\Core\Views\_ViewImports.cshtml"
+using TekeriumCommerce.Module.Core;
+
+#line default
+#line hidden
+#line 2 "C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\Areas\Core\Views\_ViewImports.cshtml"
+using TekeriumCommerce.Module.Core.Models;
+
+#line default
+#line hidden
+#line 3 "C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\Areas\Core\Views\_ViewImports.cshtml"
+using TekeriumCommerce.Module.Core.Areas.Core.ViewModels.Account;
+
+#line default
+#line hidden
+#line 4 "C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\Areas\Core\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#line 5 "C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\Areas\Core\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc.Localization;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b55ea53b25051fcd806bfeca63258496198757d1", @"/Areas/Core/Views/Home/Index.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2b883a1b418e22cee30af746fb3e9f8366e87873", @"/Areas/Core/Views/_ViewImports.cshtml")]
     public class Areas_Core_Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
+        #line hidden
+        #pragma warning disable 0169
+        private string __tagHelperStringValueBuffer;
+        #pragma warning restore 0169
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
+        {
+            get
+            {
+                if (__backed__tagHelperScopeManager == null)
+                {
+                    __backed__tagHelperScopeManager = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager(StartTagHelperWritingScope, EndTagHelperWritingScope);
+                }
+                return __backed__tagHelperScopeManager;
+            }
+        }
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
@@ -25,8 +71,30 @@ namespace AspNetCore
 
 #line default
 #line hidden
-            BeginContext(45, 58, true);
-            WriteLiteral("\r\n<form>\r\n    <input type=\"text\"/>\r\n</form>\r\n\r\n<div>\r\n    ");
+            BeginContext(45, 2, true);
+            WriteLiteral("\r\n");
+            EndContext();
+            BeginContext(47, 41, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "979c2ddbf439440180b8c72dfb6ba820", async() => {
+                BeginContext(53, 28, true);
+                WriteLiteral("\r\n    <input type=\"text\"/>\r\n");
+                EndContext();
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            EndContext();
+            BeginContext(88, 15, true);
+            WriteLiteral("\r\n\r\n<div>\r\n    ");
             EndContext();
             BeginContext(104, 41, false);
 #line 10 "C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\Modules\TekeriumCommerce.Module.Core\Areas\Core\Views\Home\Index.cshtml"

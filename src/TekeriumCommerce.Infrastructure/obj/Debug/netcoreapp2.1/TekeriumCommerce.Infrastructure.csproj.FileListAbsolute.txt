@@ -3,7 +3,6 @@ C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCom
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.Infrastructure\bin\Debug\netcoreapp2.1\TekeriumCommerce.Infrastructure.runtimeconfig.dev.json
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.Infrastructure\bin\Debug\netcoreapp2.1\TekeriumCommerce.Infrastructure.dll
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.Infrastructure\bin\Debug\netcoreapp2.1\TekeriumCommerce.Infrastructure.pdb
-C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.Infrastructure\obj\Debug\netcoreapp2.1\TekeriumCommerce.Infrastructure.csprojAssemblyReference.cache
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.Infrastructure\obj\Debug\netcoreapp2.1\TekeriumCommerce.Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.Infrastructure\obj\Debug\netcoreapp2.1\TekeriumCommerce.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.Infrastructure\obj\Debug\netcoreapp2.1\TekeriumCommerce.Infrastructure.AssemblyInfo.cs

@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Runtime.Loader;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using TekeriumCommerce.Infrastructure;
 using TekeriumCommerce.Infrastructure.Modules;
 using TekeriumCommerce.Infrastructure.Web.ModelBinders;
 using TekeriumCommerce.Module.Core.Data;
+using TekeriumCommerce.Module.Core.Extensions;
+using TekeriumCommerce.Module.Core.Models;
 
 namespace TekeriumCommerce.WebHost.Extensions
 {
@@ -140,9 +150,63 @@ namespace TekeriumCommerce.WebHost.Extensions
             // todo: add authentication
             // todo: add configure application cookie
 
-            // services.AddIdentity<>()
+            services.AddIdentity<User, Role>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequiredUniqueChars = 0;
+                })
+                .AddRoleStore<TekeriumRoleStore>()
+                .AddUserStore<TekeriumUserStore>()
+                .AddDefaultTokenProviders();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie()
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = configuration["Authentication:Jwt:Issuer"],
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Authentication:Jwt:Key"]))
+                    };
+                });
 
+            services.ConfigureApplicationCookie(x =>
+            {
+                x.LoginPath = new PathString("/login");
+                x.Events.OnRedirectToLogin = context =>
+                {
+                    if (context.Request.Path.StartsWithSegments("/api") &&
+                        context.Response.StatusCode == (int) HttpStatusCode.OK)
+                    {
+                        context.Response.StatusCode = (int) HttpStatusCode.Unauthorized;
+                        return Task.CompletedTask;
+                    }
+
+                    context.Response.Redirect(context.RedirectUri);
+                    return Task.CompletedTask;
+                };
+                x.Events.OnRedirectToAccessDenied = context =>
+                {
+                    if (context.Request.Path.StartsWithSegments("/api") &&
+                        context.Response.StatusCode == (int) HttpStatusCode.OK)
+                    {
+                        context.Response.StatusCode = (int) HttpStatusCode.Forbidden;
+                        return Task.CompletedTask;
+                    }
+
+                    context.Response.Redirect(context.RedirectUri);
+                    return Task.CompletedTask;
+                };
+            });
             return services;
         }
 

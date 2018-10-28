@@ -4,7 +4,7 @@ using TekeriumCommerce.Infrastructure.Models;
 
 namespace TekeriumCommerce.Module.Core.Models
 {
-    public class Content : EntityBase
+    public abstract class Content : EntityBase
     {
         private bool isDeleted;
 

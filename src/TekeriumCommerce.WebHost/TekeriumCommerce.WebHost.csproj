@@ -7,14 +7,17 @@
   <ItemGroup>
     <Content Remove="Modules\TekeriumCommerce.Module.Catalog\module.json" />
     <Content Remove="Modules\TekeriumCommerce.Module.Search\module.json" />
+    <Content Remove="Modules\TekeriumCommerce.Module.StorageLocal\module.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Modules\TekeriumCommerce.Module.Catalog\module.json" />
     <None Include="Modules\TekeriumCommerce.Module.Search\module.json" />
+    <None Include="Modules\TekeriumCommerce.Module.StorageLocal\module.json" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Modules\TekeriumCommerce.Module.StorageLocal\TekeriumCommerce.Module.StorageLocal.csproj" />
     <ProjectReference Include="..\TekeriumCommerce.Infrastructure\TekeriumCommerce.Infrastructure.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.Core\TekeriumCommerce.Module.Core.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.Catalog\TekeriumCommerce.Module.Catalog.csproj" />
@@ -26,6 +29,14 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\jquery-validation\" />
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
   </ItemGroup>
 
 </Project>

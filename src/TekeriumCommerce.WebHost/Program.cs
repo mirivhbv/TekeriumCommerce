@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using TekeriumCommerce.Module.Core.Extensions;
 
 namespace TekeriumCommerce.WebHost
@@ -35,12 +36,14 @@ namespace TekeriumCommerce.WebHost
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
             );
 
-            // todo: after adding Serilog package configure it here
+            // done! todo: after adding Serilog package configure it here
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
         }
 
         private static void SetupLogging(WebHostBuilderContext hostingContext, ILoggingBuilder loggingBuilder)
         {
-            // todo: add serial log
+            // done! todo: add serial log
+            loggingBuilder.AddSerilog();
         }
     }
 }

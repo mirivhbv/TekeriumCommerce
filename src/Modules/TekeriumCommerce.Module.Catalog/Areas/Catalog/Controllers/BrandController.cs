@@ -34,6 +34,24 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
         {
             var brand = _brandRepository.Query().FirstOrDefault(x => x.Id == id);
 
+            var model = new ProductsByBrand
+            {
+                BrandId = id,
+                BrandName = brand.Name,
+                BrandSlug = brand.Slug,
+                CurrentSearchOption = searchOption,
+                FilterOption = new FilterOption()
+            };
+
+            var query = _productRepository.Query().Where(x => x.BrandId == id && x.IsPublished);
+
+            if (!query.Any())
+            {
+                model.TotalProduct = 0;
+                return View(model);
+            }
+
+            // todo: append filter option to model
             return null;
         }
     }

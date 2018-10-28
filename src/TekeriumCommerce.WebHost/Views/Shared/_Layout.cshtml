@@ -17,11 +17,14 @@
 </head>
 
 <body>
+    <div>
+        <partial name="_LoginPartial" />
+    </div>
     <div class="container">
         @RenderBody()
     </div>
-    
-<script type="text/javascript" src="lib/somejs/mainsearch.js"></script>
-@RenderSection("scripts", required: false)
+
+    <script type="text/javascript" src="lib/somejs/mainsearch.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

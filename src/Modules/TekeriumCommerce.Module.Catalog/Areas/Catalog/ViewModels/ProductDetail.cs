@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TekeriumCommerce.Module.Catalog.Models;
+using TekeriumCommerce.Module.Core.Areas.Core.ViewModels;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 {
@@ -26,6 +27,8 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
         public int StockQuantity { get; set; }
 
         public IList<MediaViewModel> Images { get; set; } = new List<MediaViewModel>(); // todo
+
+        public ProductDetailBrand Brand { get; set; }
 
         public ProductDetailCategory Category { get; set; }
     }

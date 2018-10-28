@@ -4,7 +4,7 @@
         Profile: $('select#Profile').val(),
         SearchCriteriaOptions: 2
     });
-    action(v, 'select#RimSize', '/search/selectprofile');
+    action(v, 'select#RimSize', '/Search/searchapi/selectprofile');
 });
 
 $('select#Width').change(function () {
@@ -13,7 +13,7 @@ $('select#Width').change(function () {
         Profile: null,
         SearchCriteriaOptions: 1
     });
-    action(v, 'select#Profile', '/search/selectwidth');
+    action(v, 'select#Profile', '/Search/searchapi/selectwidth');
 });
 
 function action(v, to, url) {
