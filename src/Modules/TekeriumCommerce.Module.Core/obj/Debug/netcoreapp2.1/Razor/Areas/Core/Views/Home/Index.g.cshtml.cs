@@ -39,7 +39,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b55ea53b25051fcd806bfeca63258496198757d1", @"/Areas/Core/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2b883a1b418e22cee30af746fb3e9f8366e87873", @"/Areas/Core/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"476c40e39d8633b5030240fef27909e6dac63f51", @"/Areas/Core/Views/_ViewImports.cshtml")]
     public class Areas_Core_Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #line hidden
@@ -75,7 +75,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(47, 41, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "979c2ddbf439440180b8c72dfb6ba820", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "340ced9175ee4b5197f3f987016d9116", async() => {
                 BeginContext(53, 28, true);
                 WriteLiteral("\r\n    <input type=\"text\"/>\r\n");
                 EndContext();

@@ -26,6 +26,8 @@ C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCom
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.Catalog.dll
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.Core.dll
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.Search.dll
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.StorageLocal.dll
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.StorageLocal.pdb
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Infrastructure.pdb
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.Core.pdb
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.Catalog.pdb
@@ -40,6 +42,8 @@ C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCom
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.TagHelpers.output.cache
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.RazorCoreGenerate.cache
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.RazorTargetAssemblyInfo.cache
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.RazorTargetAssemblyInfo.cs
@@ -47,7 +51,3 @@ C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCom
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.csproj.CopyComplete
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.dll
 C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.pdb
-C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.StorageLocal.dll
-C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.StorageLocal.pdb
-C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
-C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoginPartial.g.cshtml.cs

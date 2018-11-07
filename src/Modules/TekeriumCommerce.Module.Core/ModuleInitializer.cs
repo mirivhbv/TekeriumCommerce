@@ -14,7 +14,7 @@ namespace TekeriumCommerce.Module.Core
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
             // todo: after make all models insert to service in here
-
+            serviceCollection.AddTransient<IEntityService, EntityService>();
             serviceCollection.AddTransient<IMediaService, MediaService>();
             serviceCollection.AddScoped<SignInManager<User>, TekeriumSignInManager<User>>();
             serviceCollection.AddScoped<IWorkContext, WorkContext>();

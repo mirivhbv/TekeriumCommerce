@@ -316,6 +316,8 @@ namespace TekeriumCommerce.WebHost.Migrations
 
                     b.Property<long>("TyreWidthId");
 
+                    b.Property<long>("Id");
+
                     b.HasKey("TyreProfileId", "TyreRimSizeId", "TyreWidthId");
 
                     b.HasIndex("TyreRimSizeId");

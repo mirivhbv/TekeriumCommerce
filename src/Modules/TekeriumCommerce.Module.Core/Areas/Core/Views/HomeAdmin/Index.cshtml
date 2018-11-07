@@ -1,0 +1,80 @@
+﻿@using System.Globalization
+@using Microsoft.Extensions.Configuration;
+@using TekeriumCommerce.Module.Core.Extensions;
+
+@inject IWorkContext WorkContext;
+@inject IConfiguration Config
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html ng-app="tekerAdmin">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .bloc {
+            display: inline-block;
+            vertical-align: top;
+            overflow: hidden;
+            border: solid grey 1px;
+        }
+
+            .bloc select {
+                padding: 10px;
+                margin: -5px -20px -5px -5px;
+            }
+    </style>
+    @* css going to here *@
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/angular-bootstrap/ui-bootstrap-csp.css" />
+
+    <script>
+        window.Global_AssetVersion = "@Config["Global.AssetVersion"]";
+    </script>
+
+    <script teker-append-version="true" src="~/lib/jquery/jquery.js"></script>
+    <script teker-append-version="true" src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+
+    <script teker-append-version="true" src="~/lib/angular-bootstrap/ui-bootstrap.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script teker-append-version="true" src="~/lib/angular/angular.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-ui-router/angular-ui-router.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-smart-table/dist/smart-table.js"></script>
+    <script teker-append-version="true" src="~/lib/ng-file-upload/dist/ng-file-upload.js"></script>
+    <script teker-append-version="true" src="~/lib/bootbox/bootbox.js"></script>
+
+    <script teker-append-version="true" src="~/modules/core/admin/common/slugify.js"></script>
+    <script teker-append-version="true" src="~/modules/core/admin/admin-app.js"></script>
+
+    <script teker-append-version="true" src="~/modules/core/admin/dashboard/dashboard.module.js"></script>
+    <script teker-append-version="true" src="~/modules/core/admin/core.module.js"></script>
+    <script teker-append-version="true" src="~/modules/core/admin/user/user-service.js"></script>
+    <script teker-append-version="true" src="~/modules/core/admin/user/user-list.js"></script>
+    <script teker-append-version="true" src="~/modules/core/admin/user/user-form.js"></script>
+
+    @*Catalog*@
+    <script teker-append-version="true" src="~/modules/catalog/admin/catalog.module.js"></script>
+    <script teker-append-version="true" src="~/modules/catalog/admin/brand/brand-service.js"></script>
+    <script teker-append-version="true" src="~/modules/catalog/admin/brand/brand-list.js"></script>
+    <script teker-append-version="true" src="~/modules/catalog/admin/brand/brand-form.js"></script>
+    <script teker-append-version="true" src="~/modules/catalog/admin/tyre/tyre-service.js"></script>
+    <script teker-append-version="true" src="~/modules/catalog/admin/tyre/tyre-list.js"></script>
+    <script teker-append-version="true" src="~/modules/catalog/admin/category/category-list.js"></script>
+    <script teker-append-version="true" src="~/modules/catalog/admin/category/category-form.js"></script>
+    <script teker-append-version="true" src="~/modules/catalog/admin/category/category-service.js"></script>
+
+</head>
+<body>
+    <ol>
+        <li><a ui-sref="users">Users</a></li>
+        <li><a ui-sref="brand">Brands</a></li>
+        <li><a ui-sref="tyre">Tyre</a></li>
+    </ol>
+    <ui-view></ui-view>
+</body>
+</html>

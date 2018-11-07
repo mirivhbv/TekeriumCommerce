@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TekeriumCommerce.Infrastructure\TekeriumCommerce.Infrastructure.csproj" />
+    <ProjectReference Include="..\TekeriumCommerce.Module.Catalog\TekeriumCommerce.Module.Catalog.csproj" />
+    <ProjectReference Include="..\TekeriumCommerce.Module.Core\TekeriumCommerce.Module.Core.csproj" />
+  </ItemGroup>
+</Project>

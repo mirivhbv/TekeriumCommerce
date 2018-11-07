@@ -1,6 +1,8 @@
-﻿namespace TekeriumCommerce.Module.Catalog.Models
+﻿using TekeriumCommerce.Infrastructure.Models;
+
+namespace TekeriumCommerce.Module.Catalog.Models
 {
-    public class TyreWidthProfileRimSize
+    public class TyreWidthProfileRimSize : EntityBase
     {
         public long TyreWidthId { get; set; }
         public TyreWidth TyreWidth { get; set; }

@@ -92,7 +92,7 @@ using TekeriumCommerce.Module.Core.Extensions;
             WriteLiteral("    <li>\r\n        ");
             EndContext();
             BeginContext(232, 155, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7dc6af52f69e4e8fb8425839a08ef4fd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "af95383ca496462fb524082f96f8d0d4", async() => {
                 BeginContext(310, 73, false);
 #line 10 "C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\Views\Shared\_LoginPartial.cshtml"
                                                                                 Write(String.Format("Hello {0}", (await WorkContext.GetCurrentUser()).FullName));
@@ -132,7 +132,7 @@ using TekeriumCommerce.Module.Core.Extensions;
             WriteLiteral("         <li>\r\n             ");
             EndContext();
             BeginContext(470, 78, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "820ed8c45e33488dab355d852a391e00", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c1e6acc3a30a479ea90d86fc3055df18", async() => {
                 BeginContext(535, 9, true);
                 WriteLiteral("Dashboard");
                 EndContext();
@@ -166,7 +166,7 @@ using TekeriumCommerce.Module.Core.Extensions;
             WriteLiteral("    <li>\r\n        ");
             EndContext();
             BeginContext(592, 166, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "20b3b4d5a29249168321b85be10e26e0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eda6226ffbb443bab2745f48c82912e2", async() => {
                 BeginContext(689, 62, true);
                 WriteLiteral("\r\n            <button type=\"submit\">Log off</button>\r\n        ");
                 EndContext();
@@ -207,7 +207,7 @@ else
             WriteLiteral("    <li>\r\n        ");
             EndContext();
             BeginContext(801, 73, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8bba7224cc83430b8cd118d884300221", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c499e2d0e4a241ec89c3b5642a7ddc7d", async() => {
                 BeginContext(864, 6, true);
                 WriteLiteral("Log in");
                 EndContext();
