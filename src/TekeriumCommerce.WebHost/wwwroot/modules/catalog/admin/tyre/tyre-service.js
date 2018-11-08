@@ -13,7 +13,10 @@
             deleteWidth: deleteWidth,
             deleteProfile: deleteProfile,
             deleteRimSize: deleteRimSize,
-            add: add
+            add: add,
+            addWidth: addWidth,
+            addProfile: addProfile,
+            addRimSize: addRimSize
         };
         return service;
 
@@ -64,6 +67,20 @@
         // add profile to selected width
         function add(width, profile, rim) {
             return $http.post('api/tyres/add/' + width + '/' + profile + '/' + rim);
+        }
+
+        // for adding
+
+        function addWidth(size) {
+            return $http.post('api/tyres/add-width/' + size);
+        }
+
+        function addProfile(size) {
+            return $http.post('api/tyres/add-profile/' + size);
+        }
+
+        function addRimSize(size) {
+            return $http.post('api/tyres/add-rimsize/' + size);
         }
     }
 })();

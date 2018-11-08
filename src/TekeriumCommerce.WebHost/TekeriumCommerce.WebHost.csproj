@@ -7,16 +7,19 @@
   <ItemGroup>
     <Content Remove="Modules\TekeriumCommerce.Module.Catalog\module.json" />
     <Content Remove="Modules\TekeriumCommerce.Module.Search\module.json" />
+    <Content Remove="Modules\TekeriumCommerce.Module.ShoppingCart\module.json" />
     <Content Remove="Modules\TekeriumCommerce.Module.StorageLocal\module.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Modules\TekeriumCommerce.Module.Catalog\module.json" />
     <None Include="Modules\TekeriumCommerce.Module.Search\module.json" />
+    <None Include="Modules\TekeriumCommerce.Module.ShoppingCart\module.json" />
     <None Include="Modules\TekeriumCommerce.Module.StorageLocal\module.json" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Modules\TekeriumCommerce.Module.ShoppingCart\TekeriumCommerce.Module.ShoppingCart.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.StorageLocal\TekeriumCommerce.Module.StorageLocal.csproj" />
     <ProjectReference Include="..\TekeriumCommerce.Infrastructure\TekeriumCommerce.Infrastructure.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.Core\TekeriumCommerce.Module.Core.csproj" />

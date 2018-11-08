@@ -86,6 +86,78 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             return Json(widths);
         }
 
+        [HttpPost("add-width/{size}")]
+        public async Task<IActionResult> AddWidth(string size)
+        {
+            var check = await _tyreWidthRepository.Query().FirstOrDefaultAsync(x => x.Size == size);
+
+            if (check != null)
+                return BadRequest(new {message = "This Width is exist."});
+
+            var width = new TyreWidth
+            {
+                Size = size
+            };
+
+            using (var transaction = _tyreWidthRepository.BeginTransaction())
+            {
+                _tyreWidthRepository.Add(width);
+                await _tyreWidthRepository.SaveChangesAsync();
+
+                transaction.Commit();
+            }
+
+            return Ok();
+        }
+
+        [HttpPost("add-profile/{size}")]
+        public async Task<IActionResult> AddProfile(string size)
+        {
+            var check = await _tyreProfileRepository.Query().FirstOrDefaultAsync(x => x.Size == size);
+
+            if (check != null)
+                return BadRequest(new { message = "This profile is exist." });
+
+            var profile = new TyreProfile
+            {
+                Size = size
+            };
+
+            using (var transaction = _tyreProfileRepository.BeginTransaction())
+            {
+                _tyreProfileRepository.Add(profile);
+                await _tyreProfileRepository.SaveChangesAsync();
+
+                transaction.Commit();
+            }
+
+            return Ok();
+        }
+
+        [HttpPost("add-rimsize/{size}")]
+        public async Task<IActionResult> AddRimSize(string size)
+        {
+            var check = await _tyreRimSizeRepository.Query().FirstOrDefaultAsync(x => x.Size == size);
+
+            if (check != null)
+                return BadRequest(new { message = "This profile is exist." });
+
+            var rim = new TyreRimSize
+            {
+                Size = size
+            };
+
+            using (var transaction = _tyreRimSizeRepository.BeginTransaction())
+            {
+                _tyreRimSizeRepository.Add(rim);
+                await _tyreRimSizeRepository.SaveChangesAsync();
+
+                transaction.Commit();
+            }
+
+            return Ok();
+        }
+
         [HttpPost("add/{width}/{profile}/{rim}")]
         public async Task<IActionResult> AddAll(long width, long profile, long rim)
         {

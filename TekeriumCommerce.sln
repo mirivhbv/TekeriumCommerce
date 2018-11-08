@@ -21,9 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TekeriumCommerce.Module.Cat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TekeriumCommerce.Module.StorageLocal", "src\Modules\TekeriumCommerce.Module.StorageLocal\TekeriumCommerce.Module.StorageLocal.csproj", "{56F8708B-C1DE-4DFB-A097-D08F93088F98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekeriumCommerce.Module.ShoppingCart", "src\Modules\TekeriumCommerce.Module.ShoppingCart\TekeriumCommerce.Module.ShoppingCart.csproj", "{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekeriumCommerce.Module.Pricing", "src\Modules\TekeriumCommerce.Module.Pricing\TekeriumCommerce.Module.Pricing.csproj", "{DFA2EAE0-743E-447E-973A-8A798CA049A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TekeriumCommerce.Module.ShoppingCart", "src\Modules\TekeriumCommerce.Module.ShoppingCart\TekeriumCommerce.Module.ShoppingCart.csproj", "{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,6 @@ Global
 		{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFA2EAE0-743E-447E-973A-8A798CA049A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFA2EAE0-743E-447E-973A-8A798CA049A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFA2EAE0-743E-447E-973A-8A798CA049A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFA2EAE0-743E-447E-973A-8A798CA049A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,7 +70,6 @@ Global
 		{6B746F74-3F00-49F2-9D2D-970FC67509D3} = {6EC87C3C-7A63-4305-9B14-0B9A35E702A7}
 		{56F8708B-C1DE-4DFB-A097-D08F93088F98} = {6EC87C3C-7A63-4305-9B14-0B9A35E702A7}
 		{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D} = {6EC87C3C-7A63-4305-9B14-0B9A35E702A7}
-		{DFA2EAE0-743E-447E-973A-8A798CA049A8} = {6EC87C3C-7A63-4305-9B14-0B9A35E702A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67FC4899-7F4B-4E5F-8756-2FD0D0C1B0BD}

@@ -13,6 +13,10 @@
   },
   {
     "id": "TekeriumCommerce.Module.StorageLocal",
+    "version": "1.0.0"
+  },
+  {
+    "id": "TekeriumCommerce.Module.ShoppingCart",
     "version": "1.0.0" 
   }
 ]

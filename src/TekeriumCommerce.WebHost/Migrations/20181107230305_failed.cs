@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TekeriumCommerce.WebHost.Migrations
 {
-    public partial class firstProductSeedTest : Migration
+    public partial class failed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -177,6 +177,7 @@ namespace TekeriumCommerce.WebHost.Migrations
                 name: "Catalog_TyreWidthProfileRimSize",
                 columns: table => new
                 {
+                    Id = table.Column<long>(nullable: false),
                     TyreWidthId = table.Column<long>(nullable: false),
                     TyreProfileId = table.Column<long>(nullable: false),
                     TyreRimSizeId = table.Column<long>(nullable: false)
@@ -369,7 +370,31 @@ namespace TekeriumCommerce.WebHost.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Core_Content",
+                name: "ShoppingCart_Cart",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<long>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    UpdatedOn = table.Column<DateTimeOffset>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    ShippingAmount = table.Column<decimal>(nullable: true),
+                    ShippingData = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCart_Cart", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCart_Cart_Core_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Core_User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Catalog_Product",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -386,18 +411,17 @@ namespace TekeriumCommerce.WebHost.Migrations
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     UpdatedOn = table.Column<DateTimeOffset>(nullable: false),
                     UpdatedById = table.Column<long>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
                     ShortDescription = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Specification = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
                     OldPrice = table.Column<decimal>(nullable: true),
                     SpecialPrice = table.Column<decimal>(nullable: true),
                     SpecialPriceStart = table.Column<DateTimeOffset>(nullable: true),
                     SpecialPriceEnd = table.Column<DateTimeOffset>(nullable: true),
-                    StockQuantity = table.Column<int>(nullable: true),
+                    StockQuantity = table.Column<int>(nullable: false),
                     NormalizedName = table.Column<string>(nullable: true),
-                    DisplayOrder = table.Column<int>(nullable: true),
+                    DisplayOrder = table.Column<int>(nullable: false),
                     ThumbnailImageId = table.Column<long>(nullable: true),
                     BrandId = table.Column<long>(nullable: true),
                     CategoryId = table.Column<long>(nullable: true),
@@ -408,51 +432,51 @@ namespace TekeriumCommerce.WebHost.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Core_Content", x => x.Id);
+                    table.PrimaryKey("PK_Catalog_Product", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Core_Content_Catalog_Brand_BrandId",
+                        name: "FK_Catalog_Product_Catalog_Brand_BrandId",
                         column: x => x.BrandId,
                         principalTable: "Catalog_Brand",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Core_Content_Catalog_Category_CategoryId",
+                        name: "FK_Catalog_Product_Catalog_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Catalog_Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Core_Content_Core_Media_ThumbnailImageId",
-                        column: x => x.ThumbnailImageId,
-                        principalTable: "Core_Media",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Core_Content_Catalog_TyreProfile_TyreProfileId",
-                        column: x => x.TyreProfileId,
-                        principalTable: "Catalog_TyreProfile",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Core_Content_Catalog_TyreRimSize_TyreRimSizeId",
-                        column: x => x.TyreRimSizeId,
-                        principalTable: "Catalog_TyreRimSize",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Core_Content_Catalog_TyreWidth_TyreWidthId",
-                        column: x => x.TyreWidthId,
-                        principalTable: "Catalog_TyreWidth",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Core_Content_Core_User_CreatedById",
+                        name: "FK_Catalog_Product_Core_User_CreatedById",
                         column: x => x.CreatedById,
                         principalTable: "Core_User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Core_Content_Core_User_UpdatedById",
+                        name: "FK_Catalog_Product_Core_Media_ThumbnailImageId",
+                        column: x => x.ThumbnailImageId,
+                        principalTable: "Core_Media",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Catalog_Product_Catalog_TyreProfile_TyreProfileId",
+                        column: x => x.TyreProfileId,
+                        principalTable: "Catalog_TyreProfile",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Catalog_Product_Catalog_TyreRimSize_TyreRimSizeId",
+                        column: x => x.TyreRimSizeId,
+                        principalTable: "Catalog_TyreRimSize",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Catalog_Product_Catalog_TyreWidth_TyreWidthId",
+                        column: x => x.TyreWidthId,
+                        principalTable: "Catalog_TyreWidth",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Catalog_Product_Core_User_UpdatedById",
                         column: x => x.UpdatedById,
                         principalTable: "Core_User",
                         principalColumn: "Id",
@@ -479,9 +503,37 @@ namespace TekeriumCommerce.WebHost.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Catalog_ProductMedia_Core_Content_ProductId",
+                        name: "FK_Catalog_ProductMedia_Catalog_Product_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Core_Content",
+                        principalTable: "Catalog_Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingCart_CartItem",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    ProductId = table.Column<long>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    CartId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCart_CartItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCart_CartItem_ShoppingCart_Cart_CartId",
+                        column: x => x.CartId,
+                        principalTable: "ShoppingCart_Cart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCart_CartItem_Catalog_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Catalog_Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -536,6 +588,46 @@ namespace TekeriumCommerce.WebHost.Migrations
                 column: "ThumbnailImageId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Catalog_Product_BrandId",
+                table: "Catalog_Product",
+                column: "BrandId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Catalog_Product_CategoryId",
+                table: "Catalog_Product",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Catalog_Product_CreatedById",
+                table: "Catalog_Product",
+                column: "CreatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Catalog_Product_ThumbnailImageId",
+                table: "Catalog_Product",
+                column: "ThumbnailImageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Catalog_Product_TyreProfileId",
+                table: "Catalog_Product",
+                column: "TyreProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Catalog_Product_TyreRimSizeId",
+                table: "Catalog_Product",
+                column: "TyreRimSizeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Catalog_Product_TyreWidthId",
+                table: "Catalog_Product",
+                column: "TyreWidthId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Catalog_Product_UpdatedById",
+                table: "Catalog_Product",
+                column: "UpdatedById");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Catalog_ProductMedia_MediaId",
                 table: "Catalog_ProductMedia",
                 column: "MediaId");
@@ -554,46 +646,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                 name: "IX_Catalog_TyreWidthProfileRimSize_TyreWidthId",
                 table: "Catalog_TyreWidthProfileRimSize",
                 column: "TyreWidthId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Core_Content_BrandId",
-                table: "Core_Content",
-                column: "BrandId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Core_Content_CategoryId",
-                table: "Core_Content",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Core_Content_ThumbnailImageId",
-                table: "Core_Content",
-                column: "ThumbnailImageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Core_Content_TyreProfileId",
-                table: "Core_Content",
-                column: "TyreProfileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Core_Content_TyreRimSizeId",
-                table: "Core_Content",
-                column: "TyreRimSizeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Core_Content_TyreWidthId",
-                table: "Core_Content",
-                column: "TyreWidthId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Core_Content_CreatedById",
-                table: "Core_Content",
-                column: "CreatedById");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Core_Content_UpdatedById",
-                table: "Core_Content",
-                column: "UpdatedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Core_Entity_EntityTypeId",
@@ -638,6 +690,21 @@ namespace TekeriumCommerce.WebHost.Migrations
                 name: "IX_Core_UserRole_RoleId",
                 table: "Core_UserRole",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCart_Cart_UserId",
+                table: "ShoppingCart_Cart",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCart_CartItem_CartId",
+                table: "ShoppingCart_CartItem",
+                column: "CartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCart_CartItem_ProductId",
+                table: "ShoppingCart_CartItem",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -673,7 +740,7 @@ namespace TekeriumCommerce.WebHost.Migrations
                 name: "Search_Query");
 
             migrationBuilder.DropTable(
-                name: "Core_Content");
+                name: "ShoppingCart_CartItem");
 
             migrationBuilder.DropTable(
                 name: "Core_EntityType");
@@ -682,10 +749,19 @@ namespace TekeriumCommerce.WebHost.Migrations
                 name: "Core_Role");
 
             migrationBuilder.DropTable(
+                name: "ShoppingCart_Cart");
+
+            migrationBuilder.DropTable(
+                name: "Catalog_Product");
+
+            migrationBuilder.DropTable(
                 name: "Catalog_Brand");
 
             migrationBuilder.DropTable(
                 name: "Catalog_Category");
+
+            migrationBuilder.DropTable(
+                name: "Core_User");
 
             migrationBuilder.DropTable(
                 name: "Catalog_TyreProfile");
@@ -695,9 +771,6 @@ namespace TekeriumCommerce.WebHost.Migrations
 
             migrationBuilder.DropTable(
                 name: "Catalog_TyreWidth");
-
-            migrationBuilder.DropTable(
-                name: "Core_User");
 
             migrationBuilder.DropTable(
                 name: "Core_Media");

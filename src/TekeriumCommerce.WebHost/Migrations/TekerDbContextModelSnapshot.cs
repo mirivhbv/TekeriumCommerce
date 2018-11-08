@@ -560,6 +560,54 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.ToTable("Search_Query");
                 });
 
+            modelBuilder.Entity("TekeriumCommerce.Module.ShoppingCart.Models.Cart", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<decimal?>("ShippingAmount");
+
+                    b.Property<string>("ShippingData");
+
+                    b.Property<DateTimeOffset?>("UpdatedOn");
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCart_Cart");
+                });
+
+            modelBuilder.Entity("TekeriumCommerce.Module.ShoppingCart.Models.CartItem", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CartId");
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<long>("ProductId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCart_CartItem");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
                 {
                     b.HasOne("TekeriumCommerce.Module.Core.Models.Role")
@@ -697,6 +745,27 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasOne("TekeriumCommerce.Module.Core.Models.User", "User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("TekeriumCommerce.Module.ShoppingCart.Models.Cart", b =>
+                {
+                    b.HasOne("TekeriumCommerce.Module.Core.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("TekeriumCommerce.Module.ShoppingCart.Models.CartItem", b =>
+                {
+                    b.HasOne("TekeriumCommerce.Module.ShoppingCart.Models.Cart", "Cart")
+                        .WithMany("Items")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618

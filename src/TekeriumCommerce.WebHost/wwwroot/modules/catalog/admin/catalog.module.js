@@ -28,6 +28,12 @@
                             url: '/tyre',
                             templateUrl: 'modules/catalog/admin/tyre/tyre-list.html',
                             controller: 'TyreListCtrl as vm'
+                    })
+                    .state('tyre-add',
+                        {
+                            url: '/tyre-add',
+                            templateUrl: 'modules/catalog/admin/tyre/tyre-form.html',
+                            controller: 'TyreFormCtrl as vm'
                         })
                     .state('category',
                         {
