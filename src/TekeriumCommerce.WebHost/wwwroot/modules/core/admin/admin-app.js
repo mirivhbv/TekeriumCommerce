@@ -6,7 +6,7 @@
         'ngFileUpload',
         'tekerAdmin.dashboard',
         'tekerAdmin.core',
-        'tekerAdmin.catalog'
+        'tekerAdmin.catalog',
         ]);
 
     adminApp.config([

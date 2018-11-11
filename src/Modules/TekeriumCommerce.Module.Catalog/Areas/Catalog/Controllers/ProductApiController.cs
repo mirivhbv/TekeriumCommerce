@@ -30,7 +30,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             _workContext = workContext;
         }
 
-
+        [HttpPost("grid")]
         public async Task<IActionResult> List([FromBody] SmartTableParam param)
         {
             var query = _productRepository.Query().Where(x => !x.IsDeleted);
@@ -69,8 +69,25 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
 
             var gridData = query.ToSmartTableResult(param, x => new ProductListItem
             {
+                Id = x.Id,
+                Name = x.Name,
+                StockQuantity = x.StockQuantity,
+                CreatedOn = x.CreatedOn,
+                IsPublished = x.IsPublished
+            });
 
-            })
+            return Json(gridData);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(ProductForm model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var currentUser = await _workContext.GetCurrentUser();
+
+            return null;
         }
     }
 }

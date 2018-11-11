@@ -52,6 +52,12 @@
                             url: '/category/create',
                             templateUrl: 'modules/catalog/admin/category/category-form.html',
                             controller: 'CategoryFormCtrl as vm'
+                    })
+                    .state('product',
+                        {
+                            url: '/product',
+                            templateUrl: 'modules/catalog/admin/product/product-list.html',
+                            controller: 'ProductListCtrl as vm'
                         });
             }]);
 })();

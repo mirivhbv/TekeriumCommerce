@@ -97,3 +97,7 @@ C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\TekeriumCommerce.WebH
 C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.Search.pdb
 C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.Views.pdb
 C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\TekeriumCommerce.WebHost\obj\Debug\netcoreapp2.1\TekeriumCommerce.WebHost.csproj.CopyComplete
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.ShoppingCart.Views.dll
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.ShoppingCart.Views.pdb
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.ShoppingCart.dll
+C:\Users\Administrator\Desktop\TekeriumCommerce\TekeriumCommerce\src\TekeriumCommerce.WebHost\bin\Debug\netcoreapp2.1\TekeriumCommerce.Module.ShoppingCart.pdb
