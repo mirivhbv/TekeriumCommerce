@@ -140,8 +140,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .IsRequired()
                         .HasMaxLength(450);
 
-                    b.Property<long?>("ParentId");
-
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasMaxLength(450);
@@ -149,8 +147,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.Property<long?>("ThumbnailImageId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
 
                     b.HasIndex("ThumbnailImageId");
 
@@ -275,9 +271,13 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CategoryId");
+
                     b.Property<string>("Size");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Catalog_TyreProfile");
                 });
@@ -288,9 +288,13 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CategoryId");
+
                     b.Property<string>("Size");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Catalog_TyreRimSize");
                 });
@@ -301,9 +305,13 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CategoryId");
+
                     b.Property<string>("Size");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Catalog_TyreWidth");
                 });
@@ -642,11 +650,6 @@ namespace TekeriumCommerce.WebHost.Migrations
 
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Category", b =>
                 {
-                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.Category", "Parent")
-                        .WithMany("Children")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("TekeriumCommerce.Module.Core.Models.Media", "ThumbnailImage")
                         .WithMany()
                         .HasForeignKey("ThumbnailImageId")
@@ -706,6 +709,30 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasOne("TekeriumCommerce.Module.Catalog.Models.Product", "Product")
                         .WithMany("Medias")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreProfile", b =>
+                {
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreRimSize", b =>
+                {
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreWidth", b =>
+                {
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

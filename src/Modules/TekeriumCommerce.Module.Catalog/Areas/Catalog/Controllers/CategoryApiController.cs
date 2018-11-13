@@ -121,7 +121,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            var category = _categoryRepository.Query().Include(x => x.Children).FirstOrDefault(x => x.Id == id);
+            var category = _categoryRepository.Query().FirstOrDefault(x => x.Id == id);
             if (category is null)
             {
                 return NotFound();

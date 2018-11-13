@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using TekeriumCommerce.Infrastructure.Models;
 using TekeriumCommerce.Module.Core.Models;
 
@@ -31,11 +30,11 @@ namespace TekeriumCommerce.Module.Catalog.Models
 
         public bool IsDeleted { get; set; }
 
-        public long? ParentId { get; set; } // for us no need
+        //public long? ParentId { get; set; } // for us no need
 
-        public Category Parent { get; set; } // for use no need
+        //public Category Parent { get; set; } // for use no need
 
-        public IList<Category> Children { get; protected set; } = new List<Category>(); // for use no need
+        //public IList<Category> Children { get; protected set; } = new List<Category>(); // for use no need
 
         public Media ThumbnailImage { get; set; }
     }

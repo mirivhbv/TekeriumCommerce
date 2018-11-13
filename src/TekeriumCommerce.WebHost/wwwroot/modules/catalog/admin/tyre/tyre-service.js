@@ -6,9 +6,9 @@
     function tyreService($http) {
         var service = {
             getWidths: getWidths,
-            getWidth: getWidth,
-            getProfiles: getProfiles,
-            getRimSizes: getRimSizes,
+            //getWidth: getWidth,
+            getAllProfiles: getAllProfiles,
+            getAllRimSizes: getAllRimSizes,
             getAllWidths: getAllWidths,
             deleteWidth: deleteWidth,
             deleteProfile: deleteProfile,
@@ -20,32 +20,30 @@
         };
         return service;
 
-        function getWidths() {
-            return $http.get('api/tyres/');
-        }
-
-        function getWidth(id) {
+        function getWidths(id) {
             return $http.get('api/tyres/' + id);
         }
 
-        function getAllWidths() {
-            return $http.get('api/tyres/widths');
+        // function getWidth(id) {
+        //     return $http.get('api/tyres/' + id);
+        // }
+
+        function getAllWidths(id) { // category id
+            return $http.get('api/tyres/widths/' + id);
         }
 
-        function getProfiles() {
-            return $http.get('api/tyres/profiles/');
+        function getAllProfiles(id) { // category id
+            return $http.get('api/tyres/profiles/' + id);
         }
 
-        function getRimSizes() {
-            return $http.get('api/tyres/rimsizes');
+        function getAllRimSizes(id) { // category id
+            return $http.get('api/tyres/rimsizes/' + id);
         }
 
         // remove
-
         function deleteWidth(id) {
             return $http.delete('api/tyres/width/' + id);
         }
-
         function deleteProfile(id) {
             return $http({
                 method: 'DELETE',
@@ -54,7 +52,6 @@
                 data: id
             });
         }
-
         function deleteRimSize(id) {
             return $http({
                 method: 'DELETE',
@@ -69,18 +66,18 @@
             return $http.post('api/tyres/add/' + width + '/' + profile + '/' + rim);
         }
 
-        // for adding
 
-        function addWidth(size) {
-            return $http.post('api/tyres/add-width/' + size);
+        // for adding separately
+        function addWidth(param) {
+            return $http.post('api/tyres/add-width', param);
         }
 
-        function addProfile(size) {
-            return $http.post('api/tyres/add-profile/' + size);
+        function addProfile(param) {
+            return $http.post('api/tyres/add-profile', param);
         }
 
-        function addRimSize(size) {
-            return $http.post('api/tyres/add-rimsize/' + size);
+        function addRimSize(param) {
+            return $http.post('api/tyres/add-rimsize', param);
         }
     }
 })();

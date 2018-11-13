@@ -39,7 +39,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Components
         {
             var category = _categoryRepository
                 .Query()
-                .Include(x => x.Parent)
+                //.Include(x => x.Parent)
                 .FirstOrDefault(x => x.Id == categoryId);
 
             var breadcrumbModels = new List<BreadcrumbViewModel>
@@ -51,17 +51,17 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Components
                 }
             };
 
-            var parentCategory = category.Parent;
+            //var parentCategory = category.Parent;
 
-            while (parentCategory != null)
-            {
-                breadcrumbModels.Insert(0, new BreadcrumbViewModel
-                {
-                    Text = parentCategory.Name,
-                    Url = parentCategory.Slug
-                });
-                parentCategory = parentCategory.Parent;
-            }
+            //while (parentCategory != null)
+            //{
+            //    breadcrumbModels.Insert(0, new BreadcrumbViewModel
+            //    {
+            //        Text = parentCategory.Name,
+            //        Url = parentCategory.Slug
+            //    });
+            //    parentCategory = parentCategory.Parent;
+            //}
 
             return breadcrumbModels;
         }

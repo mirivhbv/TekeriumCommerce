@@ -29,8 +29,11 @@
     </style>
     @* css going to here *@
     <link teker-append-version="true" rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+    <link simpl-append-version="true" rel="stylesheet" href="~/lib/angular-material/angular-material.css" />
     <link teker-append-version="true" rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/toastr/build/toastr.min.css" />
     <link teker-append-version="true" rel="stylesheet" href="~/lib/angular-bootstrap/ui-bootstrap-csp.css" />
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/summernote/summernote.css" />
 
     <link teker-append-version="true" rel="stylesheet" href="~/modules/catalog/admin/tyre/tyre-form.css" />
 
@@ -40,18 +43,29 @@
 
     <script teker-append-version="true" src="~/lib/jquery/jquery.js"></script>
     <script teker-append-version="true" src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script teker-append-version="true" src="~/lib/summernote/summernote.js"></script>
 
 
-    <script teker-append-version="true" src="~/lib/angular-bootstrap/ui-bootstrap.js"></script>
-    <script teker-append-version="true" src="~/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script teker-append-version="true" src="~/lib/angular/angular.js"></script>
     <script teker-append-version="true" src="~/lib/angular-ui-router/angular-ui-router.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-animate/angular-animate.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-aria/angular-aria.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-material/angular-material.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-ui-router/angular-ui-router.js"></script>
     <script teker-append-version="true" src="~/lib/angular-smart-table/dist/smart-table.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-summernote/angular-summernote.js"></script>
     <script teker-append-version="true" src="~/lib/ng-file-upload/dist/ng-file-upload.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-bootstrap/ui-bootstrap.js"></script>
+    <script teker-append-version="true" src="~/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script teker-append-version="true" src="~/lib/bootstrap-ui-datetime-picker/datetime-picker.js"></script>
+    <script teker-append-version="true" src="~/lib/bootstrap-ui-datetime-picker/datetime-picker.tpls.js"></script>
     <script teker-append-version="true" src="~/lib/bootbox/bootbox.js"></script>
+    <script teker-append-version="true" src="~/lib/toastr/build/toastr.min.js"></script>
 
     <script teker-append-version="true" src="~/modules/core/admin/common/slugify.js"></script>
     <script teker-append-version="true" src="~/modules/core/admin/admin-app.js"></script>
+    <script teker-append-version="true" src="~/modules/core/admin/common/common.js"></script>
+    <script teker-append-version="true" src="~/modules/core/admin/common/summernote-service.js"></script>
 
     <script teker-append-version="true" src="~/modules/core/admin/dashboard/dashboard.module.js"></script>
     <script teker-append-version="true" src="~/modules/core/admin/core.module.js"></script>
@@ -72,13 +86,15 @@
     <script teker-append-version="true" src="~/modules/catalog/admin/category/category-service.js"></script>
     <script teker-append-version="true" src="~/modules/catalog/admin/product/product-list.js"></script>
     <script teker-append-version="true" src="~/modules/catalog/admin/product/product-service.js"></script>
-
+    <script teker-append-version="true" src="~/modules/catalog/admin/product/product-form.js"></script>
 </head>
 <body>
     <ol>
         <li><a ui-sref="users">Users</a></li>
         <li><a ui-sref="brand">Brands</a></li>
         <li><a ui-sref="tyre">Tyre</a></li>
+        <li><a ui-sref="category">Category</a></li>
+        <li><a ui-sref="product">Product</a></li>
     </ol>
     <ui-view></ui-view>
 </body>

@@ -94,7 +94,7 @@
                         vm.categories.splice(index, 1);
                     });
             } else {
-                categoryService.getCategories().when(function (result) {
+                categoryService.getCategories().then(function (result) {
                     vm.categories = result.data;
                 });
             }

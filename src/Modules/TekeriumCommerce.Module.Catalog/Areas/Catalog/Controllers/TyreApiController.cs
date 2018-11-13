@@ -32,9 +32,10 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             _commonTyreRepository = commonTyreRepository;
         }
 
-        public async Task<IActionResult> Get()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(long id) // category id
         {
-            var widthList = await _tyreWidthRepository.Query()
+            var widthList = await _tyreWidthRepository.Query().Where(x => x.CategoryId == id)
                 .Select(p => new TyreForm
                 {
                     Id = p.Id,
@@ -62,41 +63,42 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             return Json(widthList);
         }
 
-        [HttpGet("profiles")]
-        public async Task<IActionResult> GetProfiles()
+        [HttpGet("profiles/{id}")]
+        public async Task<IActionResult> GetProfiles(long id)
         {
-            var profiles = await _tyreProfileRepository.Query().ToListAsync();
+            var profiles = await _tyreProfileRepository.Query().Where(x => x.CategoryId == id).ToListAsync();
 
             return Json(profiles);
         }
 
-        [HttpGet("rimsizes")]
-        public async Task<IActionResult> GetRimSizes()
+        [HttpGet("rimsizes/{id}")]
+        public async Task<IActionResult> GetRimSizes(long id)
         {
-            var rimsizes = await _tyreRimSizeRepository.Query().ToListAsync();
+            var rimsizes = await _tyreRimSizeRepository.Query().Where(x => x.CategoryId == id).ToListAsync();
 
             return Json(rimsizes);
         }
 
-        [HttpGet("widths")]
-        public async Task<IActionResult> GetWidths()
+        [HttpGet("widths/{id}")]
+        public async Task<IActionResult> GetWidths(long id)
         {
-            var widths = await _tyreWidthRepository.Query().ToListAsync();
+            var widths = await _tyreWidthRepository.Query().Where(x => x.CategoryId == id).ToListAsync();
 
             return Json(widths);
         }
 
-        [HttpPost("add-width/{size}")]
-        public async Task<IActionResult> AddWidth(string size)
+        [HttpPost("add-width")]
+        public async Task<IActionResult> AddWidth([FromBody]AddingTyreSizeVm model)
         {
-            var check = await _tyreWidthRepository.Query().FirstOrDefaultAsync(x => x.Size == size);
+            var check = await _tyreWidthRepository.Query().FirstOrDefaultAsync(x => x.Size == model.Size && x.CategoryId == model.CategoryId);
 
             if (check != null)
-                return BadRequest(new {message = "This Width is exist."});
+                return BadRequest(new { message = "This Width is exist." });
 
             var width = new TyreWidth
             {
-                Size = size
+                CategoryId = model.CategoryId,
+                Size = model.Size
             };
 
             using (var transaction = _tyreWidthRepository.BeginTransaction())
@@ -110,17 +112,18 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             return Ok();
         }
 
-        [HttpPost("add-profile/{size}")]
-        public async Task<IActionResult> AddProfile(string size)
+        [HttpPost("add-profile")]
+        public async Task<IActionResult> AddProfile([FromBody]AddingTyreSizeVm model)
         {
-            var check = await _tyreProfileRepository.Query().FirstOrDefaultAsync(x => x.Size == size);
+            var check = await _tyreProfileRepository.Query().FirstOrDefaultAsync(x => x.Size == model.Size && x.CategoryId == model.CategoryId);
 
             if (check != null)
                 return BadRequest(new { message = "This profile is exist." });
 
             var profile = new TyreProfile
             {
-                Size = size
+                CategoryId = model.CategoryId,
+                Size = model.Size
             };
 
             using (var transaction = _tyreProfileRepository.BeginTransaction())
@@ -134,17 +137,18 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             return Ok();
         }
 
-        [HttpPost("add-rimsize/{size}")]
-        public async Task<IActionResult> AddRimSize(string size)
+        [HttpPost("add-rimsize")]
+        public async Task<IActionResult> AddRimSize([FromBody]AddingTyreSizeVm model)
         {
-            var check = await _tyreRimSizeRepository.Query().FirstOrDefaultAsync(x => x.Size == size);
+            var check = await _tyreRimSizeRepository.Query().FirstOrDefaultAsync(x => x.Size == model.Size && x.CategoryId == model.CategoryId);
 
             if (check != null)
                 return BadRequest(new { message = "This profile is exist." });
 
             var rim = new TyreRimSize
             {
-                Size = size
+                CategoryId = model.CategoryId,
+                Size = model.Size
             };
 
             using (var transaction = _tyreRimSizeRepository.BeginTransaction())
@@ -169,7 +173,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                 x.TyreWidthId == width && x.TyreProfileId == profile && x.TyreRimSizeId == rim);
 
             if (check != null)
-                return BadRequest(new {message = "Selected profile and width already is in width."});
+                return BadRequest(new { message = "Selected profile and width already is in width." });
 
             // get all shits:
             var w = await _tyreWidthRepository.Query().FirstOrDefaultAsync(x => x.Id == width);
@@ -178,7 +182,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
 
             if (w is null || p is null || r is null)
             {
-                return BadRequest(new {message = "There is not that type of sizes."});
+                return BadRequest(new { message = "There is not that type of sizes." });
             }
 
             var twpr = new TyreWidthProfileRimSize
@@ -219,7 +223,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             return NoContent();
         }
 
-        [HttpDelete("width")]
+        [HttpDelete("width/{id}")]
         public async Task<IActionResult> RemoveWidth(long id)
         {
             var all = await _commonTyreRepository.Query().Where(x => x.TyreWidthId == id).ToListAsync();

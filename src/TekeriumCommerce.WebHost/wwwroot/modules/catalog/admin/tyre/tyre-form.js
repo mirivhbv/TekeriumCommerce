@@ -3,12 +3,22 @@
         .module('tekerAdmin.catalog')
         .controller('TyreFormCtrl', TyreFormCtrl);
 
-    function TyreFormCtrl($state, tyreService) {
+    function TyreFormCtrl($state, tyreService, categoryService) {
         var vm = this;
         vm.tyre = {};
+        vm.categories = [];
+        vm.selectedCatForWidth = {};
+        vm.selectedCatForProfile = {};
+        vm.selectedCatForRim = {};
+
+        vm.getCat = function() {
+            categoryService.getCategories()
+                .then(result => { vm.categories = result.data });
+        }();
 
         vm.saveWidth = function saveWidth() {
-            tyreService.addWidth(vm.tyre.width.size).
+            p = { 'categoryId': vm.selectedCatForWidth.id, 'size': vm.tyre.width.size };
+            tyreService.addWidth(p).
                 then(result => { $state.go('tyre'); })
                 .catch(response => {
                     var error = response.data;
@@ -30,7 +40,8 @@
         }
 
         vm.saveProfile = function saveProfile() {
-            tyreService.addProfile(vm.tyre.profile.size).
+            p = { 'categoryId': vm.selectedCatForProfile.id, 'size': vm.tyre.profile.size };
+            tyreService.addProfile(p).
                 then(result => { $state.go('tyre'); })
                 .catch(response => {
                     var error = response.data;
@@ -52,7 +63,9 @@
         }
 
         vm.saveRim = function saveRim() {
-            tyreService.addRimSize(vm.tyre.rim.size).
+            p = { 'categoryId': vm.selectedCatForRim.id, 'size': vm.tyre.rim.size };
+
+            tyreService.addRimSize(p).
                 then(result => { $state.go('tyre'); })
                 .catch(response => {
                     var error = response.data;

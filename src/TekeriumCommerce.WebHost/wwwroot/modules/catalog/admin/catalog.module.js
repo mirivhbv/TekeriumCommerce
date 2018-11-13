@@ -28,7 +28,7 @@
                             url: '/tyre',
                             templateUrl: 'modules/catalog/admin/tyre/tyre-list.html',
                             controller: 'TyreListCtrl as vm'
-                    })
+                        })
                     .state('tyre-add',
                         {
                             url: '/tyre-add',
@@ -52,12 +52,24 @@
                             url: '/category/create',
                             templateUrl: 'modules/catalog/admin/category/category-form.html',
                             controller: 'CategoryFormCtrl as vm'
-                    })
+                        })
                     .state('product',
                         {
                             url: '/product',
                             templateUrl: 'modules/catalog/admin/product/product-list.html',
                             controller: 'ProductListCtrl as vm'
+                        })
+                    .state('product-edit',
+                        {
+                            url: '/product/edit/:id',
+                            templateUrl: 'modules/catalog/admin/product/product-form.html',
+                            controller: 'ProductFormCtrl as vm'
+                        })
+                    .state('product-create',
+                        {
+                            url: '/product/edit',
+                            templateUrl: 'modules/catalog/admin/product/product-form.html',
+                            controller: 'ProductFormCtrl as vm'
                         });
             }]);
 })();

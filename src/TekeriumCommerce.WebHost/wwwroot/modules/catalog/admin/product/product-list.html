@@ -12,11 +12,6 @@
     <thead>
         <tr>
             <th st-sort="Name" class="sortable">Name</th>
-            <th class="text-center">Has Options</th>
-            <th class="text-center">is visibly individually</th>
-            <th class="text-center">Is Featured</th>
-            <th class="text-center">Is Allowed to Order</th>
-            <th class="text-center">Is Called For Pricing</th>
             <th class="text-right">Stock Quantity</th>
             <th st-sort="IsPublished" class="text-center sortable">Is Published</th>
             <th st-sort="CreatedOn" class="text-center sortable">Created on</th>
@@ -69,11 +64,6 @@
     <tbody ng-show="!vm.isLoading">
         <tr ng-repeat="product in vm.products">
             <td>{{product.name}}</td>
-            <td class="text-center"><i ng-attr-class="{{product.hasOptions && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-            <td class="text-center"><i ng-attr-class="{{product.isVisibleIndividually && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-            <td class="text-center"><i ng-attr-class="{{product.isFeatured && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-            <td class="text-center"><i ng-attr-class="{{product.isAllowToOrder && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-            <td class="text-center"><i ng-attr-class="{{product.isCallForPricing && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
             <td class="text-right">{{product.stockQuantity}}</td>
             <td class="text-center"><i ng-attr-class="{{product.isPublished && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
             <td class="text-center">{{product.createdOn | date:'medium'}}</td>

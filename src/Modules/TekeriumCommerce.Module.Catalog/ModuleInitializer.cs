@@ -13,6 +13,7 @@ namespace TekeriumCommerce.Module.Catalog
             serviceCollection.AddTransient<IProductPricingService, ProductPricingService>();
             serviceCollection.AddTransient<IBrandService, BrandService>();
             serviceCollection.AddTransient<ICategoryService, CategoryService>();
+            serviceCollection.AddTransient<IProductService, ProductService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

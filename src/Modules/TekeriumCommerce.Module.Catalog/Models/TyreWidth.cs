@@ -9,5 +9,8 @@ namespace TekeriumCommerce.Module.Catalog.Models
 
         public IList<TyreWidthProfileRimSize> TyreWidthProfileRimSizes { get; set; } =
             new List<TyreWidthProfileRimSize>();
+
+        public long? CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

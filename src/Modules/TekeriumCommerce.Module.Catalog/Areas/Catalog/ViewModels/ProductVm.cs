@@ -20,10 +20,6 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public DateTimeOffset? SpecialPriceEnd { get; set; }
 
-        //public bool IsCallForPricing { get; set; }
-
-        //public bool IsAllowToOrder { get; set; }
-
         [Required]
         public string Name { get; set; }
 
@@ -36,10 +32,6 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public string MetaDescription { get; set; }
 
-        //public string Sku { get; set; }
-
-        //public string Gtin { get; set; }
-
         public string ShortDescription { get; set; }
 
         public string Description { get; set; }
@@ -48,17 +40,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public bool IsPublished { get; set; }
 
-        //public bool IsFeatured { get; set; }
-
-        //public bool StockTrackingIsEnabled { get; set; }
-
-        //public IList<long> CategoryIds { get; set; } = new List<long>();
-
-        //public IList<ProductAttributeVm> Attributes { get; set; } = new List<ProductAttributeVm>();
-
-        //public IList<ProductOptionVm> Options { get; set; } = new List<ProductOptionVm>();
-
-        //public IList<ProductVariationVm> Variations { get; set; } = new List<ProductVariationVm>();
+        public long? CategoryId { get; set; }
 
         public string ThumbnailImageUrl { get; set; }
 
@@ -69,11 +51,5 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
         public IList<long> DeletedMediaIds { get; set; } = new List<long>();
 
         public long? BrandId { get; set; }
-
-        //public long? TaxClassId { get; set; }
-
-        //public List<ProductLinkVm> RelatedProducts { get; set; } = new List<ProductLinkVm>();
-
-        //public List<ProductLinkVm> CrossSellProducts { get; set; } = new List<ProductLinkVm>();
     }
 }

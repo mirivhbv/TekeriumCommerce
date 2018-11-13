@@ -52,5 +52,11 @@ namespace TekeriumCommerce.Module.Catalog.Models
         public long? TyreRimSizeId { get; set; }
 
         public TyreRimSize TyreRimSize { get; set; }
+
+        public void AddMedia(ProductMedia media)
+        {
+            media.Product = this;
+            Medias.Add(media);
+        }
     }
 }

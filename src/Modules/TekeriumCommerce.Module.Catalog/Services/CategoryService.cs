@@ -37,12 +37,12 @@ namespace TekeriumCommerce.Module.Catalog.Services
                     DisplayOrder = category.DisplayOrder,
                 };
 
-                var parentCategory = category.Parent;
-                while (parentCategory != null)
-                {
-                    categoryListItem.Name = $"{parentCategory.Name} >> {categoryListItem.Name}";
-                    parentCategory = parentCategory.Parent;
-                }
+                //var parentCategory = category.Parent;
+                //while (parentCategory != null)
+                //{
+                //    categoryListItem.Name = $"{parentCategory.Name} >> {categoryListItem.Name}";
+                //    parentCategory = parentCategory.Parent;
+                //}
 
                 categoriesList.Add(categoryListItem);
             }
