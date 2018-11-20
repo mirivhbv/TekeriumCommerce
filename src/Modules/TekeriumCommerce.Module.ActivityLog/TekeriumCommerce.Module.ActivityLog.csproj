@@ -9,10 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\TekeriumCommerce.Infrastructure\TekeriumCommerce.Infrastructure.csproj" />
     <ProjectReference Include="..\TekeriumCommerce.Module.Core\TekeriumCommerce.Module.Core.csproj" />
   </ItemGroup>

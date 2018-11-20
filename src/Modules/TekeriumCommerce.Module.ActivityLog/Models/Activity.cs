@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using TekeriumCommerce.Infrastructure.Models;
 
 namespace TekeriumCommerce.Module.ActivityLog.Models
 {
-    public class Activity
+    public class Activity : EntityBase
     {
         public long ActivityTypeId { get; set; }
 
