@@ -51,5 +51,11 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
         public IList<long> DeletedMediaIds { get; set; } = new List<long>();
 
         public long? BrandId { get; set; }
+
+        public long? TyreWidthId { get; set; }
+
+        public long? TyreProfileId { get; set; }
+
+        public long? TyreRimSizeId { get; set; }
     }
 }

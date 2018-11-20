@@ -5,7 +5,10 @@
         var service = {
             getProduct: getProduct,
             getProducts: getProducts,
-            createProduct: createProduct
+            createProduct: createProduct,
+            editProduct: editProduct,
+            changeStatus: changeStatus,
+            deleteProduct: deleteProduct
         };
 
         return service;
@@ -28,6 +31,27 @@
                     productDocuments: productDocuments
                 }
             });
+        }
+
+        function editProduct(product, thumbnailImage, productImages, productDocuments) {
+            return Upload.upload({
+                url: 'api/products/' + product.id,
+                method: 'PUT',
+                data: {
+                    product: product,
+                    thumbnailImage: thumbnailImage,
+                    productImages: productImages,
+                    productDocuments: productDocuments
+                }
+            });
+        }
+
+        function deleteProduct(product) {
+            return $http.delete('api/products/' + product.id, null);
+        }
+
+        function changeStatus(product) {
+            return $http.post('api/products/change-status/' + product.id, null);
         }
     }
 })();

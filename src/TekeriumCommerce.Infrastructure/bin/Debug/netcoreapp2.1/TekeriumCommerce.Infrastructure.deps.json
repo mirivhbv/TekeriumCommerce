@@ -158,7 +158,7 @@
     "ncrontab/3.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Q0/hJ/U4ZdJsiIqzzO4TnLoc9M1eW3TS3vZ+hnXiv9/XFHXomsiSPuBJNnpMjwoUiSwM2P3o8ocjFK+dcuDG8g==",
+      "sha512": "sha512-oNHphZD7YiqHJoqX5Myw+lfDDTnnI2i+mCuil8MW2gyHaEejhLOdsS9pqVUGAEIJsu4+OL+m3UmkBcw2gkdtsg==",
       "path": "ncrontab/3.3.0",
       "hashPath": "ncrontab.3.3.0.nupkg.sha512"
     },

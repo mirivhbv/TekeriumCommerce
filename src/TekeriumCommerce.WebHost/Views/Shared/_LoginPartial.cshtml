@@ -9,12 +9,12 @@
     <li>
         <a asp-area="Core" asp-controller="Manage" asp-action="Index" title="Manage">@String.Format("Hello {0}", (await WorkContext.GetCurrentUser()).FullName)</a>
     </li>
-    @if (User.IsInRole("admin"))
-     {
-         <li>
-             <a asp-area="Core" asp-controller="HomeAdmin" asp-action="Index">Dashboard</a>
-         </li>
-     }
+    if (User.IsInRole("admin"))
+    {
+        <li>
+            <a asp-area="Core" asp-controller="HomeAdmin" asp-action="Index">Dashboard</a>
+        </li>
+    }
     <li>
         <form asp-area="Core" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm">
             <button type="submit">Log off</button>

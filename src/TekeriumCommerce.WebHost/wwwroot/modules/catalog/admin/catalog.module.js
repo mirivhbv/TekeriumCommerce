@@ -67,7 +67,7 @@
                         })
                     .state('product-create',
                         {
-                            url: '/product/edit',
+                            url: '/product/create',
                             templateUrl: 'modules/catalog/admin/product/product-form.html',
                             controller: 'ProductFormCtrl as vm'
                         });

@@ -73,7 +73,10 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                 IsPublished = product.IsPublished,
                 CategoryId = product.CategoryId,
                 ThumbnailImageUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage),
-                BrandId = product.BrandId
+                BrandId = product.BrandId,
+                TyreWidthId = product.TyreWidthId,
+                TyreProfileId = product.TyreProfileId,
+                TyreRimSizeId = product.TyreRimSizeId
             };
 
             foreach (var productMedia in product.Medias.Where(x => x.Media.MediaType == MediaType.Image))
@@ -173,18 +176,145 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                 IsPublished = model.Product.IsPublished,
                 CategoryId = model.Product.CategoryId,
                 BrandId = model.Product.BrandId,
+                TyreWidthId = model.Product.TyreWidthId,
+                TyreProfileId = model.Product.TyreProfileId,
+                TyreRimSizeId = model.Product.TyreRimSizeId,
                 CreatedBy = currentUser
             };
 
             await SaveProductMedias(model, product);
 
-            // todo: add price history
+            // done! todo: add price history
+            var productPriceHistory = CreatePriceHistory(currentUser, product);
+            product.PriceHistories.Add(productPriceHistory);
 
             _productService.Create(product);
             return CreatedAtAction(nameof(Get), new {id = product.Id}, null);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(long id, ProductForm model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var product = _productRepository.Query()
+                .Include(x => x.ThumbnailImage)
+                .Include(x => x.Medias)
+                .Include(x => x.Category)
+                .FirstOrDefault(x => x.Id == id);
+
+            if (product is null)
+            {
+                return NotFound();
+            }
+
+            var currentUser = await _workContext.GetCurrentUser();
+            if (!User.IsInRole("admin"))
+            {
+                return BadRequest(new { error = "You don't have permission to manage this product" });
+            }
+
+            var isPriceChanged = product.Price != model.Product.Price ||
+                                  product.OldPrice != model.Product.OldPrice ||
+                                  product.SpecialPrice != model.Product.SpecialPrice ||
+                                  product.SpecialPriceStart != model.Product.SpecialPriceStart ||
+                                  product.SpecialPriceEnd != model.Product.SpecialPriceEnd;
+
+            product.Name = model.Product.Name;
+            product.Slug = model.Product.Slug;
+            product.MetaTitle = model.Product.MetaTitle;
+            product.MetaKeywords = model.Product.MetaKeywords;
+            product.MetaDescription = model.Product.MetaDescription;
+            product.ShortDescription = model.Product.ShortDescription;
+            product.Description = model.Product.Description;
+            product.Specification = model.Product.Specification;
+            product.Price = model.Product.Price;
+            product.OldPrice = model.Product.OldPrice;
+            product.SpecialPrice = model.Product.SpecialPrice;
+            product.SpecialPriceStart = model.Product.SpecialPriceStart;
+            product.SpecialPriceEnd = model.Product.SpecialPriceEnd;
+            product.BrandId = model.Product.BrandId;
+            product.TyreWidthId = model.Product.TyreWidthId;
+            product.TyreProfileId = model.Product.TyreProfileId;
+            product.TyreRimSizeId = model.Product.TyreRimSizeId;
+            product.IsPublished = model.Product.IsPublished;
+            product.UpdatedBy = currentUser;
+
+            if (isPriceChanged)
+            {
+                var productPriceHistory = CreatePriceHistory(currentUser, product);
+                product.PriceHistories.Add(productPriceHistory);
+            }
+
+            await SaveProductMedias(model, product);
+
+            foreach (var productMediaId in model.Product.DeletedMediaIds)
+            {
+                var productMedia = product.Medias.First(x => x.Id == productMediaId);
+                _productMediaRepository.Remove(productMedia);
+                await _mediaService.DeleteMediaAsync(productMedia.Media);
+            }
+
+            // todo: update category
+
+            _productService.Update(product);
+
+            return Accepted();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            var product = _productRepository.Query().FirstOrDefault(x => x.Id == id);
+            if (product == null)
+                return NotFound();
+
+            var currentUser = await _workContext.GetCurrentUser();
+            if (!User.IsInRole("admin"))
+            {
+                return BadRequest(new { error = "You don't have permission to manage this product" });
+            }
+
+            await _productService.Delete(product);
+
+            return NoContent();
+        }
+
+        [HttpPost("change-status/{id}")]
+        public async Task<IActionResult> ChangeStatus(long id)
+        {
+            var product = _productRepository.Query().FirstOrDefault(x => x.Id == id);
+            if (product is null)
+                return NotFound();
+
+            var currentUser = await _workContext.GetCurrentUser();
+            if (!User.IsInRole("admin"))
+            {
+                return BadRequest(new { error = "You don't have permission to manage this product" });
+            }
+
+            product.IsPublished = !product.IsPublished;
+            await _productRepository.SaveChangesAsync();
+
+            return Accepted();
+        }
+
         // helper methods:
+
+        private static ProductPriceHistory CreatePriceHistory(User loginUser, Product product)
+        {
+            return new ProductPriceHistory
+            {
+                CreatedBy = loginUser,
+                Product = product,
+                Price = product.Price,
+                OldPrice = product.OldPrice,
+                SpecialPrice = product.SpecialPrice,
+                SpecialPriceStart = product.SpecialPriceStart,
+                SpecialPriceEnd = product.SpecialPriceEnd
+            };
+        }
 
         private async Task SaveProductMedias(ProductForm model, Product product)
         {

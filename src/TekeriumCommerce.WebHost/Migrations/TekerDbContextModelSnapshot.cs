@@ -211,8 +211,6 @@ namespace TekeriumCommerce.WebHost.Migrations
 
                     b.Property<long?>("ThumbnailImageId");
 
-                    b.Property<long?>("TyrePofileId");
-
                     b.Property<long?>("TyreProfileId");
 
                     b.Property<long?>("TyreRimSizeId");
@@ -263,6 +261,37 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Catalog_ProductMedia");
+                });
+
+            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.ProductPriceHistory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedById");
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<decimal?>("OldPrice");
+
+                    b.Property<decimal?>("Price");
+
+                    b.Property<long?>("ProductId");
+
+                    b.Property<decimal?>("SpecialPrice");
+
+                    b.Property<DateTimeOffset?>("SpecialPriceEnd");
+
+                    b.Property<DateTimeOffset?>("SpecialPriceStart");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Catalog_ProductPriceHistory");
                 });
 
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreProfile", b =>
@@ -708,6 +737,19 @@ namespace TekeriumCommerce.WebHost.Migrations
 
                     b.HasOne("TekeriumCommerce.Module.Catalog.Models.Product", "Product")
                         .WithMany("Medias")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.ProductPriceHistory", b =>
+                {
+                    b.HasOne("TekeriumCommerce.Module.Core.Models.User", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.Product", "Product")
+                        .WithMany("PriceHistories")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

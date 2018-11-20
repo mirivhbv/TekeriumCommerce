@@ -158,33 +158,28 @@
                     <md-content class="md-padding">
                         <md-input-container class="md-block">
                             <md-radio-group ng-model="vm.product.categoryId" ng-change="vm.catUpdate(vm.product.categoryId)">
-                                <md-radio-button ng-repeat="category in vm.categories" ng-value="category.id"  aria-label="{{category.name}}">
+                                <md-radio-button ng-repeat="category in vm.categories" ng-value="category.id"  aria-label="{{category.name}}" required>
                                     {{category.name}}
                                 </md-radio-button>
                             </md-radio-group>
-
-                            <!-- <div ng-repeat="category in vm.categories">
-                                <md-checkbox ng-checked="vm.product.categoryId == category.id" ng-click="vm.toggleCategories(category.id)">
-                                    {{ category.name }}
-                                </md-checkbox>
-                            </div> -->
+                            <div ng-if="!vm.categories.length">No category</div>
                         </md-input-container>
 
                         <md-input-container>
-                            <md-select ng-model="vm.selectedWidth" ng-change="vm.selectedWidthChange()">
+                            <md-select ng-model="vm.selectedWidth" ng-change="vm.selectedWidthChange()" required>
                                 <md-option ng-value="f" ng-repeat="f in vm.widths">{{ f.size }}</md-option>
                             </md-select>
                         </md-input-container>
 
                         <md-input-container>
-                            <md-select ng-model="vm.selectedProfile" ng-change="vm.selectedProfileChange()">
+                            <md-select ng-model="vm.selectedProfile" ng-change="vm.selectedProfileChange()" required>
                                 <md-option ng-value="f" ng-repeat="f in vm.profiles">{{ f.size }}</md-option>
                             </md-select>
                         </md-input-container>
 
                         <md-input-container>
-                            <md-select ng-model="vm.selectedRim">
-                                <md-option ng-value="opt.id" ng-repeat="opt in vm.rims">{{ opt.size }}</md-option>
+                            <md-select ng-model="vm.selectedRim" required>
+                                <md-option ng-value="f" ng-repeat="f in vm.rims">{{ f.size }}</md-option>
                             </md-select>
                         </md-input-container>
                     </md-content>

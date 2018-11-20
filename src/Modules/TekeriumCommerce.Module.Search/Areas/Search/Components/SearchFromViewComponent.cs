@@ -19,16 +19,12 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Components
 
         public IViewComponentResult Invoke()
         {
-            var model = new SearchForm();
-
-            model.AvailableWidths = _widthRepository.Query()
-                .Select(x => new SelectListItem
-                {
-                    Value = x.Size,
-                    Text = x.Size
-                }).ToList();
-
-            model.Width = Request.Query["width"];
+            var model = new SearchForm
+            {
+                AvailableWidths = _widthRepository.Query()
+                    .Select(x => new SelectListItem { Value = x.Size, Text = x.Size }).ToList(),
+                Width = Request.Query["width"]
+            };
 
             return View(this.GetViewPath(), model);
         }

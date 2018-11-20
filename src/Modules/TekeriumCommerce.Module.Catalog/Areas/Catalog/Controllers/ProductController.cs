@@ -88,6 +88,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
 
             // todo: mediator publish entity viewed
 
+
             return View(model);
         }
 

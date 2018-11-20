@@ -32,6 +32,8 @@ namespace TekeriumCommerce.Module.Catalog.Models
 
         public IList<ProductMedia> Medias { get; protected set; } = new List<ProductMedia>();
 
+        public IList<ProductPriceHistory> PriceHistories { get; protected set; } = new List<ProductPriceHistory>();
+
         public Brand Brand { get; set; }
 
         public long? BrandId { get; set; }
@@ -41,7 +43,7 @@ namespace TekeriumCommerce.Module.Catalog.Models
         public long? CategoryId { get; set; }
         
         // by me:
-        public long? TyrePofileId { get; set; }
+        public long? TyreProfileId { get; set; }
 
         public TyreProfile TyreProfile { get; set; }
 

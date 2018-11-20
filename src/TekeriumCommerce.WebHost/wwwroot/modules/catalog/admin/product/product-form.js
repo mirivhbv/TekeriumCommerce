@@ -5,7 +5,7 @@
 
     function ProductFormCtrl($state, $timeout, $stateParams, $http, categoryService, productService, summerNoteService, brandService, tyreService) {
         var vm = this;
-        
+
         // declare shoreDescription and description for summernote
         vm.product = { shortDescription: '', description: '', specification: '', isPublished: true, price: 0 };
         vm.product.categoryId = 0;
@@ -16,37 +16,41 @@
         vm.productId = $stateParams.id;
         vm.isEditMode = vm.productId > 0;
         vm.brands = [];
-        vm.sel;
+
+        vm.sel = null;
 
         // testing mapping size:
         vm.widths = [];
         vm.profiles = [];
         vm.rims = [];
+
         vm.selectedWidth = {};
         vm.selectedProfile = {};
         vm.selectedRim = {};
 
-        vm.catUpdate = function(id) {
+        vm.catUpdate = function (id) {
             tyreService.getWidths(id).then(result => {
                 vm.widths = result.data;
                 vm.profiles = {};
                 vm.rims = {};
+
+                vm.selectedWidth = {};
+                vm.selectedProfile = {};
+                vm.selectedRim = {};
             });
         }
-        
-        vm.selectedWidthChange = function() {
+
+        vm.selectedWidthChange = function () {
             vm.profiles = vm.selectedWidth.profiles;
-            vm.rims = {}; // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        } // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
- // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-   // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-     // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-       // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa // last staaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        vm.selectedProfileChange = function() {
+            vm.rims = [];
+
+            vm.selectedProfile = {};
+            vm.selectedRim = {};
+        }
+
+        vm.selectedProfileChange = function () {
             vm.rims = vm.selectedProfile.rimSizes;
+            vm.selectedRim = {};
         }
 
         vm.datePickerSpecialPriceStart = {};
@@ -93,50 +97,6 @@
             vm.product.deletedMediaIds.push(media.id);
         };
 
-        vm.toggleCategories = function toggleCategories(categoryId) {
-            if (category)
-
-            var index = vm.product.categoryIds.indexOf(categoryId);
-            if (index > -1) {
-                vm.product.categoryIds.splice(index, 1);
-                var childCategoryIds = getChildCategoryIds(categoryId);
-                childCategoryIds.forEach(function spliceChildCategory(childCategoryId) {
-                    index = vm.product.categoryIds.indexOf(childCategoryId);
-                    if (index > -1) {
-                        vm.product.categoryIds.splice(index, 1);
-                    }
-                });
-            } else {
-                vm.product.categoryIds.push(categoryId);
-                var category = vm.categories.find(function (item) { return item.id === categoryId; });
-                if (category) {
-                    var parentCategoryIds = getParentCategoryIds(category.parentId);
-                    parentCategoryIds.forEach(function pushParentCategory(parentCategoryId) {
-                        if (vm.product.categoryIds.indexOf(parentCategoryId) < 0) {
-                            vm.product.categoryIds.push(parentCategoryId);
-                        }
-                    });
-                }
-            }
-        };
-
-        vm.filterAddedOptionValue = function filterAddedOptionValue(item) {
-            if (vm.product.options.length > 1) {
-                return true;
-            }
-            var optionValueAdded = false;
-            vm.product.variations.forEach(function (variation) {
-                var optionValues = variation.optionCombinations.map(function (item) {
-                    return item.value;
-                });
-                if (optionValues.indexOf(item) > -1) {
-                    optionValueAdded = true;
-                }
-            });
-
-            return !optionValueAdded;
-        };
-
         vm.save = function save() {
             var promise;
 
@@ -149,6 +109,9 @@
             vm.product.metaTitle = vm.product.metaTitle === null ? '' : vm.product.metaTitle;
             vm.product.metaKeywords = vm.product.metaKeywords === null ? '' : vm.product.metaKeywords;
             vm.product.metaDescription = vm.product.metaDescription === null ? '' : vm.product.metaDescription;
+            vm.product.tyreWidthId = vm.selectedWidth.id;
+            vm.product.tyreProfileId = vm.selectedProfile.id;
+            vm.product.tyreRimSizeId = vm.selectedRim.id;
 
             if (vm.isEditMode) {
                 promise = productService.editProduct(vm.product, vm.thumbnailImage, vm.productImages, vm.productDocuments);
@@ -157,8 +120,8 @@
             }
 
             promise.then(function (result) {
-                    $state.go('product');
-                })
+                $state.go('product');
+            })
                 .catch(function (response) {
                     var error = response.data;
                     vm.validationErrors = [];
@@ -172,9 +135,27 @@
                 });
         };
 
+        function editModeGetSpecSizes() {
+            tyreService.getWidths(vm.product.categoryId)
+                .then(result => {
+                    vm.widths = result.data;
+                    vm.profiles = {};
+                    vm.rims = {};
+
+                    vm.selectedWidth = vm.widths.find(ob => ob.id == vm.product.tyreWidthId);
+                    vm.profiles = vm.selectedWidth.profiles;
+
+                    vm.selectedProfile = vm.profiles.find(ob => ob.id == vm.product.tyreProfileId);
+                    vm.rims = vm.selectedProfile.rimSizes;
+                    vm.selectedRim = vm.rims.find(ob => ob.id == vm.product.tyreRimSizeId);
+                });
+        };
+
         function getProduct() {
             productService.getProduct($stateParams.id).then(function (result) {
                 vm.product = result.data;
+
+                editModeGetSpecSizes();
 
                 if (vm.product.specialPriceStart) {
                     vm.product.specialPriceStart = new Date(vm.product.specialPriceStart);
@@ -188,6 +169,7 @@
         function getCategories() {
             categoryService.getCategories().then(function (result) {
                 vm.categories = result.data;
+                //console.log(vm.categories);
             });
         }
 
@@ -201,42 +183,11 @@
             if (vm.isEditMode) {
                 getProduct();
             }
-            else {
 
-            }
             getCategories();
             getBrands();
         }
 
-        // todo: going to delete
-        function getParentCategoryIds(categoryId) {
-            if (!categoryId) {
-                return [];
-            }
-            var category = vm.categories.find(function (item) { return item.id === categoryId; });
-
-            return category ? [category.id].concat(getParentCategoryIds(category.parentId)) : []; 
-        }
-
-        // going to removing()
-        function getChildCategoryIds(categoryId) {
-            if (!categoryId) {
-                return [];
-            }
-            var result = [];
-            var queue = [];
-            queue.push(categoryId);
-            while (queue.length > 0) {
-                var current = queue.shift();
-                result.push(current);
-                var childCategories = vm.categories.filter(function (item) { return item.parentId === current; });
-                childCategories.forEach(function pushChildCategoryToTheQueue(childCategory) {
-                    queue.push(childCategory.id);
-                });
-            }
-
-            return result;
-        }
 
         init();
     }

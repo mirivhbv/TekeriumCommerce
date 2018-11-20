@@ -10,26 +10,57 @@
     <title>@ViewData["Title"]</title>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <style>
-        .container {
-            background: red;
+        body {
+            background: linear-gradient(to right, #3FB6A8, #7ED386);
+        }
+        .header-container {
+            background: #FFFFFF;
+            width: 80%;
+            height: 120px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 2px 5px 2 0px rgba(119, 119, 119, 0.5);
+        }
+        .flexbox-con {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 10px;
+        }
+
+        .flexbox-cart {
+            margin-left: auto;
         }
     </style>
     
-    @RenderSection("head", false);
+    @RenderSection("head", false)
 </head>
 
 <body>
-<div>
-    <partial name="_LoginPartial" />
+<div class="header-container">
+    <div class="flexbox-con">
+        <div class="logo">
+            <a href="~/"><img style="max-height: -webkit-fill-available" src="~/tekerium.jpg" alt="Tekerium" /></a>
+        </div>
+        @*<partial name="_LoginPartial"/>*@
+        
+        <div class="flexbox-cart">
+            @await Component.InvokeAsync("CartBadge")
+        </div>
+    </div>
 </div>
-<div>
-    @await Component.InvokeAsync("CartBadge");
-</div>
+
     <div class="container">
         @RenderBody()
     </div>
 
-    <script type="text/javascript" src="lib/somejs/mainsearch.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
