@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using TekeriumCommerce.Module.ActivityLog.Models;
 using TekeriumCommerce.Module.Core.Data;
+using TekeriumCommerce.Module.Core.Models;
 
 namespace TekeriumCommerce.Module.ActivityLog.Data
 {
@@ -14,7 +15,21 @@ namespace TekeriumCommerce.Module.ActivityLog.Data
 
         public IQueryable<MostViewEntityDto> List()
         {
-            // todo: get (join)
+            // done ! todo: get (join)
+            return from a in DbSet
+                join e in Context.Set<Entity>() on new { a.EntityId, a.EntityTypeId } equals new { e.EntityId, e.EntityTypeId }
+                where a.ActivityTypeId == MostViewActivityTypeId
+                group a by new { a.EntityId, a.EntityTypeId, e.Name, e.Slug }
+                into g
+                orderby g.Count() descending
+                select new MostViewEntityDto
+                {
+                    EntityTypeId = g.Key.EntityTypeId,
+                    EntityId = g.Key.EntityId,
+                    Name = g.Key.Name,
+                    Slug = g.Key.Slug,
+                    ViewedCount = g.Count()
+                };
         }
     }
 }
