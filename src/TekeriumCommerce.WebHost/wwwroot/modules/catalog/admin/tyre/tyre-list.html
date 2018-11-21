@@ -1,0 +1,69 @@
+﻿<div class="page-header">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Tyres</h2>
+        </div>
+        <div class="col-md-4 text-right">
+            <a ui-sref="tyre-add" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create Tyre</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Width</th>
+            <th>Profiles</th>
+            <th>Rim Sizes</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr> <!--ng-repeat="width in vm.widths">-->
+        <td><div class="bloc"><select ng-model="vm.selectedCategory" ng-options="f.name for f in vm.categories track by f.id" ng-change="vm.catUpdated()" size="3"><option value="" ng-if="false"></option></select></div></td>
+        <td><div class="bloc"><select ng-model="vm.selectedWidth" ng-options="f.size for f in vm.widths"  size="3"><option value="" ng-if="false"></option></select></div></td>
+        <td><div class="bloc"><select ng-model="vm.selectedProfile" ng-options="w.size for w in vm.selectedWidth.profiles" size="3">><option value="" ng-if="false"></option></select></div></td>
+        <td><div class="bloc"><select ng-model="vm.selectedRim" ng-options="w.size for w in vm.selectedProfile.rimSizes" size="3"><option value="" ng-if="false"></option></select></div></td>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+            <select ng-model="vm.selectedAddingWidth" ng-options="f.size for f in vm.allWidths track by f.id"><option value="" ng-if="false"></option></select>
+        </td>
+        <td>
+            <select ng-model="vm.selectedAddingProfile" ng-options="f.size for f in vm.allProfiles track by f.id"><option value="" ng-if="false"></option></select>
+        </td>
+        <td>
+            <select ng-model="vm.selectedAddingRimSize" ng-options="f.size for f in vm.allRimSizes track by f.id"><option value="" ng-if="false"></option></select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="bg-danger">
+                <ul>
+                    <li ng-repeat="error in vm.validationErrors">{{error}}</li>
+                </ul>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+            <button ng-disabled="!vm.selectedAddingWidth && !vm.selectedAddingProfile && !vm.selectedAddingRimSize" ng-click="vm.add()">Add</button>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button ng-disabled="!vm.selectedAddingWidth" ng-click="vm.deleteWidth()">Remove</button>
+        </td>
+        <td>
+            <button ng-disabled="!vm.selectedAddingWidth && !vm.selectedAddingProfile" ng-click="vm.deleteProfile()">Remove</button>
+        </td>
+        <td>
+            <button ng-disabled="!vm.selectedAddingWidth && !vm.selectedAddingProfile && !vm.selectedAddingRimSize" ng-click="vm.deleteRimSize()">Remove</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

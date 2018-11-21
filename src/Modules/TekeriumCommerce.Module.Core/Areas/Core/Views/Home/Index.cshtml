@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    @await Component.InvokeAsync("SearchForm")
+</div>
+
+@section head {
+    <link rel="stylesheet" href="~/modules/search/main.css" />
+}
+
+@section scripts {
+    <script src="~/modules/search/selection.js"></script>
+    <script type="text/javascript" src="~/lib/somejs/mainsearch.js"></script>
+}
