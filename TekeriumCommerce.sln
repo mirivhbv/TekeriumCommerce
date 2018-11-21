@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TekeriumCommerce.Module.Sto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TekeriumCommerce.Module.ShoppingCart", "src\Modules\TekeriumCommerce.Module.ShoppingCart\TekeriumCommerce.Module.ShoppingCart.csproj", "{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekeriumCommerce.Module.ActivityLog", "src\Modules\TekeriumCommerce.Module.ActivityLog\TekeriumCommerce.Module.ActivityLog.csproj", "{CC183AD5-15F6-4BDE-9E6D-E625C6DF8F87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC183AD5-15F6-4BDE-9E6D-E625C6DF8F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC183AD5-15F6-4BDE-9E6D-E625C6DF8F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC183AD5-15F6-4BDE-9E6D-E625C6DF8F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC183AD5-15F6-4BDE-9E6D-E625C6DF8F87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{6B746F74-3F00-49F2-9D2D-970FC67509D3} = {6EC87C3C-7A63-4305-9B14-0B9A35E702A7}
 		{56F8708B-C1DE-4DFB-A097-D08F93088F98} = {6EC87C3C-7A63-4305-9B14-0B9A35E702A7}
 		{A9454F2B-D0BD-4ED0-A153-A3684AB4EF5D} = {6EC87C3C-7A63-4305-9B14-0B9A35E702A7}
+		{CC183AD5-15F6-4BDE-9E6D-E625C6DF8F87} = {6EC87C3C-7A63-4305-9B14-0B9A35E702A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67FC4899-7F4B-4E5F-8756-2FD0D0C1B0BD}
