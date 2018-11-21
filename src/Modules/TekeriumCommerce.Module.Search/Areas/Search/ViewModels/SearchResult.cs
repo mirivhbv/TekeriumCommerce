@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels;
 
 namespace TekeriumCommerce.Module.Search.Areas.Search.ViewModels
@@ -17,6 +18,11 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.ViewModels
 
         public SearchOption CurrentSearchOption { get; set; }
 
-        // todo: sort
+        // done ! todo: sort
+        public IList<SelectListItem> AvailableSortOptions => new List<SelectListItem>
+        {
+            new SelectListItem{ Text = "Price: Low to High", Value = "price-asc" },
+            new SelectListItem{ Text = "Price: High to Low", Value = "price-desc" }
+        };
     }
 }
