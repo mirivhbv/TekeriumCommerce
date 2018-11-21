@@ -1,6 +1,0 @@
-C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\Modules\TekeriumCommerce.Module.Pricing\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Pricing.csprojAssemblyReference.cache
-C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\Modules\TekeriumCommerce.Module.Pricing\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Pricing.csproj.CoreCompileInputs.cache
-C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\Modules\TekeriumCommerce.Module.Pricing\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Pricing.RazorAssemblyInfo.cache
-C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\Modules\TekeriumCommerce.Module.Pricing\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Pricing.RazorAssemblyInfo.cs
-C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\Modules\TekeriumCommerce.Module.Pricing\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Pricing.AssemblyInfoInputs.cache
-C:\Users\Miri\Desktop\tekerium\Failed\tekeriumcommerce\src\Modules\TekeriumCommerce.Module.Pricing\obj\Debug\netcoreapp2.1\TekeriumCommerce.Module.Pricing.AssemblyInfo.cs

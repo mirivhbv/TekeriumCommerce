@@ -1,6 +1,0 @@
-﻿{
-  "id": "TekeriumCommerce.Module.StorageLocal",
-  "name": "LocalStorage",
-  "isBundledWithHost": true,
-  "version": "1.0.0"
-}
