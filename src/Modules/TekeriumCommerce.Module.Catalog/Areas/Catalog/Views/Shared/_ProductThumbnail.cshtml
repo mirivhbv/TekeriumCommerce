@@ -1,10 +1,24 @@
 ﻿@model TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductThumbnail
 
-<div>
+<div class="card mb-4">
     <input type="hidden" id="productId" value="@Model.Id">
-    
-    <a href="@Model.Slug">
-        <img alt="@Model.Name" src="@Model.ThumbnailUrl">
+    <a href="~/@Model.Slug">
+        <img alt="@Model.Name" class="card-img-top" src="@Model.ThumbnailUrl">
+        <div class="card-body">
+            <h5 class="card-title product-name">@Model.Name</h5>
+            <p class="card-text product-price">
+                @Model.CalculatedProductPrice.Price.ToString("C")
+                @if (@Model.CalculatedProductPrice.PercentOfSaving > 0)
+                {
+                    <span class="product-price-saving">-@(Model.CalculatedProductPrice.PercentOfSaving)</span>
+                    <br/>
+                    <span class="product-price-regular">@Model.CalculatedProductPrice.OldPrice.Value.ToString("C")</span>
+                }
+            </p>
+            @*todo: develop it*@
+            @*<ul class="list-inline product-ratings">
+                <li></li>
+            </ul>*@
+        </div>
     </a>
-    <h3>@Model.Price</h3>
 </div>

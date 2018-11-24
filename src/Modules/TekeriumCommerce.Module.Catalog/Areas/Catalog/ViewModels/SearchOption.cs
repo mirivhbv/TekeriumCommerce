@@ -1,4 +1,6 @@
-﻿namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
+﻿using System.Collections.Generic;
+
+namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 {
     public class SearchOption
     {
@@ -23,5 +25,30 @@
         public int? MinPrice { get; set; }
 
         public int? MaxPrice { get; set; }
+
+        public Dictionary<string, string> ToDictionary()
+        {
+            var dict = new Dictionary<string, string>();
+
+            if (!string.IsNullOrWhiteSpace(Query))
+                dict.Add("query", Query);
+
+            if (!string.IsNullOrWhiteSpace(Brand))
+                dict.Add("brand", Brand);
+
+            if (!string.IsNullOrWhiteSpace(Category))
+                dict.Add("category", Category);
+
+            if (MinPrice.HasValue)
+                dict.Add("minPrice", MinPrice.Value.ToString());
+
+            if (MaxPrice.HasValue)
+                dict.Add("maxPrice", MaxPrice.Value.ToString());
+
+            if (!string.IsNullOrWhiteSpace(Sort))
+                dict.Add("sort", Sort);
+
+            return dict;
+        }
     }
 }
