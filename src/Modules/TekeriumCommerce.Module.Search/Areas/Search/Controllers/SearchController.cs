@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels;
 using TekeriumCommerce.Module.Catalog.Models;
+using TekeriumCommerce.Module.Catalog.Services;
 using TekeriumCommerce.Module.Core.Services;
 using TekeriumCommerce.Module.Search.Areas.Search.ViewModels;
 
@@ -17,13 +18,16 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
         private readonly IRepository<Product> _productRepository;
         private readonly IMediaService _mediaService;
+        private readonly IProductPricingService _productPricingService;
 
         public SearchController(IRepository<Product> productRepository,
                 IMediaService mediaService,
+                IProductPricingService productPricingService,
                 IConfiguration config)
         {
             _productRepository = productRepository;
             _mediaService = mediaService;
+            _productPricingService = productPricingService;
             _pageSize = config.GetValue<int>("Catalog.ProductPageSize");
         }
 
@@ -77,6 +81,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             foreach (var product in products)
             {
                 product.ThumbnailUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage);
+                product.CalculatedProductPrice = _productPricingService.CalculateProductPrice(product);
             }
 
             model.Products = products;

@@ -7,8 +7,8 @@
         <div class="card-body">
             <h5 class="card-title product-name">@Model.Name</h5>
             <p class="card-text product-price">
-                Model.CalculatedProductPrice.Price.ToString("C")
-                if (Model.CalculatedProductPrice.PercentOfSaving > 0)
+                @Model.CalculatedProductPrice.Price.ToString("C")
+                @if (@Model.CalculatedProductPrice.PercentOfSaving > 0)
                 {
                     <span class="product-price-saving">-@(Model.CalculatedProductPrice.PercentOfSaving)</span>
                     <br/>
@@ -21,5 +21,4 @@
             </ul>*@
         </div>
     </a>
-    <h3>@Model.Price</h3>
 </div>

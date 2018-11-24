@@ -10,7 +10,7 @@
     <div class="row product-list">
         @foreach (var product in Model.Products)
         {
-            <div>
+            <div class="col-xs-6 col-md-4">
                 <partial name="/Areas/Catalog/Views/Shared/_ProductThumbnail.cshtml" model="product" />
             </div>
         }
