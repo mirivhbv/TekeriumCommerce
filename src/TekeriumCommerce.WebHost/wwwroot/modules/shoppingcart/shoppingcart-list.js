@@ -3,7 +3,7 @@
         .controller('shoppingCartListCtrl',
             [
                 '$scope',
-                '$shoppingCartService',
+                'shoppingCartService',
                 function ($scope, shoppingCartService) {
                     var vm = this;
                     vm.cart = {};
