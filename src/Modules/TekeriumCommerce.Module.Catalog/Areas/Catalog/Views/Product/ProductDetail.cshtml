@@ -34,5 +34,51 @@
                 }
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="product-name">
+                <h1 class="">@Model.Name</h1>
+            </div>
+            
+            <!-- todo: revies -->
+
+            <div class="product-short-desc">@Html.Raw(Model.ShortDescription)</div>
+
+            <div class="product-price">
+                <h3>@Model.CalculatedProductPrice.Price.ToString("C")</h3>
+                @if (Model.CalculatedProductPrice.PercentOfSaving > 0)
+                {
+                   <p class="product-price-regular">@Model.CalculatedProductPrice.OldPrice.Value.ToString("C")</p>
+                   <p class="product-price-saving">You save (@(Model.CalculatedProductPrice.PercentOfSaving)%)</p>
+                }
+            </div>
+
+            <!-- todo: stock tracking and stock quantity -->
+
+            <div class="add-to-cart">
+                <form class="inline">
+                    <input type="hidden" name="productId" value="@Model.Id">
+                    <div class="product-quantity">
+                        <button type="button" class="quantity-button" name="subtract" value="-">-</button>
+                        <input type="text" class="quantity-field" readonly="readonly" name="qty" value="1">
+                        <button type="button" class="quantity-button" name="add" value="+">+</button>
+                    </div>
+                    <!-- todo: later change disabled option as tracking by stock quantity and checking is it item has allowed to order or not -->
+                    <button type="button" disabled="true" class="btn btn-lg btn-add-cart">Add to cart</button>
+                    <div>
+                        <ul class="list-inline add-to-lists">
+                            <li class="wishlist-in">
+                                <!-- todo: wishlist -->
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+
+@section scripts {
+    <!-- <partial name="_ValidationScriptsPartial" /> -->
+    <script teker-append-version="true" src="~/modules/catalog/product-detail.js"></script>
+}
