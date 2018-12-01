@@ -1,4 +1,9 @@
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Module.Shipping.Areas.Shipping.ViewModels;
 using TekeriumCommerce.Module.Shipping.Models;
 using TekeriumCommerce.Module.Shipping.Services;
@@ -7,11 +12,11 @@ namespace TekeriumCommerce.Module.Shipping.Areas.Shipping.Controllers {
     [Area ("Shipping")]
     [Authorize (Roles = "admin")]
     [Route ("api/shipping")]
-    public class ShippingApiController : Controller {
+    public class CityApiController : Controller {
         private readonly IRepository<City> _cityRepository;
         private readonly ICityService _cityService;
 
-        public ShippingApiController (IRepository<City> cityRepository, ICityService cityService) {
+        public CityApiController(IRepository<City> cityRepository, ICityService cityService) {
             _cityRepository = cityRepository;
             _cityService = cityService;
         }
@@ -48,7 +53,7 @@ namespace TekeriumCommerce.Module.Shipping.Areas.Shipping.Controllers {
                     Cost = model.Cost
                 };
 
-                await _cityService.Create (city);
+                await _cityService.Create(city);
                 return CreatedAtAction (nameof (Get), new { id = city.Id }, null);
             }
 
@@ -73,7 +78,7 @@ namespace TekeriumCommerce.Module.Shipping.Areas.Shipping.Controllers {
             return BadRequest (ModelState);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete (long id) {
             var city = _cityRepository.Query ().FirstOrDefault (x => x.Id == id);
             if (city is null) {

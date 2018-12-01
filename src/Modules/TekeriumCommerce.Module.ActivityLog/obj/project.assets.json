@@ -11649,11 +11649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Miri\\desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.ActivityLog\\TekeriumCommerce.Module.ActivityLog.csproj",
+      "projectUniqueName": "C:\\Users\\Miri\\Desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.ActivityLog\\TekeriumCommerce.Module.ActivityLog.csproj",
       "projectName": "TekeriumCommerce.Module.ActivityLog",
-      "projectPath": "C:\\Users\\Miri\\desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.ActivityLog\\TekeriumCommerce.Module.ActivityLog.csproj",
+      "projectPath": "C:\\Users\\Miri\\Desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.ActivityLog\\TekeriumCommerce.Module.ActivityLog.csproj",
       "packagesPath": "C:\\Users\\Miri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Miri\\desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.ActivityLog\\obj\\",
+      "outputPath": "C:\\Users\\Miri\\Desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.ActivityLog\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11672,11 +11672,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Miri\\desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.Core\\TekeriumCommerce.Module.Core.csproj": {
-              "projectPath": "C:\\Users\\Miri\\desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.Core\\TekeriumCommerce.Module.Core.csproj"
+            "C:\\Users\\Miri\\Desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.Core\\TekeriumCommerce.Module.Core.csproj": {
+              "projectPath": "C:\\Users\\Miri\\Desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\Modules\\TekeriumCommerce.Module.Core\\TekeriumCommerce.Module.Core.csproj"
             },
-            "C:\\Users\\Miri\\desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\TekeriumCommerce.Infrastructure\\TekeriumCommerce.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Miri\\desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\TekeriumCommerce.Infrastructure\\TekeriumCommerce.Infrastructure.csproj"
+            "C:\\Users\\Miri\\Desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\TekeriumCommerce.Infrastructure\\TekeriumCommerce.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Miri\\Desktop\\tekerium\\Failed\\tekeriumcommerce\\src\\TekeriumCommerce.Infrastructure\\TekeriumCommerce.Infrastructure.csproj"
             }
           }
         }

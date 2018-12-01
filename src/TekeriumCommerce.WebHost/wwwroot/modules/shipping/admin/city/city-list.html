@@ -1,0 +1,30 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Cities</h2>
+        </div>
+        <div class="col-md-4 text-right">
+            <a ui-sref="city-create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create city</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th class="text-center">Cost</th>
+        <th>Acions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="city in vm.cities">
+        <td>{{city.name}}</td>
+        <td class="text-center">{{city.cost}}</td>
+        <td>
+            <a ui-sref="city-edit({id: city.id})" title="Edit" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
+            <button ng-click="vm.deleteCity(city)" class="btn btn-danger btn-xs delete"> <span class="glyphicon glyphicon-remove"></span></button>
+        </td>
+    </tr>
+    </tbody>
+</table>

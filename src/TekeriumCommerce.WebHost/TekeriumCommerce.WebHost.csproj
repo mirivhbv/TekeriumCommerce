@@ -19,6 +19,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Modules\TekeriumCommerce.Module.Shipping\TekeriumCommerce.Module.Shipping.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.ShoppingCart\TekeriumCommerce.Module.ShoppingCart.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.StorageLocal\TekeriumCommerce.Module.StorageLocal.csproj" />
     <ProjectReference Include="..\TekeriumCommerce.Infrastructure\TekeriumCommerce.Infrastructure.csproj" />
