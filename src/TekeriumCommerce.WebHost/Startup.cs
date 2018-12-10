@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Globalization;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -23,6 +24,10 @@ namespace TekeriumCommerce.WebHost
         {
             this.hostingEnvironment = hostingEnvironment;
             this.configuration = configuration;
+
+            // it is for product currency
+            // todo: later shift this to normal place
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("az-Latn");
         }
 
         public void ConfigureServices(IServiceCollection services)
