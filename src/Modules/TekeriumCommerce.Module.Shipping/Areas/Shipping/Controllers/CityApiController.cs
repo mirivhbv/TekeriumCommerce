@@ -21,6 +21,7 @@ namespace TekeriumCommerce.Module.Shipping.Areas.Shipping.Controllers {
             _cityService = cityService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Get () {
             var cities = await _cityRepository.Query ()
                 .Select (x => new {
@@ -33,6 +34,7 @@ namespace TekeriumCommerce.Module.Shipping.Areas.Shipping.Controllers {
         }
 
         [HttpGet ("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get (long id) {
             var city = await _cityRepository.Query ().FirstOrDefaultAsync (x => x.Id == id);
 
