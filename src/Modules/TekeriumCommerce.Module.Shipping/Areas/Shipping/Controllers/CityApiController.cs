@@ -24,10 +24,10 @@ namespace TekeriumCommerce.Module.Shipping.Areas.Shipping.Controllers {
         [AllowAnonymous]
         public async Task<IActionResult> Get () {
             var cities = await _cityRepository.Query ()
-                .Select (x => new {
-                    x.Id,
-                        x.Name,
-                        x.Cost
+                .Select (x => new CityVm {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Cost = x.Cost,
                 }).ToListAsync ();
 
             return Json (cities);

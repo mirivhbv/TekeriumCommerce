@@ -16,8 +16,10 @@
                         vm.cart = result.data;
                         $('.cart-badge .badge').text(vm.cart.items.length);
                         vm.orderTotal = vm.cart.orderTotal + vm.shippingCity.cost;
+                        console.log(vm.cart);
                         console.log(vm.cart.orderTotal);
                         console.log(vm.shippingCity.cost);
+                        console.log(vm.shippingCity);
                         console.log(vm.orderTotal);
                     }
 
