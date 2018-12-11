@@ -8,40 +8,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewData["Title"]</title>
+
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <style>
-        body {
-            background: linear-gradient(to right, #3FB6A8, #7ED386);
-        }
-
-        .header-container {
-            background: #FFFFFF;
-            width: 80%;
-            height: 120px;
-            margin: 0 auto;
-            position: relative;
-            box-shadow: 2px 5px 2 0px rgba(119, 119, 119, 0.5);
-        }
-
-        .flexbox-con {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            text-decoration: none;
-            color: white;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            padding: 10px;
-        }
-
-        .flexbox-cart {
-            margin-left: auto;
-        }
-    </style>
-
+    
+    <link teker-append-version="true" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
     <link teker-append-version="true" rel="stylesheet" href="~/lib/bootstrap4/css/bootstrap.css" />
     <link teker-append-version="true" rel="stylesheet" href="~/modules/core/site.css" />
 
@@ -49,23 +19,122 @@
 </head>
 
 <body>
-<div class="header-container">
+
+<div class="start">
+    <div class="overlay">
+        <header>
+            <div class="container">
+                <div class="row align-items-center justify-content-end subheader d-none d-sm-flex">
+                    <div class="col language">
+                        <ul id="lang">
+                            <li>
+                                <img class="active" src="assets/images/az.svg" s/>
+                            </li>
+                            <li><img src="assets/images/ru.svg" /></li>
+                            <li><img src="assets/images/gb.svg" /></li>
+                        </ul>
+                    </div>
+                    <div class="col-auto">
+                        <div class="phone">
+                            <i class="fas fa-phone"></i> +994(00) 000 00 00
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row d-flex align-items-center header">
+                    <div id="collapse" class="col-1 d-block d-md-none basket">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <div class="col col-md-4 my-2 logo d-flex justify-content-center justify-content-md-start">
+                        <img src="logo.svg" alt="Tekerium.az" />
+                    </div>
+                    <div class="col d-none d-md-block">
+                        <nav class="menu d-flex justify-content-end">
+                            <ul>
+                                <a href="#"><li>About</li></a>
+                                <a href="#"><li>Category</li></a>
+                                <a href="#"><li>Services</li></a>
+                                <a href="#"><li>Contacts</li></a>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-1 col-md-1 d-flex justify-content-end basket">
+                        <i class="fas fa-shopping-basket"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    
+    @RenderBody()
+    
+    
+    <footer>
+        <div class="container">
+            <div class="row footer pt-5 d-none d-sm-flex">
+                <div class="col">
+                    <h5>Haqqımızda</h5>
+                    <ul>
+                        <a href="#"> <li>Link 1</li> </a>
+                        <a href="#"> <li>Link 2</li> </a>
+                        <a href="#"> <li>Link 3</li> </a>
+                        <a href="#"> <li>Link 4</li> </a>
+                        <a href="#"> <li>Link 5</li> </a>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Məhsullar</h5>
+                    <ul>
+                        <a href="#"> <li>Link 1</li> </a>
+                        <a href="#"> <li>Link 2</li> </a>
+                        <a href="#"> <li>Link 3</li> </a>
+                        <a href="#"> <li>Link 4</li> </a>
+                        <a href="#"> <li>Link 5</li> </a>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Əlagə</h5>
+                    <ul>
+                        <a href="#"> <li>Link 1</li> </a>
+                        <a href="#"> <li>Link 2</li> </a>
+                        <a href="#"> <li>Link 3</li> </a>
+                        <a href="#"> <li>Link 4</li> </a>
+                        <a href="#"> <li>Link 5</li> </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="row d-flex align-items-center copyright">
+                <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-start">
+                    <small>© Tekerium.az | Bütün hüquqlar qorunur</small>
+                </div>
+                <div class="col-sm-6 d-none d-sm-flex justify-content-end">
+                    <i class="fab fa-facebook-square mr-2"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+@*<div class="header-container">
     <div class="flexbox-con">
         <div class="logo">
-            <a href="~/"><img style="max-height: -webkit-fill-available" src="~/tekerium.jpg" alt="Tekerium" /></a>
-        </div>
+            <a href="~/"><img style="max-height: -webkit-fill-available" src="~/tekerium.jpg" alt="Tekerium"/></a>
+        </div>*@
         @*<partial name="_LoginPartial"/>*@
-        
-        <div class="flexbox-cart">
+
+        @*<div class="flexbox-cart">
             @await Component.InvokeAsync("CartBadge")
         </div>
     </div>
-</div>
+</div>*@
 
-    <div class="container">
-        @RenderBody()
-    </div>
 
-    @RenderSection("scripts", required: false)
+
+
+
+
+
+@RenderSection("scripts", required: false)
 </body>
 </html>

@@ -38,8 +38,10 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="wwwroot\assets\images\" />
     <Folder Include="wwwroot\lib\jquery-validation\" />
     <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
+    <Folder Include="wwwroot\lib\somejs\" />
   </ItemGroup>
 
 </Project>

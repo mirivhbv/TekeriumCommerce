@@ -2,15 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div>
+<section class="finder">
     @await Component.InvokeAsync("SearchForm")
-</div>
+</section>
 
 @section head {
     <link rel="stylesheet" href="~/modules/search/main.css" />
 }
 
 @section scripts {
-    <script src="~/modules/search/selection.js"></script>
-    <script type="text/javascript" src="~/lib/somejs/mainsearch.js"></script>
+    <script type="text/javascript" src="~/modules/search/main-search.js"></script>
 }

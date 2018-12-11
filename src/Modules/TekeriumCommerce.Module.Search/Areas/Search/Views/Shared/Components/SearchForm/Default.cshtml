@@ -1,6 +1,109 @@
 ﻿@model TekeriumCommerce.Module.Search.Areas.Search.ViewModels.SearchForm
 
-<div class="container-search">
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-1 types px-0">
+            <ul id="types" class="p-0">
+                <li class="active"><i class="fas fa-car"></i></li>
+                <li><i class="fas fa-truck"></i></li>
+                <li><i class="fas fa-bus"></i></li>
+                <li><i class="fas fa-tractor"></i></li>
+            </ul>
+        </div>
+        <div class="col search">
+            <ul id="typesContent">
+                <li class="active">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Cars</h3>
+                            </div>
+                        </div>
+                        <form class="mt-4" method="get" action="~/search">
+                            <div class="row">
+                                <div class="col-12 col-sm">
+                                    <label class="sr-only" for="width">Width</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                WIDTH
+                                            </div>
+                                        </div>
+                                        <select name="width" asp-for="Width" asp-items="Model.AvailableWidths" class="form-control">
+                                            <option value="choose">Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm">
+                                    <label class="sr-only" for="inlineFormInputGroup">Profile</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                PROFILE
+                                            </div>
+                                        </div>
+                                        <select name="profile" asp-for="Profile" asp-items="Model.AvailableProfiles" class="form-control">
+                                            <option value="choose">Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm">
+                                    <label class="sr-only" for="inlineFormInputGroup">Rim size</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                RIM
+                                            </div>
+                                        </div>
+                                        <select name="rimSize" asp-for="RimSize" asp-items="Model.AvailableRimSizes" class="form-control">
+                                            <option value="choose">Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12 col-sm order-12 order-sm-1">
+                                    <h4>Tyre type:</h4>
+                                    <div class="btn-group btn-group-toggle mt-4" data-toggle="buttons">
+                                        <label class="btn btn-secondary active">
+                                            <input type="radio" name="options" id="option1" autocomplete="off" checked />
+                                            All
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="radio" name="options" id="option2" autocomplete="off" />
+                                            Summer
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="radio" name="options" id="option3" autocomplete="off" />
+                                            Winter
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="radio" name="options" id="option4" autocomplete="off" />
+                                            Universal
+                                        </label>
+                                    </div>
+                                    <br /><br />
+                                    <button type="submit" class="btn btn-outline-secondary btn-block">
+                                        Search
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm order-1 order-sm-12 mb-4 mb-sm-0">
+                                    <img src="assets/images/tyre-pattern.svg" alt="tyre" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                <li>Trucks</li>
+                <li>List 3</li>
+                <li>List 4</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@*<div class="container-search">
     <div id="logo">
         <h1 class="logo">miri</h1>
     </div>
@@ -42,4 +145,4 @@
             </form>
         </div>
     </div>
-</div>
+</div>*@
