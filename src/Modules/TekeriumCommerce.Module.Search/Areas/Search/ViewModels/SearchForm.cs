@@ -18,5 +18,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.ViewModels
         public IList<SelectListItem> AvailableRimSizes { get; set; } = new List<SelectListItem>();
 
         public string ProductSeason { get; set; }
+
+        // available categories for search tab:
     }
 }

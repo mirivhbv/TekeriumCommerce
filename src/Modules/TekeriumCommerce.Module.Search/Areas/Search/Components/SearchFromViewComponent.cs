@@ -23,7 +23,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Components
             {
                 AvailableWidths = _widthRepository.Query()
                     .Select(x => new SelectListItem { Value = x.Size, Text = x.Size }).ToList(),
-                Width = Request.Query["width"]
+                // Width = Request.Query["width"] // todo: search about that (what is it)
             };
 
             return View(this.GetViewPath(), model);
