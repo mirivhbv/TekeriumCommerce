@@ -49,13 +49,19 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
                 x.Category.Name == searchOption.Category &&
                 x.TyreWidth.Size == searchOption.Width && x.TyreProfile.Size == searchOption.Profile &&
                 x.TyreRimSize.Size == searchOption.RimSize && 
-                x.ProductSeason.Name == searchOption.ProductSeason &&
                 x.IsPublished);
 
             if (!query.Any())
             {
                 model.TotalProduct = 0;
                 return View(model);
+            }
+
+            // todo: append filter option
+
+            if (searchOption.ProductSeason != "All")
+            {
+                query.Where(x => x.ProductSeason.Name == searchOption.ProductSeason);
             }
 
             model.TotalProduct = query.Count();

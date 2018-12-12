@@ -20,6 +20,7 @@
                             </div>
                         </div>
                         <form class="mt-4" method="get" action="~/search">
+                            <input type="hidden" name="category" value="Car" />
                             <div class="row">
                                 <div class="col-12 col-sm">
                                     <label class="sr-only" for="width">Width</label>
@@ -67,29 +68,29 @@
                                     <h4>Tyre type:</h4>
                                     <div class="btn-group btn-group-toggle mt-4" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input type="radio" asp-for="@Model.ProductSeason" value="all" autocomplete="off" checked />
+                                            <input type="radio" asp-for="@Model.ProductSeason" value="all" autocomplete="off" checked/>
                                             All
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" asp-for="@Model.ProductSeason" value="summer" autocomplete="off" />
+                                            <input type="radio" asp-for="@Model.ProductSeason" value="summer" autocomplete="off"/>
                                             Summer
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" asp-for="@Model.ProductSeason" value="winter" autocomplete="off" />
+                                            <input type="radio" asp-for="@Model.ProductSeason" value="winter" autocomplete="off"/>
                                             Winter
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" asp-for="@Model.ProductSeason" value="universal" autocomplete="off" />
+                                            <input type="radio" asp-for="@Model.ProductSeason" value="universal" autocomplete="off"/>
                                             Universal
                                         </label>
                                     </div>
-                                    <br /><br />
+                                    <br/><br/>
                                     <button type="submit" class="btn btn-outline-secondary btn-block">
                                         Search
                                     </button>
                                 </div>
                                 <div class="col-12 col-sm order-1 order-sm-12 mb-4 mb-sm-0">
-                                    <img src="assets/images/tyre-pattern.svg" alt="tyre" />
+                                    <img src="assets/images/tyre-pattern.svg" alt="tyre"/>
                                 </div>
                             </div>
                         </form>
