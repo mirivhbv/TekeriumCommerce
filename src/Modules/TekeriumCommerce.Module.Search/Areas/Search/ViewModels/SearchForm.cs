@@ -20,5 +20,13 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.ViewModels
         public string ProductSeason { get; set; }
 
         // available categories for search tab:
+
+        public bool? CarActive { get; set; }
+
+        public bool? LCVActive { get; set; } // light commercial vehicle
+
+        public bool? TruckActive { get; set; }
+
+        public bool? TractorActive { get; set; }
     }
 }
