@@ -39,9 +39,9 @@ namespace TekeriumCommerce.Module.Catalog.Data
             );
 
             modelBuilder.Entity<ProductSeason>().HasData(
-                new ProductSeason { Name = "Summer" },
-                new ProductSeason { Name = "Winter" },
-                new ProductSeason { Name = "Universal" }
+                new ProductSeason { Id = 1L, Name = "Summer" },
+                new ProductSeason { Id = 2L, Name = "Winter" },
+                new ProductSeason { Id = 3L, Name = "Universal" }
             );
         }
     }
