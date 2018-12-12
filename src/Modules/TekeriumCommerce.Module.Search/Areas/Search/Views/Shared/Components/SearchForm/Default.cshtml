@@ -67,19 +67,19 @@
                                     <h4>Tyre type:</h4>
                                     <div class="btn-group btn-group-toggle mt-4" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input type="radio" name="options" id="option1" autocomplete="off" checked />
+                                            <input type="radio" asp-for="@Model.ProductSeason" value="all" autocomplete="off" checked />
                                             All
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="options" id="option2" autocomplete="off" />
+                                            <input type="radio" asp-for="@Model.ProductSeason" value="summer" autocomplete="off" />
                                             Summer
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="options" id="option3" autocomplete="off" />
+                                            <input type="radio" asp-for="@Model.ProductSeason" value="winter" autocomplete="off" />
                                             Winter
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="options" id="option4" autocomplete="off" />
+                                            <input type="radio" asp-for="@Model.ProductSeason" value="universal" autocomplete="off" />
                                             Universal
                                         </label>
                                     </div>

@@ -48,7 +48,9 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             var query = _productRepository.Query().Where(x =>
                 x.Category.Name == searchOption.Category &&
                 x.TyreWidth.Size == searchOption.Width && x.TyreProfile.Size == searchOption.Profile &&
-                x.TyreRimSize.Size == searchOption.RimSize && x.IsPublished);
+                x.TyreRimSize.Size == searchOption.RimSize && 
+                x.ProductSeason.Name == searchOption.ProductSeason &&
+                x.IsPublished);
 
             if (!query.Any())
             {
@@ -90,5 +92,8 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
             return View(model);
         }
+
+        // todo: applysort
+        // todo: appendfilteroptions
     }
 }

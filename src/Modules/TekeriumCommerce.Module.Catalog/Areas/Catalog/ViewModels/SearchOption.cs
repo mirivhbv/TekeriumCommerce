@@ -16,6 +16,8 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public string Category { get; set; }
 
+        public string ProductSeason { get; set; }
+
         public int Page { get; set; }
 
         public int PageSize { get; set; }
