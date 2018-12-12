@@ -25,12 +25,14 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
         private readonly IRepository<Category> _categoryRepository;
         private readonly ICategoryService _categoryService;
         private readonly IMediaService _mediaService;
+        private readonly IRepository<ProductSeason> _productSeasonRepository;
 
-        public CategoryApiController(IRepository<Category> categoryRepository, ICategoryService categoryService, IMediaService mediaService)
+        public CategoryApiController(IRepository<Category> categoryRepository, ICategoryService categoryService, IMediaService mediaService, IRepository<ProductSeason> productSeasonRepository)
         {
             _categoryRepository = categoryRepository;
             _categoryService = categoryService;
             _mediaService = mediaService;
+            _productSeasonRepository = productSeasonRepository;
         }
 
         public async Task<IActionResult> Get()
@@ -134,6 +136,15 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
 
             await _categoryService.Delete(category);
             return NoContent();
+        }
+
+        // GET /api/categories/seasons
+        [HttpGet("seasons")]
+        public async Task<IActionResult> Seasons()
+        {
+            var data = await this._productSeasonRepository.Query().ToListAsync();
+
+            return Json(data);
         }
 
         private async Task SaveCategoryImage(Category category, CategoryForm model)
