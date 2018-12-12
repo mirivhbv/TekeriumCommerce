@@ -16,6 +16,9 @@
         vm.productId = $stateParams.id;
         vm.isEditMode = vm.productId > 0;
         vm.brands = [];
+        vm.seasons = [];
+
+        vm.selectedSeason = null;
 
         vm.sel = null;
 
@@ -179,6 +182,12 @@
             });
         }
 
+        function getSeasons() {
+            categoryService.getSeasons().then(function(result) {
+                vm.seasons = result.data;
+            });
+        }
+
         function init() {
             if (vm.isEditMode) {
                 getProduct();
@@ -186,8 +195,8 @@
 
             getCategories();
             getBrands();
+            getSeasons();
         }
-
 
         init();
     }

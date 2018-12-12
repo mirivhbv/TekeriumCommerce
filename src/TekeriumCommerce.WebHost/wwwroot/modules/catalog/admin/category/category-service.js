@@ -11,7 +11,8 @@
             deleteCategory: deleteCategory,
             getCategories: getCategories,
             getProducts: getProducts,
-            saveProduct: saveProduct
+            saveProduct: saveProduct,
+            getSeasons: getSeasons
         };
         return service;
 
@@ -48,6 +49,10 @@
 
         function saveProduct(product) {
             return $http.put('api/categories/update-product/' + product.id, product);
+        }
+
+        function getSeasons() {
+            return $http.get('api/categories/seasons');
         }
     }
 })();
