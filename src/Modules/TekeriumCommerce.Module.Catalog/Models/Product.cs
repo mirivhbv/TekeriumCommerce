@@ -58,6 +58,8 @@ namespace TekeriumCommerce.Module.Catalog.Models
         // product season
         public ProductSeason ProductSeason { get; set; }
 
+        public long? ProductSeasonId { get; set; }
+
         public void AddMedia(ProductMedia media)
         {
             media.Product = this;
