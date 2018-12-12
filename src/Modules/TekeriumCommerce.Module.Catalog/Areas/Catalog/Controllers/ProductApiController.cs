@@ -74,6 +74,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                 CategoryId = product.CategoryId,
                 ThumbnailImageUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage),
                 BrandId = product.BrandId,
+                ProductSeasonId = product.ProductSeasonId,
                 TyreWidthId = product.TyreWidthId,
                 TyreProfileId = product.TyreProfileId,
                 TyreRimSizeId = product.TyreRimSizeId
@@ -235,6 +236,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             product.SpecialPriceStart = model.Product.SpecialPriceStart;
             product.SpecialPriceEnd = model.Product.SpecialPriceEnd;
             product.BrandId = model.Product.BrandId;
+            product.ProductSeasonId = model.Product.ProductSeasonId;
             product.TyreWidthId = model.Product.TyreWidthId;
             product.TyreProfileId = model.Product.TyreProfileId;
             product.TyreRimSizeId = model.Product.TyreRimSizeId;
