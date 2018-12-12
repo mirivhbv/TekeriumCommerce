@@ -16,6 +16,9 @@
         vm.productId = $stateParams.id;
         vm.isEditMode = vm.productId > 0;
         vm.brands = [];
+        vm.seasons = [];
+
+        vm.selectedSeason = null;
 
         vm.sel = null;
 
@@ -109,6 +112,7 @@
             vm.product.metaTitle = vm.product.metaTitle === null ? '' : vm.product.metaTitle;
             vm.product.metaKeywords = vm.product.metaKeywords === null ? '' : vm.product.metaKeywords;
             vm.product.metaDescription = vm.product.metaDescription === null ? '' : vm.product.metaDescription;
+            vm.product.productSeasonId = vm.selectedSeason.id;
             vm.product.tyreWidthId = vm.selectedWidth.id;
             vm.product.tyreProfileId = vm.selectedProfile.id;
             vm.product.tyreRimSizeId = vm.selectedRim.id;
@@ -143,6 +147,7 @@
                     vm.rims = {};
 
                     vm.selectedWidth = vm.widths.find(ob => ob.id == vm.product.tyreWidthId);
+
                     vm.profiles = vm.selectedWidth.profiles;
 
                     vm.selectedProfile = vm.profiles.find(ob => ob.id == vm.product.tyreProfileId);
@@ -151,11 +156,25 @@
                 });
         };
 
+        function chooseSelectedSeason() {
+            categoryService.getSeasons().then(function (result) {
+                vm.seasons = result.data;
+
+                vm.selectedSeason = vm.seasons.find(ob => ob.id == vm.product.productSeasonId);
+            });
+            console.log('selected season:');
+            console.log(vm.selectedSeason);
+            console.log('vm.product : ');
+            console.log(vm.product);
+        }
+
         function getProduct() {
             productService.getProduct($stateParams.id).then(function (result) {
                 vm.product = result.data;
 
                 editModeGetSpecSizes();
+
+                chooseSelectedSeason();
 
                 if (vm.product.specialPriceStart) {
                     vm.product.specialPriceStart = new Date(vm.product.specialPriceStart);
@@ -179,15 +198,22 @@
             });
         }
 
+        function getSeasons() {
+            categoryService.getSeasons().then(function(result) {
+                vm.seasons = result.data;
+            });
+        }
+
         function init() {
             if (vm.isEditMode) {
                 getProduct();
+            } else {
+                getSeasons();
             }
 
             getCategories();
             getBrands();
         }
-
 
         init();
     }

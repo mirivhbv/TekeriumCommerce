@@ -26,6 +26,8 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public int StockQuantity { get; set; }
 
+        public ProductSeason ProductSeason { get; set; }
+
         public IList<MediaViewModel> Images { get; set; } = new List<MediaViewModel>(); // todo
 
         public ProductDetailBrand Brand { get; set; }

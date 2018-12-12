@@ -52,6 +52,8 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public long? BrandId { get; set; }
 
+        public long? ProductSeasonId { get; set; }
+
         public long? TyreWidthId { get; set; }
 
         public long? TyreProfileId { get; set; }
