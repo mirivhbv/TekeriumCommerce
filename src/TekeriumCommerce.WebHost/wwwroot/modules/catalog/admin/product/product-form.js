@@ -188,14 +188,21 @@
             });
         }
 
+        function chooseSelectedSeason() {
+            vm.selectedSeason = vm.seasons.find(ob => ob.id == vm.product.productSeasonId);
+        }
+
         function init() {
+            getSeasons();
+
             if (vm.isEditMode) {
                 getProduct();
+                chooseSelectedSeason();
             }
 
             getCategories();
             getBrands();
-            getSeasons();
+
         }
 
         init();
