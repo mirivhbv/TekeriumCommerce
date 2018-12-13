@@ -42,7 +42,8 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
             var model = new SearchResult
             {
-                CurrentSearchOption = searchOption
+                CurrentSearchOption = searchOption,
+                FilterOption = new FilterOption()
             };
 
             var query = _productRepository.Query().Where(x =>
@@ -58,6 +59,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             }
 
             // todo: append filter option
+            AppendFilterOptionsToModel(model, query);
 
             if (searchOption.ProductSeason != "All")
             {
@@ -100,6 +102,24 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
         }
 
         // todo: applysort
+        
         // todo: appendfilteroptions
+
+        private static void AppendFilterOptionsToModel(SearchResult model, IQueryable<Product> query)
+        {
+            model.FilterOption.Price.MaxPrice = query.Max(x => x.Price);
+            model.FilterOption.Price.MinPrice = query.Min(x => x.Price);
+
+            model.FilterOption.Brands = query
+                .Where(x => x.BrandId != null)
+                .GroupBy(x => x.Brand)
+                .Select(g => new FilterBrand
+                {
+                    Id = (int) g.Key.Id,
+                    Name = g.Key.Name,
+                    Slug = g.Key.Slug,
+                    Count = g.Count()
+                }).ToList();
+        }
     }
 }
