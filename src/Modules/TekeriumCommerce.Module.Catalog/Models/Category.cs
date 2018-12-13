@@ -26,7 +26,7 @@ namespace TekeriumCommerce.Module.Catalog.Models
 
         public bool IsPublished { get; set; }
 
-        public bool IncludeInMenu { get; set; } // for us no need
+        public bool IncludeInMenu { get; set; } // fields name staying same but purpose is for show in search form or not
 
         public bool IsDeleted { get; set; }
 
