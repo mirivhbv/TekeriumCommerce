@@ -47,9 +47,8 @@
                                 RIM
                             </div>
                         </div>
-                        <select class="form-control">
-                            <option>...</option>
-                            <option>...</option>
+                        <select asp-for="RimSize" asp-items="Model.AvailableRimSizes" class="form-control">
+                            <option value="choose">Choose</option>
                         </select>
                     </div>
                 </div>
