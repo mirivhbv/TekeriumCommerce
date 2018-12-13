@@ -1,5 +1,9 @@
 ﻿@model TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductThumbnail
 
+
+
+
+
 <div class="card mb-4">
     <input type="hidden" id="productId" value="@Model.Id">
     <a href="~/@Model.Slug">
@@ -21,4 +25,25 @@
             </ul>*@
         </div>
     </a>
+</div>
+
+<div class="col-lg-4 col-sm-6">
+    <div class="card">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <img class="brand_logo" src="" />
+            </div>
+            <div class="col-8">
+                <h5>Brand name</h5>
+            </div>
+        </div>
+        <a href="#">
+            <img class="tyre_img border" src="" alt="Card image cap"/>
+        </a>
+        <div class="card-body">
+            <div class="row justify-content-between">
+                @* sizes, flag, season icon, price *@ 
+            </div>
+        </div>
+    </div>
 </div>

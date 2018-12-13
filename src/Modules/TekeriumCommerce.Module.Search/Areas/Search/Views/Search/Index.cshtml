@@ -12,6 +12,17 @@
 
                 </div>
             </div>
+            
+            <div class="col-lg-8 col-sm-12 search">
+                <div class="container mt-4">
+                    <div class="row">
+                    @foreach (var product in Model.Products)
+                    {
+                        <partial name="/Areas/Catalog/Views/Shared/_ProductThumbnail.cshtml" model="product"/>
+                    }
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
