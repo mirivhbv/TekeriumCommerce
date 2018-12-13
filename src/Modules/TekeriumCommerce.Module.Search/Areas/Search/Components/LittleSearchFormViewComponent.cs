@@ -11,10 +11,17 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Components
     public class LittleSearchFormViewComponent : ViewComponent
     {
         private readonly IRepository<TyreWidth> _widthRepository;
+        private readonly IRepository<TyreProfile> _profileRepository;
+        private readonly IRepository<TyreRimSize> _rimRepository;
+        private readonly IRepository<TyreWidthProfileRimSize> _wprRepository;
 
-        public LittleSearchFormViewComponent(IRepository<TyreWidth> widthRepository)
+
+        public LittleSearchFormViewComponent(IRepository<TyreWidth> widthRepository, IRepository<TyreProfile> profileRepository, IRepository<TyreRimSize> rimRepository, IRepository<TyreWidthProfileRimSize> twrRepository)
         {
             _widthRepository = widthRepository;
+            _profileRepository = profileRepository;
+            _rimRepository = rimRepository;
+            _wprRepository = twrRepository;
         }
 
         public IViewComponentResult Invoke()
@@ -23,11 +30,16 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Components
             // 2. get proper profiles
             // 3. and the rest ajax will do
 
+            string widthQuery = Request.Query["width"];
+            string profileQuery = Request.Query["profile"];
+
             var model = new LittleSearchForm
             {
                 AvailableWidths = _widthRepository.Query()
                     .Select(x => new SelectListItem {Value = x.Size, Text = x.Size}).ToList(),
-                Width = Request.Query["width"]
+                Width = widthQuery,
+                AvailableProfiles = _wprRepository.Query().Where(x => x.TyreWidth.Size == widthQuery).Select(x => x.TyreProfile).Distinct().Select(x => new SelectListItem{ Value = x.Size, Text = x.Size}).ToList(),
+                Profile = profileQuery
             };
 
             // var test = Request.Query["width"];

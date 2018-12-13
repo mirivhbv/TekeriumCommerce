@@ -31,9 +31,8 @@
                                 PROFILE
                             </div>
                         </div>
-                        <select class="form-control">
-                            <option>...</option>
-                            <option>...</option>
+                        <select asp-for="Profile" asp-items="Model.AvailableProfiles" class="form-control">
+                            <option value="choose">Choose</option>
                         </select>
                     </div>
                 </div>
