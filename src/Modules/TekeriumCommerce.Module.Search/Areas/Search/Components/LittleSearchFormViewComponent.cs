@@ -19,11 +19,19 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Components
 
         public IViewComponentResult Invoke()
         {
+            // 1. get all widths
+            // 2. get proper profiles
+            // 3. and the rest ajax will do
+
             var model = new LittleSearchForm
             {
                 AvailableWidths = _widthRepository.Query()
-                    .Select(x => new SelectListItem {Value = x.Size, Text = x.Size}).ToList()
+                    .Select(x => new SelectListItem {Value = x.Size, Text = x.Size}).ToList(),
+                Width = Request.Query["width"]
             };
+
+            // var test = Request.Query["width"];
+
             return View(this.GetViewPath(), model);
         }
     }

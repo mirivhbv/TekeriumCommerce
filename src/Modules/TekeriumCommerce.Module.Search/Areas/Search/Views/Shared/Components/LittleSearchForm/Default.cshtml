@@ -1,1 +1,79 @@
-﻿<h2>hakuna matata</h2>
+﻿@model TekeriumCommerce.Module.Search.Areas.Search.ViewModels.LittleSearchForm
+
+<div class="params search col col-lg-11 col-sm-12">
+    <form class="mt-8">
+        <div class="col-lg-12">
+            <div class="row d-flex justify-content-sm-start">
+
+                <div class="col-lg-12">
+                    <label class="sr-only" for="inlineFormInputGroup">
+                        Width
+                    </label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="searchsizing input-group-text">
+                                WIDTH
+                            </div>
+                        </div>
+                        <select asp-for="Width" asp-items="Model.AvailableWidths" class="form-control">
+                            <option value="choose">Choose</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <label class="sr-only" for="inlineFormInputGroup">
+                        Profile
+                    </label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="searchsizing input-group-text">
+                                PROFILE
+                            </div>
+                        </div>
+                        <select class="form-control">
+                            <option>...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <label class="sr-only" for="inlineFormInputGroup">
+                        Rim size
+                    </label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="searchsizing input-group-text">
+                                RIM
+                            </div>
+                        </div>
+                        <select class="form-control">
+                            <option>...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <label class="sr-only" for="inlineFormInputGroup">
+                        Season
+                    </label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="searchsizing input-group-text">
+                                SEASON
+                            </div>
+                        </div>
+                        <select class="form-control">
+                            <option>Summer</option>
+                            <option>Winter</option>
+                            <option>Universal</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
