@@ -9,21 +9,22 @@
             <div class="col-8">
                 <h5>@Model.Name</h5>
             </div>
-            <a href="#">
-                <img class="tyre_img border" alt="@Model.Name" src="@Model.ThumbnailUrl"/>
-            </a>
-            <div class="card-body">
-                <div class="row justify-content-between">
-                    <div class="col-8 border text-center">125/80R13 65Q</div>
-                    <div class="col-4 country">
-                        <img src="" alt="" />
-                    </div>
-                    <div class="col-5 pl-3 mt-3 country text-center">
-                        <img src="" alt="" />
-                    </div>
-                    <div class="col-7 border badge badge-light text-center mt-3 pr">
-                        <h3>@Model.CalculatedProductPrice.Price.ToString("C")</h3>
-                    </div>
+        </div>
+        <a href="#">
+            <img class="tyre_img border" alt="@Model.Name" src="@Model.ThumbnailUrl" />
+        </a>
+        <div class="card-body">
+            <div class="row justify-content-between">
+                <div class="col-8 border text-center">125/80R13 65Q</div>
+                <div class="col-4 country">
+                    <img src="" alt="" />
+                </div>
+
+                <div class="col-5 pl-3 mt-3 country text-center">
+                    <img src="" alt="" />
+                </div>
+                <div class="col-7 border badge badge-light text-center mt-3 pr">
+                    <h3>@Model.CalculatedProductPrice.Price.ToString("C")</h3>
                 </div>
             </div>
         </div>
@@ -31,46 +32,46 @@
 </div>
 
 @*
-<div class="card mb-4">
-    <input type="hidden" id="productId" value="@Model.Id">
-    <a href="~/@Model.Slug">
-        <img alt="@Model.Name" class="card-img-top" src="@Model.ThumbnailUrl">
-        <div class="card-body">
-            <h5 class="card-title product-name">@Model.Name</h5>
-            <p class="card-text product-price">
-                @Model.CalculatedProductPrice.Price.ToString("C")
-                @if (@Model.CalculatedProductPrice.PercentOfSaving > 0)
-                {
-                    <span class="product-price-saving">-@(Model.CalculatedProductPrice.PercentOfSaving)</span>
-                    <br/>
-                    <span class="product-price-regular">@Model.CalculatedProductPrice.OldPrice.Value.ToString("C")</span>
-                }
-            </p>
-            @*todo: develop it*@
-            @*<ul class="list-inline product-ratings">
-                <li></li>
-            </ul>*@
-        @*</div>
-    </a>
-</div>
-
-<div class="col-lg-4 col-sm-6">
-    <div class="card">
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <img class="brand_logo" src="" />
-            </div>
-            <div class="col-8">
-                <h5>Brand name</h5>
-            </div>
-        </div>
-        <a href="#">
-            <img class="tyre_img border" src="" alt="Card image cap"/>
+    <div class="card mb-4">
+        <input type="hidden" id="productId" value="@Model.Id">
+        <a href="~/@Model.Slug">
+            <img alt="@Model.Name" class="card-img-top" src="@Model.ThumbnailUrl">
+            <div class="card-body">
+                <h5 class="card-title product-name">@Model.Name</h5>
+                <p class="card-text product-price">
+                    @Model.CalculatedProductPrice.Price.ToString("C")
+                    @if (@Model.CalculatedProductPrice.PercentOfSaving > 0)
+                    {
+                        <span class="product-price-saving">-@(Model.CalculatedProductPrice.PercentOfSaving)</span>
+                        <br/>
+                        <span class="product-price-regular">@Model.CalculatedProductPrice.OldPrice.Value.ToString("C")</span>
+                    }
+                </p>
+                @*todo: develop it*@
+@*<ul class="list-inline product-ratings">
+        <li></li>
+    </ul>*@
+@*</div>
         </a>
-        <div class="card-body">
-            <div class="row justify-content-between">*@
-                @* sizes, flag, season icon, price *@ 
-            @*</div>
-        </div>
     </div>
-</div>*@
+
+    <div class="col-lg-4 col-sm-6">
+        <div class="card">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <img class="brand_logo" src="" />
+                </div>
+                <div class="col-8">
+                    <h5>Brand name</h5>
+                </div>
+            </div>
+            <a href="#">
+                <img class="tyre_img border" src="" alt="Card image cap"/>
+            </a>
+            <div class="card-body">
+                <div class="row justify-content-between">*@
+@* sizes, flag, season icon, price *@
+@*</div>
+            </div>
+        </div>
+    </div>*@
