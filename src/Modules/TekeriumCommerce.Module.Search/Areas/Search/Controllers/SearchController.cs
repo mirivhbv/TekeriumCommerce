@@ -82,6 +82,8 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
             query = query.Include(x => x.ThumbnailImage);
 
+            query = query.Include(x => x.ProductSeason);
+
             var products = query
                 .Select(x => ProductThumbnail.FromProduct(x))
                 .Skip(offset)
