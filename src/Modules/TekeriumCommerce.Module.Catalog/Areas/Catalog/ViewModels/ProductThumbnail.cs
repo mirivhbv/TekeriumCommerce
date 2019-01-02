@@ -32,6 +32,10 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public ProductSeason ProductSeason { get; set; }
 
+        public Brand Brand { get; set; }
+
+        public string BrandImageUrl { get; set; }
+
         public static ProductThumbnail FromProduct(Product product)
         {
             return new ProductThumbnail
@@ -46,7 +50,8 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
                 SpecialPriceStart = product.SpecialPriceStart,
                 SpecialPriceEnd = product.SpecialPriceEnd,
                 ThumbnailImage = product.ThumbnailImage,
-                ProductSeason = product.ProductSeason
+                ProductSeason = product.ProductSeason,
+                Brand = product.Brand
             };
         }
     }

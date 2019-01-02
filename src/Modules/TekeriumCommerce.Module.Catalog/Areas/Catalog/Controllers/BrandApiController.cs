@@ -1,12 +1,19 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels;
 using TekeriumCommerce.Module.Catalog.Models;
 using TekeriumCommerce.Module.Catalog.Services;
+using TekeriumCommerce.Module.Core.Extensions;
+using TekeriumCommerce.Module.Core.Models;
+using TekeriumCommerce.Module.Core.Services;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
 {
@@ -17,11 +24,15 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
     {
         private readonly IRepository<Brand> _brandRepository;
         private readonly IBrandService _brandService;
+        private readonly IMediaService _mediaService;
+        private readonly IRepository<Media> _mediaRepository;
 
-        public BrandApiController(IRepository<Brand> brandRepository, IBrandService brandService)
+        public BrandApiController(IRepository<Brand> brandRepository, IBrandService brandService, IMediaService mediaService, IRepository<Media> mediaRepository)
         {
             _brandRepository = brandRepository;
             _brandService = brandService;
+            _mediaService = mediaService;
+            _mediaRepository = mediaRepository;
         }
 
         public async Task<IActionResult> Get()
@@ -34,13 +45,14 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(long id)
         {
-            var brand = await _brandRepository.Query().FirstOrDefaultAsync(x => x.Id == id);
-            var model = new BrandForm
+            var brand = await _brandRepository.Query().Include(x => x.Media).FirstOrDefaultAsync(x => x.Id == id);
+            var model = new BrandVm
             {
                 Id = brand.Id,
                 Name = brand.Name,
                 Slug = brand.Slug,
-                IsPublished = brand.IsPublished
+                IsPublished = brand.IsPublished,
+                BrandImageUrl = _mediaService.GetThumbnailUrl(brand.Media)
             };
 
             return Json(model);
@@ -48,16 +60,24 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Post([FromBody] BrandForm model)
+        public async Task<IActionResult> Post(BrandForm model)
         {
             if (ModelState.IsValid)
             {
                 var brand = new Brand
                 {
-                    Name = model.Name,
-                    Slug = model.Slug,
-                    IsPublished = model.IsPublished
+                    Name = model.Brand.Name,
+                    Slug = model.Brand.Slug,
+                    IsPublished = model.Brand.IsPublished
                 };
+
+                // save image
+                var fileName = await SaveFile(model.BrandImage);
+                var media = new Media {FileName = fileName, MediaType = MediaType.Image};
+
+                _mediaRepository.Add(media);
+
+                brand.Media = media;
 
                 await _brandService.Create(brand);
                 return CreatedAtAction(nameof(Get), new { id = brand.Id }, null);
@@ -67,7 +87,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Put(long id, [FromBody] BrandForm model)
+        public async Task<IActionResult> Put(long id, BrandForm model)
         {
             if (ModelState.IsValid)
             {
@@ -77,9 +97,17 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                     return NotFound();
                 }
 
-                brand.Name = model.Name;
-                brand.Slug = model.Slug;
-                brand.IsPublished = model.IsPublished;
+                brand.Name = model.Brand.Name;
+                brand.Slug = model.Brand.Slug;
+                brand.IsPublished = model.Brand.IsPublished;
+                
+                // save image
+                var fileName = await SaveFile(model.BrandImage);
+                var media = new Media { FileName = fileName, MediaType = MediaType.Image };
+
+                _mediaRepository.Add(media);
+
+                brand.Media = media;
 
                 await _brandService.Update(brand);
                 return Accepted();
@@ -100,6 +128,14 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
 
             await _brandService.Delete(brand);
             return NoContent();
+        }
+
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _mediaService.SaveMediaAsync(file.OpenReadStream(), fileName, file.ContentType);
+            return fileName;
         }
     }
 }

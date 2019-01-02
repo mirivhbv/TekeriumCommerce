@@ -84,6 +84,8 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
             query = query.Include(x => x.ProductSeason);
 
+            query = query.Include(x => x.Brand).ThenInclude(x => x.Media);
+
             var products = query
                 .Select(x => ProductThumbnail.FromProduct(x))
                 .Skip(offset)
@@ -94,6 +96,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             {
                 product.ThumbnailUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage);
                 product.CalculatedProductPrice = _productPricingService.CalculateProductPrice(product);
+                product.BrandImageUrl = _mediaService.GetThumbnailUrl(product.Brand.Media);
             }
 
             model.Products = products;
