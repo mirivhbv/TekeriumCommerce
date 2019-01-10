@@ -180,7 +180,8 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                 TyreWidthId = model.Product.TyreWidthId,
                 TyreProfileId = model.Product.TyreProfileId,
                 TyreRimSizeId = model.Product.TyreRimSizeId,
-                CreatedBy = currentUser
+                CreatedBy = currentUser,
+                ProductSeasonId = model.Product.ProductSeasonId
             };
 
             await SaveProductMedias(model, product);

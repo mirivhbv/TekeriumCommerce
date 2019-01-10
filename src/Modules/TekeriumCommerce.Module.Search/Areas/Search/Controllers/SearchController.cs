@@ -19,15 +19,18 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
         private readonly IRepository<Product> _productRepository;
         private readonly IMediaService _mediaService;
         private readonly IProductPricingService _productPricingService;
+        private readonly IRepository<Brand> _brandRepository;
 
         public SearchController(IRepository<Product> productRepository,
                 IMediaService mediaService,
                 IProductPricingService productPricingService,
+                IRepository<Brand> brandRepository,
                 IConfiguration config)
         {
             _productRepository = productRepository;
             _mediaService = mediaService;
             _productPricingService = productPricingService;
+            _brandRepository = brandRepository;
             _pageSize = config.GetValue<int>("Catalog.ProductPageSize");
         }
 
@@ -61,9 +64,28 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             // todo: append filter option
             AppendFilterOptionsToModel(model, query);
 
+            if (searchOption.MinPrice.HasValue)
+            {
+                query = query.Where(x => x.Price >= searchOption.MinPrice.Value);
+            }
+
+            if (searchOption.MaxPrice.HasValue)
+            {
+                query = query.Where(x => x.Price <= searchOption.MaxPrice.Value);
+            }
+
             if (searchOption.ProductSeason != "All")
             {
                 query.Where(x => x.ProductSeason.Name == searchOption.ProductSeason);
+            }
+
+            // brands:
+            var brands = searchOption.GetBrands();
+            if (brands.Any())
+            {
+                var brandId = _brandRepository.Query().Where(x => brands.Contains(x.Slug))
+                    .Select(x => x.Id).ToList();
+                query = query.Where(x => x.BrandId.HasValue && brandId.Contains(x.BrandId.Value));
             }
 
             model.TotalProduct = query.Count();
