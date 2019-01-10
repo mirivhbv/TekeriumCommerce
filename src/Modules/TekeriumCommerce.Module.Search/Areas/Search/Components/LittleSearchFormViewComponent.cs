@@ -34,6 +34,8 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Components
             string profileQuery = Request.Query["profile"];
             string rimQuery = Request.Query["rimSize"];
             string productSeasonQuery = Request.Query["ProductSeason"];
+            string category = Request.Query["Category"];
+
 
             var model = new LittleSearchForm
             {
@@ -44,7 +46,8 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Components
                 Profile = profileQuery,
                 AvailableRimSizes = _wprRepository.Query().Where(x => x.TyreWidth.Size == widthQuery && x.TyreProfile.Size == profileQuery).Select(x => x.TyreRimSize).Distinct().Select(x => new SelectListItem { Value = x.Size, Text = x.Size }).ToList(),
                 RimSize = rimQuery,
-                ProductSeason = productSeasonQuery
+                ProductSeason = productSeasonQuery,
+                Category = category
             };
 
             return View(this.GetViewPath(), model);
