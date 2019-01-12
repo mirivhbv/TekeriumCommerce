@@ -2,32 +2,32 @@
 
 <div class="col-lg-4 col-sm-6">
     <div class="card">
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <img class="brand_logo" src="@Model.BrandImageUrl" alt="@Model.Brand.Name" />
+        <a href="~/@Model.Slug">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <img class="brand_logo" src="@Model.BrandImageUrl" alt="@Model.Brand.Name" />
+                </div>
+                <div class="col-8">
+                    <h5>@Model.Name</h5>
+                </div>
             </div>
-            <div class="col-8">
-                <h5>@Model.Name</h5>
-            </div>
-        </div>
-        <a href="#">
             <img class="tyre_img border" alt="@Model.Name" src="@Model.ThumbnailUrl" />
-        </a>
-        <div class="card-body">
-            <div class="row justify-content-between">
-                <div class="col-8 border text-center">125/80R13 65Q</div>
-                <div class="col-4 country">
-                    <img src="" alt="" />
-                </div>
+            <div class="card-body">
+                <div class="row justify-content-between">
+                    <div class="col-8 border text-center">125/80R13 65Q</div>
+                    <div class="col-4 country">
+                        <img src="" alt="" />
+                    </div>
 
-                <div class="col-5 pl-3 mt-3 country text-center">
-                    <img src="@Model.ProductSeason.MediaUrl" alt="@Model.ProductSeason.Name" />
-                </div>
-                <div class="col-7 border badge badge-light text-center mt-3 pr">
-                    <h3>@Model.CalculatedProductPrice.Price.ToString("C")</h3>
+                    <div class="col-5 pl-3 mt-3 country text-center">
+                        <img src="@Model.ProductSeason.MediaUrl" alt="@Model.ProductSeason.Name" />
+                    </div>
+                    <div class="col-7 border badge badge-light text-center mt-3 pr">
+                        <h3>@Model.CalculatedProductPrice.Price.ToString("C")</h3>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 
