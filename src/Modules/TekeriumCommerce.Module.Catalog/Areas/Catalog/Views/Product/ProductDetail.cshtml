@@ -1,7 +1,108 @@
-﻿@model TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductDetail
+﻿@using TekeriumCommerce.Module.Core.Models
+@model TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductDetail
+
+@inject SignInManager<User> SignInManager
+
 @{
     ViewBag.Title = Model.MetaTitle ?? Model.Name;
 }
+
+@*todo: first create additionalMeta section and uncomment this*@
+@*@section additionalMeta
+    {
+        <meta name="title" content="@ViewBag.Title">
+        <meta name="keywords" content="@Model.MetaKeywords">
+        <meta name="description" content="@Model.MetaDescription">
+    }*@
+
+@section head
+    {
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/smoothproducts/css/smoothproducts.css" />
+}
+
+<section class="finder">
+    <div class="container">
+        <div class="row">
+            <div class="col brand">
+                @*todo: breadcrumb*@
+
+                <section>
+                    <div class="row wrap">
+                        <div class="col-lg-4 col-sm-12 px-0">
+                            <div class="sp-loading">
+                                <img src="~/assets/images/sp-loading.gif" alt="loading..." /><br>
+                                LOADING IMAGES
+                            </div>
+                            <div class="sp-wrap">
+                                @foreach (var image in Model.Images)
+                                {
+                                    <a href="@image.Url">
+                                        <img src="@image.ThumbnailUrl" alt="@Model.Name" />
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-sm-12 brand">
+                            <div class="border-bottom brand-name">
+                                <h3>@Model.Brand.Name @Model.Name</h3>
+                                <h3>@Model.Width/@Model.Profile @Model.Rim</h3>
+                            </div>
+
+                            <div class="shortdesc row">
+                                <div class="col">
+                                    <h4>Short description</h4>
+                                    <ul>
+                                        <li>
+                                            <label>Width</label>
+                                            <p>@Model.Width</p>
+                                        </li>
+                                        <li>
+                                            <label>Profile</label>
+                                            <p>@Model.Profile</p>
+                                        </li>
+                                        <li>
+                                            <label>Rim</label>
+                                            <p>@Model.Rim</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col money">
+                                    <h3>@Model.CalculatedProductPrice.Price.ToString("C")</h3>
+                                    @if (Model.CalculatedProductPrice.PercentOfSaving > 0)
+                                    {
+                                        <p class="product-price-regular">@Model.CalculatedProductPrice.OldPrice.Value.ToString("C")</p>
+                                        <p class="save">You save (@(Model.CalculatedProductPrice.PercentOfSaving)%)</p>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="row align-items-end mt-4">
+                                <div class="col shop">
+                                    <form class="inline">
+                                        <div class="cart-input d-flex align-items-center">
+                                            <div class="value-button" id="decrease" value="-"><i class="fas fa-minus"></i></div>
+                                            <input type="number" id="number" readonly="readonly" name="qty" value="1">
+                                            <div class="value-button" id="increase" value="+"><i class="fas fa-plus"></i></div>
+                                            <button type="button" class="btn btn-lg btn-add-cart" disabled="@(Model.StockQuantity <= 0)">ADD TO CART</button>
+                                        </div>
+                                    </form>
+                                    @*todo: later add compare*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Product details</h4>
+                    <div class="details row border">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul></ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -9,13 +110,13 @@
         @if (Model.Category.Name.Length > 0)
         {
             <li class="">@Model.Category.Name</li>
-            
+
             // remove this laters
             @*@await Component.InvokeAsync("CategoryBreadcrumb", new { categoryIds = Model.Categories.Select(x => x.Id) })*@
         }
 
         @* todo: add here a brand name also *@
-        
+
         <li class="">@Model.Brand.Name</li>
 
         <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
@@ -36,3 +137,15 @@
         </div>
     </div>
 </div>
+
+@section scripts
+{
+    @*todo: add variationscriptspartial*@
+
+    <script teker-append-version="true" src="~/lib/smoothproducts/js/smoothproducts.min.js"></script>
+    <script>
+        $(window).on('load', function () {
+            $('sp-wrap').smoothproducts();
+        })
+    </script>
+}

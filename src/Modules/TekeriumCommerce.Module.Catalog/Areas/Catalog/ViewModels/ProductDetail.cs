@@ -33,5 +33,11 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
         public ProductDetailBrand Brand { get; set; }
 
         public ProductDetailCategory Category { get; set; }
+
+        public string Width { get; set; }
+
+        public string Profile { get; set; }
+
+        public string Rim { get; set; }
     }
 }

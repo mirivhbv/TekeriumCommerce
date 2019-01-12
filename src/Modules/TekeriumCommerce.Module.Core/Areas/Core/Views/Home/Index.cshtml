@@ -2,13 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
+@section head {
+    
+}
+
 <section class="finder">
     @await Component.InvokeAsync("SearchForm")
 </section>
 
-@section head {
-    <link rel="stylesheet" href="~/modules/search/main.css" />
-}
+
 
 @section scripts {
     @*todo: later add teker-append tag helper*@

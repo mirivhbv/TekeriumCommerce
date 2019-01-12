@@ -26,7 +26,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Components
                 AvailableWidths = _widthRepository.Query()
                     .Select(x => new SelectListItem { Value = x.Size, Text = x.Size }).ToList(),
                 // Width = Request.Query["width"] // todo: search about that (what is it)
-                CarActive = _categoryRepository.Query().SingleOrDefault(x => x.Name == "Car").IncludeInMenu,
+                CarActive = _categoryRepository.Query().SingleOrDefault(x => x.Name == "Car")?.IncludeInMenu,
                 LCVActive = _categoryRepository.Query().SingleOrDefault(x => x.Name == "Light Commercial Vehicle")?.IncludeInMenu,
                 TruckActive = _categoryRepository.Query().SingleOrDefault(x => x.Name == "Truck")?.IncludeInMenu,
                 TractorActive = _categoryRepository.Query().SingleOrDefault(x => x.Name == "Tractor")?.IncludeInMenu

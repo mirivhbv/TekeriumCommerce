@@ -81,7 +81,10 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                 Brand = new ProductDetailBrand
                     { Id = product.Brand.Id, Name = product.Brand.Name, Slug = product.Brand.Slug },
                 Category = new ProductDetailCategory
-                    { Id = product.Category.Id, Name = product.Category.Name, Slug = product.Category.Slug}
+                    { Id = product.Category.Id, Name = product.Category.Name, Slug = product.Category.Slug},
+                Width = product.TyreWidth.Size,
+                Profile = product.TyreProfile.Size,
+                Rim = "R" + product.TyreRimSize.Size
             };
 
             MapProductImagesToProductVm(product, model);
