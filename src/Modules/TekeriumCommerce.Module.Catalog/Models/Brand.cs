@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TekeriumCommerce.Infrastructure.Models;
+using TekeriumCommerce.Module.Core.Models;
 
 namespace TekeriumCommerce.Module.Catalog.Models
 {
@@ -18,5 +19,9 @@ namespace TekeriumCommerce.Module.Catalog.Models
         public bool IsPublished { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public Media Media { get; set; }
+
+        // public long MediaId { get; set; }
     }
 }

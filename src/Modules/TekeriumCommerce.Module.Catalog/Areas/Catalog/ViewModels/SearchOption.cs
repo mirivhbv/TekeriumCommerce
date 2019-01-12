@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 {
@@ -51,6 +55,20 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
                 dict.Add("sort", Sort);
 
             return dict;
+        }
+
+        public IList<string> GetBrands()
+        {
+            return string.IsNullOrWhiteSpace(Brand)
+                ? new List<string>()
+                : Brand.Split(new[] {"--"}, StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+
+        public string ToJson()
+        {
+            var jsonSetting = new JsonSerializerSettings
+                {ContractResolver = new CamelCasePropertyNamesContractResolver()};
+            return JsonConvert.SerializeObject(this, jsonSetting);
         }
     }
 }

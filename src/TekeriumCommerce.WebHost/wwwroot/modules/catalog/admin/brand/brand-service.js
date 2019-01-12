@@ -3,7 +3,7 @@
         .factory('brandService', brandService);
 
     /* @ngInject */
-    function brandService($http) {
+    function brandService($http, Upload) {
         var service = {
             getBrand: getBrand,
             getBrands: getBrands,
@@ -22,12 +22,27 @@
             return $http.get('api/brands');
         }
 
-        function createBrand(brand) {
-            return $http.post('api/brands', brand);
+        function createBrand(brand, brandImage) {
+            return Upload.upload({
+                url: 'api/brands',
+                data: {
+                    brand: brand,
+                    brandImage: brandImage
+                }
+            });
+            // return $http.post('api/brands', brand);
         }
 
-        function editBrand(brand) {
-            return $http.put('api/brands/' + brand.id, brand);
+        function editBrand(brand, brandImage) {
+            return Upload.upload({
+                url: 'api/brands/' + brand.id,
+                method: 'PUT',
+                data: {
+                    brand: brand,
+                    brandImage: brandImage
+                }
+            });
+            //return $http.put('api/brands/' + brand.id, brand);
         }
 
         function deleteBrand(brand) {

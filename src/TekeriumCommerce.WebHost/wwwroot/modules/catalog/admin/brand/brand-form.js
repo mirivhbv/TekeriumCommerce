@@ -6,6 +6,7 @@
     function BrandFormCtrl($state, $stateParams, brandService) {
         var vm = this;
         vm.brand = {};
+        vm.brandImage = null;
         vm.brandId = $stateParams.id;
         vm.isEditMode = vm.brandId > 0;
 
@@ -17,9 +18,9 @@
         vm.save = function save() {
             var promise;
             if (vm.isEditMode) {
-                promise = brandService.editBrand(vm.brand);
+                promise = brandService.editBrand(vm.brand, vm.brandImage);
             } else {
-                promise = brandService.createBrand(vm.brand);
+                promise = brandService.createBrand(vm.brand, vm.brandImage);
             }
 
             promise
@@ -42,7 +43,6 @@
         function init() {
             if (vm.isEditMode) {
                 brandService.getBrand(vm.brandId).then(function (result) {
-                    console.log('mamma mia');
                     vm.brand = result.data;
                 });
             }

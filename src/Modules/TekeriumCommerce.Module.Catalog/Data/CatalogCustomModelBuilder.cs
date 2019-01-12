@@ -38,10 +38,11 @@ namespace TekeriumCommerce.Module.Catalog.Data
                 new EntityType("Product") { AreaName = "Catalog", RoutingController = "Product", RoutingAction = "ProductDetail", IsMenuable = false }
             );
 
+            // todo: deployment time change to real img url
             modelBuilder.Entity<ProductSeason>().HasData(
-                new ProductSeason { Id = 1L, Name = "Summer" },
-                new ProductSeason { Id = 2L, Name = "Winter" },
-                new ProductSeason { Id = 3L, Name = "Universal" }
+                new ProductSeason { Id = 1L, Name = "Summer", MediaUrl = "https://tekerstore.az/front/images/ribbon/summer.png" },
+                new ProductSeason { Id = 2L, Name = "Winter", MediaUrl = "https://tekerstore.az/front/images/ribbon/winter.png" },
+                new ProductSeason { Id = 3L, Name = "Universal", MediaUrl = "https://tekerstore.az/front/images/ribbon/4_seasons.png"}
             );
         }
     }

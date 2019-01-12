@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TekeriumCommerce.Module.Catalog.Models;
+using TekeriumCommerce.Module.Core.Models;
 
 namespace TekeriumCommerce.Module.Catalog.Data
 {
@@ -10,6 +11,7 @@ namespace TekeriumCommerce.Module.Catalog.Data
             //builder.Entity<Category>().HasData(
             //    new Category { }
             //    )
+
         }
     }
 }

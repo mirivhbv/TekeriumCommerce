@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TekeriumCommerce.Module.Core.Data;
 
 namespace TekeriumCommerce.WebHost.Migrations
 {
     [DbContext(typeof(TekerDbContext))]
-    partial class TekerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181230111921_adds-media-url-to-product-season")]
+    partial class addsmediaurltoproductseason
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,8 +103,6 @@ namespace TekeriumCommerce.WebHost.Migrations
 
                     b.Property<bool>("IsPublished");
 
-                    b.Property<long?>("MediaId");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(450);
@@ -112,8 +112,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .HasMaxLength(450);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MediaId");
 
                     b.ToTable("Catalog_Brand");
                 });
@@ -705,14 +703,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Brand", b =>
-                {
-                    b.HasOne("TekeriumCommerce.Module.Core.Models.Media", "Media")
-                        .WithMany()
-                        .HasForeignKey("MediaId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Category", b =>

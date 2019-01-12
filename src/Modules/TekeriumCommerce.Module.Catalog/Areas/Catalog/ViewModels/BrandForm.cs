@@ -1,22 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 {
     public class BrandForm
     {
-        public BrandForm()
-        {
-            IsPublished = true;
-        }
+        public BrandVm Brand { get; set; }
 
-        public long Id { get; set; }
-
-        [Required]
-        public string Slug { get; set; }
-
-        [Required]
-        public string Name { get; set; }
-
-        public bool IsPublished { get; set; }
+        public IFormFile BrandImage { get; set; }
     }
 }
