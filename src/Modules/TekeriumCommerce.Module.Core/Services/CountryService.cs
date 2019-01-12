@@ -11,7 +11,7 @@
         /// <returns></returns>
         public string ToFlagApiUrl(string countryCode, string style, int imgSize)
         {
-            return $"https://www.countryflags.io/{countryCode}/{style}/{imgSize}.png";
+            return $"https://www.countryflags.io/{countryCode.ToLowerInvariant()}/{style.ToLowerInvariant()}/{imgSize}.png";
         }
     }
 }

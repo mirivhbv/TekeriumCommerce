@@ -140,7 +140,7 @@
     </div>
 </section>
 
-<nav aria-label="breadcrumb">
+@*<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="~/">Home</a></li>
         @if (Model.Category.Name.Length > 0)
@@ -148,18 +148,18 @@
             <li class="">@Model.Category.Name</li>
 
             // remove this laters
-            @*@await Component.InvokeAsync("CategoryBreadcrumb", new { categoryIds = Model.Categories.Select(x => x.Id) })*@
+            @await Component.InvokeAsync("CategoryBreadcrumb", new { categoryIds = Model.Categories.Select(x => x.Id) })
         }
 
         @* todo: add here a brand name also *@
 
-        <li class="">@Model.Brand.Name</li>
+        @*<li class="">@Model.Brand.Name</li>
 
         <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
     </ol>
-</nav>
+</nav>*@
 
-<div class="product-detail">
+@*<div class="product-detail">
     <div class="row">
         <div class="col-md-6">
             <div class="sp-wrap">
@@ -213,7 +213,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 @section scripts
 {

@@ -2,9 +2,83 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<div ng-app="teker.shoppingCart" ng-controller="shoppingCartListCtrl as vm" ng-cloak>
-    <div class="col-md-8">
-        <table>
+<section class="finder">
+    <div class="container">
+
+        <div class="row d-flex justify-content-center brand" ng-app="teker.shoppingCart" ng-controller="shoppingCartListCtrl as vm" ng-cloak>
+            <div class="col-xs-12 col-md-8">
+                <div class="row table">
+                    <span class="cart-header col-6">Product</span>
+                    <span class="cart-header col-3">Price</span>
+                    <span class="cart-header col-3">Quantity</span>
+                </div>
+
+                <div ng-if="vm.cart.items.length" ng-repeat="cartItem in vm.cart.items" class="row cart-items">
+                    <div class="col-4 col-sm-4 col-lg-3 align-self-center">
+                        <img src="{{cartItem.productImage}}" alt=""/>
+                    </div>
+                    <div class="col-6 col-sm-7 col-lg-8 align-self-center">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <h4>{{cartItem.productName}}</h4>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4">
+                                <div class="price">
+                                    <span>{{cartItem.productPriceString}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 align-self-center">
+                                <div class="cart-quantity cart-input d-flex align-items-center">
+                                    <a class="value-button decrease" ng-click="vm.decreaseQuantity(cartItem)"><i class="fas fa-minus"></i></a>
+                                    <input type="number" id="number" ng-model="cartItem.quantity" readonly="readonly" />
+                                    <a class="value-button increase" ng-click="vm.increaseQuantity(cartItem)"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-remove col-1 col-sm-1 col-lg-1">
+                        <button class="btn btn-link" ng-click="vm.removeShoppingCartItem(cartItem)">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="row city">
+                    <div class="col-8 col-sm-8 col-lg-5">
+                        <div class="form-group">
+                            <label for="shippingCity">Select city:</label>
+                            <select name="shippingCity" id="shippingCity" ng-model="vm.shippingCity" ng-change="vm.shippingCityChanged()" ng-options="city.name for city in vm.allCities track by city.id"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-m-4">
+                <div class="cart-summary">
+                    <h4>ORDER SUMMARY</h4>
+                    <div class="for-margin">
+                        <ul>
+                            <li>
+                                <label> Subtotal:</label>
+                                <p> {{vm.cart.subTotalString}}</p>
+                            </li>
+                            <li>
+                                <label> Shipping cost:</label>
+                                <p> {{vm.shippingCity.cost}}</p>
+                            </li>
+                            <li>
+                                <label> Order total:</label>
+                                <p> {{vm.orderTotal}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="text-right">
+                        <a href="~/checkout/shipping" class="btn btn-primary">Process to Checkout</a>
+                    </p>
+                </div>
+            </div>
+
+            @*<table>
             <thead>
             <tr>
                 <th colspan="2">Product</th>
@@ -15,7 +89,7 @@
             </thead>
             <tbody>
             <tr ng-if="vm.cart.items.length" ng-repeat="cartItem in vm.cart.items">
-                <td class=""><img src="{{cartItem.productImage}}" /></td>
+                <td class=""><img src="{{cartItem.productImage}}"/></td>
                 <td>
                     <h4>{{cartItem.productName}}</h4>
                 </td>
@@ -24,12 +98,12 @@
                 </td>
                 <td class="text-center">
                     <button type="button" class="quantity-button" ng-click="vm.decreaseQuantity(cartItem)" name="subtract" value="-">-</button>
-                    <input type="text" class="quantity-field" ng-model="cartItem.quantity" readonly="readonly" />
+                    <input type="text" class="quantity-field" ng-model="cartItem.quantity" readonly="readonly"/>
                     <button type="button" class="quantity-button" ng-click="vm.increaseQuantity(cartItem)" name="subtract" value="+">+</button>
                 </td>
                 <td class="text-right"><button class="btn btn-link" ng-click="vm.removeShoppingCartItem(cartItem)"><span class="fa fa-remove" aria-hidden="true">remove</span></button></td>
             </tr>
-            
+
 
 
             <tr ng-if="!vm.cart.items.length">
@@ -38,34 +112,36 @@
                 </td>
             </tr>
             </tbody>
-        </table>
-    </div>
-    <div class="col-md-4">
-        <div class="order-summary" ng-if="vm.cart.items.length">
-            <h4>Order summary</h4>
-            <table class="table">
-                <tr>
-                    <td>Subtotal:</td>
-                    <td>{{vm.cart.subTotalString}}</td>
-                </tr>
-                <tr>
-                    <td>Shipping cost:</td>
-                    <td>{{vm.shippingCity.cost}}</td>
-                </tr>
-                <tr>
-                    <td>Order total:</td>
-                    <td>{{vm.orderTotal}}</td>
-                </tr>
-            </table>
-            <p class="text-right"><a href="~/checkout/shipping" class="btn btn-primary">Process to checkout</a></p>
+        </table>*@
+            @*<div class="col-md-4">
+                <div class="order-summary" ng-if="vm.cart.items.length">
+                    <h4>Order summary</h4>
+                    <table class="table">
+                        <tr>
+                            <td>Subtotal:</td>
+                            <td>{{vm.cart.subTotalString}}</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping cost:</td>
+                            <td>{{vm.shippingCity.cost}}</td>
+                        </tr>
+                        <tr>
+                            <td>Order total:</td>
+                            <td>{{vm.orderTotal}}</td>
+                        </tr>
+                    </table>
+                    <p class="text-right"><a href="~/checkout/shipping" class="btn btn-primary">Process to checkout</a></p>
+                </div>
+            </div>
+
+            <div>
+                <select name="shippingCity" id="shippingCity" ng-model="vm.shippingCity" ng-change="vm.shippingCityChanged()" ng-options="city.name for city in vm.allCities track by city.id"></select>
+            </div>*@
         </div>
+
     </div>
-    
-    <div>
-        <select name="shippingCity" id="shippingCity" ng-model="vm.shippingCity" ng-change="vm.shippingCityChanged()" ng-options="city.name for city in vm.allCities track by city.id">
-        </select>
-    </div>
-</div>
+</section>
+
 
 @section head {
     <script teker-append-version="true" src="~/lib/angular/angular.js"></script>

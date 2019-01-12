@@ -124,7 +124,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
                 product.ThumbnailUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage);
                 product.CalculatedProductPrice = _productPricingService.CalculateProductPrice(product);
                 product.BrandImageUrl = _mediaService.GetThumbnailUrl(product.Brand.Media);
-                product.CountryImageUrl = _countryService.ToFlagApiUrl(product.Country.CountryCode, "Flat", 32);
+                product.CountryImageUrl = _countryService.ToFlagApiUrl(product.Country.CountryCode, "Flat", 64);
             }
 
             model.Products = products;
