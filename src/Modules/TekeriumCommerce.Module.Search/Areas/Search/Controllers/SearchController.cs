@@ -19,15 +19,18 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
         private readonly IRepository<Product> _productRepository;
         private readonly IMediaService _mediaService;
         private readonly IProductPricingService _productPricingService;
+        private readonly IRepository<Brand> _brandRepository;
 
         public SearchController(IRepository<Product> productRepository,
                 IMediaService mediaService,
                 IProductPricingService productPricingService,
+                IRepository<Brand> brandRepository,
                 IConfiguration config)
         {
             _productRepository = productRepository;
             _mediaService = mediaService;
             _productPricingService = productPricingService;
+            _brandRepository = brandRepository;
             _pageSize = config.GetValue<int>("Catalog.ProductPageSize");
         }
 
@@ -42,7 +45,8 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
             var model = new SearchResult
             {
-                CurrentSearchOption = searchOption
+                CurrentSearchOption = searchOption,
+                FilterOption = new FilterOption()
             };
 
             var query = _productRepository.Query().Where(x =>
@@ -58,10 +62,30 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             }
 
             // todo: append filter option
+            AppendFilterOptionsToModel(model, query);
+
+            if (searchOption.MinPrice.HasValue)
+            {
+                query = query.Where(x => x.Price >= searchOption.MinPrice.Value);
+            }
+
+            if (searchOption.MaxPrice.HasValue)
+            {
+                query = query.Where(x => x.Price <= searchOption.MaxPrice.Value);
+            }
 
             if (searchOption.ProductSeason != "All")
             {
                 query.Where(x => x.ProductSeason.Name == searchOption.ProductSeason);
+            }
+
+            // brands:
+            var brands = searchOption.GetBrands();
+            if (brands.Any())
+            {
+                var brandId = _brandRepository.Query().Where(x => brands.Contains(x.Slug))
+                    .Select(x => x.Id).ToList();
+                query = query.Where(x => x.BrandId.HasValue && brandId.Contains(x.BrandId.Value));
             }
 
             model.TotalProduct = query.Count();
@@ -80,6 +104,10 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
             query = query.Include(x => x.ThumbnailImage);
 
+            query = query.Include(x => x.ProductSeason);
+
+            query = query.Include(x => x.Brand).ThenInclude(x => x.Media);
+
             var products = query
                 .Select(x => ProductThumbnail.FromProduct(x))
                 .Skip(offset)
@@ -90,6 +118,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
             {
                 product.ThumbnailUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage);
                 product.CalculatedProductPrice = _productPricingService.CalculateProductPrice(product);
+                product.BrandImageUrl = _mediaService.GetThumbnailUrl(product.Brand.Media);
             }
 
             model.Products = products;
@@ -100,6 +129,24 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
         }
 
         // todo: applysort
+        
         // todo: appendfilteroptions
+
+        private static void AppendFilterOptionsToModel(SearchResult model, IQueryable<Product> query)
+        {
+            model.FilterOption.Price.MaxPrice = query.Max(x => x.Price);
+            model.FilterOption.Price.MinPrice = query.Min(x => x.Price);
+
+            model.FilterOption.Brands = query
+                .Where(x => x.BrandId != null)
+                .GroupBy(x => x.Brand)
+                .Select(g => new FilterBrand
+                {
+                    Id = (int) g.Key.Id,
+                    Name = g.Key.Name,
+                    Slug = g.Key.Slug,
+                    Count = g.Count()
+                }).ToList();
+        }
     }
 }

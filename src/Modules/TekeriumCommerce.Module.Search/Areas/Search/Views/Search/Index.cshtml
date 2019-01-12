@@ -1,28 +1,151 @@
 ﻿@model TekeriumCommerce.Module.Search.Areas.Search.ViewModels.SearchResult
 
-<div>
+@section head
+    {
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/chosen/chosen.min.css" />
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/jquery/jquery-ui.min.css" />
+    <link teker-append-version="true" rel="stylesheet" href="~/lib/jquery/jquery-ui-slider-pips.min.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script teker-append-version="true" type="text/javascript" src="~/lib/chosen/chosen.jquery.min.js"></script>
+    <script teker-append-version="true" type="text/javascript" src="~/lib/jquery/jquery-ui.min.js"></script>
+    <script teker-append-version="true" type="text/javascript" src="~/lib/jquery/jquery-ui-slider-pips.min.js"></script>
+
+}
+
+<section class="finder">
     <div class="container">
-        <div id="">
-            <h2>Search Result for @Model.CurrentSearchOption.Width</h2>
-            <small>@Model.TotalProduct</small>
-        </div>
-    </div>
-    <div class="row product-list">
-        @foreach (var product in Model.Products)
-        {
-            <div class="col-xs-6 col-md-4">
-                <partial name="/Areas/Catalog/Views/Shared/_ProductThumbnail.cshtml" model="product" />
+        <div class="row d-flex justify-content-between">
+            <div class="col-lg-4 col-sm-12 px-0">
+                @await Component.InvokeAsync("LittleSearchForm")
+                <br>
+                <div class="brand col col-lg-11 col-sm-12">
+                    <div class="col-lg-12">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="searchsizing input-group-text">
+                                    BRAND
+                                </div>
+                            </div>
+                            <select data-placeholder="Choose a Brand..." class="form-control chosen-select" multiple>
+                                @if (Model.CurrentSearchOption.Brand != null)
+                                {
+                                    @foreach (var brand in Model.FilterOption.Brands)
+                                    {
+                                        <option value="@brand.Name" selected="@Model.CurrentSearchOption.GetBrands().Contains(brand.Slug, StringComparer.OrdinalIgnoreCase)">@brand.Name (@brand.Count)</option>
+                                    }
+                                }
+                                else
+                                {
+                                    @foreach (var brand in Model.FilterOption.Brands)
+                                    {
+                                        <option value="@brand.Name" selected>@brand.Name (@brand.Count)</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                @if (Model.FilterOption.Price.MaxPrice != Model.FilterOption.Price.MinPrice)
+                {
+                    <div class="brand col col-lg-11 col-sm-12">
+                        <div class="col-lg-12">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="searchsizing input-group-text">
+                                        PRICE
+                                    </div>
+                                </div>
+                                <div class="form-control slider price"></div>
+                                <input type="hidden" id="originMinPrice" value="@Model.FilterOption.Price.MinPrice.ToString("F0")" />
+                                <input type="hidden" id="originMaxPrice" value="@Model.FilterOption.Price.MaxPrice.ToString("F0")" />
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                }
             </div>
-        }
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <cs-pager cs-paging-pagesize="@Model.CurrentSearchOption.PageSize"
-                      cs-paging-pagenumber="@Model.CurrentSearchOption.Page"
-                      cs-paging-totalitems="@Model.TotalProduct"
-                      cs-pagenumber-param="page"
-                      asp-basehref="~/search"
-                      asp-all-route-data="@Model.CurrentSearchOption.ToDictionary()"></cs-pager>
+            <div class="col-lg-8 col-sm-12 search">
+                <div class="container mt-4">
+                    <div class="row">
+                        @foreach (var product in Model.Products)
+                        {
+                            <partial name="/Areas/Catalog/Views/Shared/_ProductThumbnail.cshtml" model="product" />
+                        }
+                    </div>
+                </div>
+                @*todo: pagination remains*@
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+
+@section scripts {
+    @*todo: later add teker-append tag helper*@
+    <script teker-append-version="true" type="text/javascript" src="~/modules/search/main-search.js"></script>
+    <script>
+        function createUrl(currentSearchOption) {
+            var key,
+                value,
+                newUrl,
+                params = [],
+                baseUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+
+            for (key in currentSearchOption) {
+                if (currentSearchOption.hasOwnProperty(key) && currentSearchOption[key]) {
+                    value = currentSearchOption[key];
+                    params.push(key + '=' + value);
+                }
+            }
+
+            if (params.length > 0) {
+                newUrl = baseUrl + '?' + params.join('&');
+            } else {
+                newUrl = baseUrl;
+            }
+
+            return newUrl;
+        }
+
+        var productFilter = {};
+        productFilter.currentSearchOption = @Html.Raw(Model.CurrentSearchOption.ToJson());
+        productFilter.priceSetting = {
+            min: @Model.FilterOption.Price.MinPrice.ToString("F0"),
+            max: @Model.FilterOption.Price.MaxPrice.ToString("F0"),
+            currentMin: @((Model.CurrentSearchOption.MinPrice ?? Model.FilterOption.Price.MinPrice).ToString("F0")),
+            currentMax: @((Model.CurrentSearchOption.MaxPrice ?? Model.FilterOption.Price.MaxPrice).ToString("F0"))
+        };
+
+    </script>
+    <script teker-append-version="true" src="~/modules/catalog/product-filter.js"></script>
+}
+
+@*<div>
+        <div class="container">
+            <div id="">
+                <h2>Search Result for @Model.CurrentSearchOption.Width</h2>
+                <small>@Model.TotalProduct</small>
+            </div>
+        </div>
+        <div class="row product-list">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-xs-6 col-md-4">
+                    <partial name="/Areas/Catalog/Views/Shared/_ProductThumbnail.cshtml" model="product" />
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <cs-pager cs-paging-pagesize="@Model.CurrentSearchOption.PageSize"
+                          cs-paging-pagenumber="@Model.CurrentSearchOption.Page"
+                          cs-paging-totalitems="@Model.TotalProduct"
+                          cs-pagenumber-param="page"
+                          asp-basehref="~/search"
+                          asp-all-route-data="@Model.CurrentSearchOption.ToDictionary()"></cs-pager>
+            </div>
+        </div>
+    </div>*@

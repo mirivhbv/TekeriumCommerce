@@ -1,7 +1,11 @@
-﻿namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
+﻿using System.Collections.Generic;
+
+namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 {
     public class FilterOption
     {
-        //public TYPE Type { get; set; }
+        public IList<FilterBrand> Brands { get; set; } = new List<FilterBrand>();
+
+        public FilterPrice Price { get; set; } = new FilterPrice();
     }
 }
