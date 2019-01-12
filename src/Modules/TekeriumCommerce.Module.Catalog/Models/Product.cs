@@ -60,6 +60,10 @@ namespace TekeriumCommerce.Module.Catalog.Models
 
         public long? ProductSeasonId { get; set; }
 
+        // product country
+
+        public Country Country { get; set; }
+
         public void AddMedia(ProductMedia media)
         {
             media.Product = this;

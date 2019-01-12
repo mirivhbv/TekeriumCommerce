@@ -36,6 +36,10 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public string BrandImageUrl { get; set; }
 
+        public Country Country { get; set; }
+
+        public string CountryImageUrl { get; set; }
+
         public static ProductThumbnail FromProduct(Product product)
         {
             return new ProductThumbnail
@@ -51,7 +55,8 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
                 SpecialPriceEnd = product.SpecialPriceEnd,
                 ThumbnailImage = product.ThumbnailImage,
                 ProductSeason = product.ProductSeason,
-                Brand = product.Brand
+                Brand = product.Brand,
+                Country = product.Country
             };
         }
     }

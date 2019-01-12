@@ -20,17 +20,20 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
         private readonly IMediaService _mediaService;
         private readonly IProductPricingService _productPricingService;
         private readonly IRepository<Brand> _brandRepository;
+        private readonly ICountryService _countryService;
 
         public SearchController(IRepository<Product> productRepository,
                 IMediaService mediaService,
                 IProductPricingService productPricingService,
                 IRepository<Brand> brandRepository,
+                ICountryService countryService,
                 IConfiguration config)
         {
             _productRepository = productRepository;
             _mediaService = mediaService;
             _productPricingService = productPricingService;
             _brandRepository = brandRepository;
+            _countryService = countryService;
             _pageSize = config.GetValue<int>("Catalog.ProductPageSize");
         }
 
@@ -108,6 +111,8 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
 
             query = query.Include(x => x.Brand).ThenInclude(x => x.Media);
 
+            query = query.Include(x => x.Country);
+
             var products = query
                 .Select(x => ProductThumbnail.FromProduct(x))
                 .Skip(offset)
@@ -119,6 +124,7 @@ namespace TekeriumCommerce.Module.Search.Areas.Search.Controllers
                 product.ThumbnailUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage);
                 product.CalculatedProductPrice = _productPricingService.CalculateProductPrice(product);
                 product.BrandImageUrl = _mediaService.GetThumbnailUrl(product.Brand.Media);
+                product.CountryImageUrl = _countryService.ToFlagApiUrl(product.Country.CountryCode, "Flat", 32);
             }
 
             model.Products = products;

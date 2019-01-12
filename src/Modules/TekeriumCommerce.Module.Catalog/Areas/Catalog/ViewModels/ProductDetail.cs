@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TekeriumCommerce.Module.Catalog.Models;
 using TekeriumCommerce.Module.Core.Areas.Core.ViewModels;
+using TekeriumCommerce.Module.Core.Models;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 {
@@ -39,5 +40,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
         public string Profile { get; set; }
 
         public string Rim { get; set; }
+
+        public Country Country { get; set; }
     }
 }

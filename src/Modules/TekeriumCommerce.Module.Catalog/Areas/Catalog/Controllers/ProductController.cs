@@ -57,10 +57,12 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
             var product = await _productRepository.Query()
                 .Include(x => x.Category)
                 .Include(x => x.Brand)
+                .Include(x => x.ProductSeason)
                 .Include(x => x.TyreProfile)
                 .Include(x => x.TyreRimSize)
                 .Include(x => x.TyreWidth)
                 .Include(x => x.Medias).ThenInclude(m => m.Media)
+                .Include(x => x.Country)
                 .FirstOrDefaultAsync(x => x.Id == id && x.IsPublished);
 
             if (product is null)
@@ -82,9 +84,11 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
                     { Id = product.Brand.Id, Name = product.Brand.Name, Slug = product.Brand.Slug },
                 Category = new ProductDetailCategory
                     { Id = product.Category.Id, Name = product.Category.Name, Slug = product.Category.Slug},
+                ProductSeason = product.ProductSeason,
                 Width = product.TyreWidth.Size,
                 Profile = product.TyreProfile.Size,
-                Rim = "R" + product.TyreRimSize.Size
+                Rim = "R" + product.TyreRimSize.Size,
+                Country = product.Country
             };
 
             MapProductImagesToProductVm(product, model);

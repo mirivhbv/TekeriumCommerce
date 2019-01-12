@@ -23,6 +23,17 @@ namespace TekeriumCommerce.Module.Core.Data
             );
 
             builder.Entity<UserRole>().HasData(new UserRole { UserId = 10, RoleId = 1 });
+
+            builder.Entity<Country>().HasData(
+                new Country { Id = 1L, Name = "Azerbaijan", CountryCode = "AZ" },
+                new Country { Id = 2L, Name = "China", CountryCode = "CN" },
+                new Country { Id = 3L, Name = "Finland", CountryCode = "FL" },
+                new Country { Id = 4L, Name = "Russia", CountryCode = "RU" },
+                new Country { Id = 5L, Name = "Turkey", CountryCode = "TR" },
+                new Country { Id = 6L, Name = "Japan", CountryCode = "JP" },
+                new Country { Id = 7L, Name = "Indonesia", CountryCode = "ID" },
+                new Country { Id = 8L, Name = "Korea", CountryCode = "KR" }
+            );
         }
     }
 }

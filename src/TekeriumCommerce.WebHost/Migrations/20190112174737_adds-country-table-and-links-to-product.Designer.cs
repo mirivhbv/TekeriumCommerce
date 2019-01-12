@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TekeriumCommerce.Module.Core.Data;
 
 namespace TekeriumCommerce.WebHost.Migrations
 {
     [DbContext(typeof(TekerDbContext))]
-    partial class TekerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190112174737_adds-country-table-and-links-to-product")]
+    partial class addscountrytableandlinkstoproduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -16,7 +16,7 @@
     }*@
 
 @section head
-    {
+{
     <link teker-append-version="true" rel="stylesheet" href="~/lib/smoothproducts/css/smoothproducts.css" />
 }
 
@@ -75,15 +75,16 @@
                                     }
                                 </div>
                             </div>
-
+                            @*todo: ADD Stock Quantity*@
                             <div class="row align-items-end mt-4">
                                 <div class="col shop">
                                     <form class="inline">
+                                        <input type="hidden" name="productId" value="@Model.Id"/>
                                         <div class="cart-input d-flex align-items-center">
                                             <div class="value-button" id="decrease" value="-"><i class="fas fa-minus"></i></div>
                                             <input type="number" id="number" readonly="readonly" name="qty" value="1">
                                             <div class="value-button" id="increase" value="+"><i class="fas fa-plus"></i></div>
-                                            <button type="button" class="btn btn-lg btn-add-cart" disabled="@(Model.StockQuantity <= 0)">ADD TO CART</button>
+                                            <button type="button" class="btn btn-lg btn-add-cart">ADD TO CART</button>
                                         </div>
                                     </form>
                                     @*todo: later add compare*@
@@ -94,7 +95,43 @@
                     <h4>Product details</h4>
                     <div class="details row border">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <ul></ul>
+                            <ul>
+                                <li>
+                                    <label>Brand</label>
+                                    <p>@Model.Brand.Name</p>
+                                </li>
+                                <li>
+                                    <label>Product Name</label>
+                                    <p>@Model.Name</p>
+                                </li>
+                                <li>
+                                    <label>Category</label>
+                                    <p>@Model.Category.Name</p>
+                                </li>
+                                <li>
+                                    <label>Season</label>
+                                    <p>@Model.ProductSeason.Name</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul>
+                                <li>
+                                    <label>Manufacturer country</label>
+                                    <p>@Model.Country.Name</p>
+                                </li>
+                                <li>
+                                    @*todo: add this to product table*@
+                                    <label>Speed Index</label>
+                                    <p>@Model.Name</p>
+                                </li>
+                                <li>
+                                    @*todo: add this to product table*@
+                                    <label>Weight Index</label>
+                                    <p>@Model.Category.Name</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </section>
@@ -102,7 +139,6 @@
         </div>
     </div>
 </section>
-
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -143,9 +179,5 @@
     @*todo: add variationscriptspartial*@
 
     <script teker-append-version="true" src="~/lib/smoothproducts/js/smoothproducts.min.js"></script>
-    <script>
-        $(window).on('load', function () {
-            $('sp-wrap').smoothproducts();
-        })
-    </script>
+    <script teker-append-version="true" src="~/modules/catalog/product-detail.js"></script>
 }

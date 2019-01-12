@@ -18,6 +18,7 @@ namespace TekeriumCommerce.Module.Core
             serviceCollection.AddTransient<IMediaService, MediaService>();
             serviceCollection.AddScoped<SignInManager<User>, TekeriumSignInManager<User>>();
             serviceCollection.AddScoped<IWorkContext, WorkContext>();
+            serviceCollection.AddScoped<ICountryService, CountryService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
