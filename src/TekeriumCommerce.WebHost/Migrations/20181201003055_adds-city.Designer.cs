@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TekeriumCommerce.Module.Core.Data;
 
 namespace TekeriumCommerce.WebHost.Migrations
 {
     [DbContext(typeof(TekerDbContext))]
-    partial class TekerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181201003055_adds-city")]
+    partial class addscity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,8 +103,6 @@ namespace TekeriumCommerce.WebHost.Migrations
 
                     b.Property<bool>("IsPublished");
 
-                    b.Property<long?>("MediaId");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(450);
@@ -112,8 +112,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .HasMaxLength(450);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MediaId");
 
                     b.ToTable("Catalog_Brand");
                 });
@@ -167,8 +165,6 @@ namespace TekeriumCommerce.WebHost.Migrations
 
                     b.Property<long?>("CategoryId");
 
-                    b.Property<long?>("CountryId");
-
                     b.Property<long?>("CreatedById");
 
                     b.Property<DateTimeOffset>("CreatedOn");
@@ -196,8 +192,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.Property<decimal?>("OldPrice");
 
                     b.Property<decimal>("Price");
-
-                    b.Property<long?>("ProductSeasonId");
 
                     b.Property<DateTimeOffset?>("PublishedOn");
 
@@ -235,11 +229,7 @@ namespace TekeriumCommerce.WebHost.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("CountryId");
-
                     b.HasIndex("CreatedById");
-
-                    b.HasIndex("ProductSeasonId");
 
                     b.HasIndex("ThumbnailImageId");
 
@@ -304,28 +294,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Catalog_ProductPriceHistory");
-                });
-
-            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.ProductSeason", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("MediaUrl")
-                        .IsRequired();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Catalog_ProductSeason");
-
-                    b.HasData(
-                        new { Id = 1L, MediaUrl = "https://tekerstore.az/front/images/ribbon/summer.png", Name = "Summer" },
-                        new { Id = 2L, MediaUrl = "https://tekerstore.az/front/images/ribbon/winter.png", Name = "Winter" },
-                        new { Id = 3L, MediaUrl = "https://tekerstore.az/front/images/ribbon/4_seasons.png", Name = "Universal" }
-                    );
                 });
 
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.TyreProfile", b =>
@@ -417,32 +385,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                         new { Id = "Global.AssetVersion", IsVisibleInCommonSettingPage = true, Module = "Core", Value = "1.0" },
                         new { Id = "Theme", IsVisibleInCommonSettingPage = false, Module = "Core", Value = "Generic" },
                         new { Id = "Catalog.ProductPageSize", IsVisibleInCommonSettingPage = true, Module = "Catalog", Value = "10" }
-                    );
-                });
-
-            modelBuilder.Entity("TekeriumCommerce.Module.Core.Models.Country", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CountryCode");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Core_Country");
-
-                    b.HasData(
-                        new { Id = 1L, CountryCode = "AZ", Name = "Azerbaijan" },
-                        new { Id = 2L, CountryCode = "CN", Name = "China" },
-                        new { Id = 3L, CountryCode = "FL", Name = "Finland" },
-                        new { Id = 4L, CountryCode = "RU", Name = "Russia" },
-                        new { Id = 5L, CountryCode = "TR", Name = "Turkey" },
-                        new { Id = 6L, CountryCode = "JP", Name = "Japan" },
-                        new { Id = 7L, CountryCode = "ID", Name = "Indonesia" },
-                        new { Id = 8L, CountryCode = "KR", Name = "Korea" }
                     );
                 });
 
@@ -753,14 +695,6 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Brand", b =>
-                {
-                    b.HasOne("TekeriumCommerce.Module.Core.Models.Media", "Media")
-                        .WithMany()
-                        .HasForeignKey("MediaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("TekeriumCommerce.Module.Catalog.Models.Category", b =>
                 {
                     b.HasOne("TekeriumCommerce.Module.Core.Models.Media", "ThumbnailImage")
@@ -781,19 +715,9 @@ namespace TekeriumCommerce.WebHost.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("TekeriumCommerce.Module.Core.Models.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("TekeriumCommerce.Module.Core.Models.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("TekeriumCommerce.Module.Catalog.Models.ProductSeason", "ProductSeason")
-                        .WithMany()
-                        .HasForeignKey("ProductSeasonId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("TekeriumCommerce.Module.Core.Models.Media", "ThumbnailImage")

@@ -87,6 +87,13 @@
     <script teker-append-version="true" src="~/modules/catalog/admin/product/product-list.js"></script>
     <script teker-append-version="true" src="~/modules/catalog/admin/product/product-service.js"></script>
     <script teker-append-version="true" src="~/modules/catalog/admin/product/product-form.js"></script>
+
+    @*Shipping*@
+    <script teker-append-version="true" src="~/modules/shipping/admin/shipping.module.js"></script>
+    <script teker-append-version="true" src="~/modules/shipping/admin/city/city-list.js"></script>
+    <script teker-append-version="true" src="~/modules/shipping/admin/city/city-form.js"></script>
+    <script teker-append-version="true" src="~/modules/shipping/admin/city/city-service.js"></script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse">
@@ -131,6 +138,15 @@
     
         </div>
     </div>
+    <ol>
+        <li><a ui-sref="users">Users</a></li>
+        <li><a ui-sref="brand">Brands</a></li>
+        <li><a ui-sref="tyre">Tyre</a></li>
+        <li><a ui-sref="category">Category</a></li>
+        <li><a ui-sref="product">Product</a></li>
+        <li><a ui-sref="city">City</a></li>
+    </ol>
+    <ui-view></ui-view>
     
     <div class="container-fluid body-content">
         <div ui-view></div>

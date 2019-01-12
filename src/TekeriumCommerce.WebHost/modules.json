@@ -17,6 +17,10 @@
   },
   {
     "id": "TekeriumCommerce.Module.ShoppingCart",
-    "version": "1.0.0" 
+    "version": "1.0.0"
+  },
+  {
+    "id": "TekeriumCommerce.Module.Shipping",
+    "version": "1.0.0"
   }
 ]

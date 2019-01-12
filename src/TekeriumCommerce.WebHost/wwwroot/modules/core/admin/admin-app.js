@@ -12,6 +12,7 @@
         'tekerAdmin.dashboard',
         'tekerAdmin.core',
         'tekerAdmin.catalog',
+        'tekerAdmin.shipping'
         ]);
 
     adminApp.config([
