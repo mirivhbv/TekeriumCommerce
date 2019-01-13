@@ -3,12 +3,13 @@ using TekeriumCommerce.Infrastructure.Models;
 
 namespace TekeriumCommerce.Module.Shipping.Models
 {
-    public class City : EntityBase
+    public class City : IEntityWithTypedId<long>
     {
+        public long Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        public double Cost { get; set; }
+        public decimal Cost { get; set; }
     }
 }

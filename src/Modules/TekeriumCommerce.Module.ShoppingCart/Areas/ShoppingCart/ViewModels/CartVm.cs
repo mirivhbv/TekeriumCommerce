@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TekeriumCommerce.Module.Shipping.Models;
 
 namespace TekeriumCommerce.Module.ShoppingCart.Areas.ShoppingCart.ViewModels
 {
@@ -25,5 +26,8 @@ namespace TekeriumCommerce.Module.ShoppingCart.Areas.ShoppingCart.ViewModels
         public string OrderTotalString => OrderTotal.ToString("C");
 
         public IList<CartItemVm> Items { get; set; } = new List<CartItemVm>();
+
+        // test:
+        public City City { get; set; }
     }
 }

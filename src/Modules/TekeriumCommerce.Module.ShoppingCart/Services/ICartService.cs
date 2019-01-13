@@ -8,5 +8,7 @@ namespace TekeriumCommerce.Module.ShoppingCart.Services
         Task AddToCart(long userId, long productId, int quantity);
 
         Task<CartVm> GetCart(long userId);
+
+        Task ChangeShippingAddress(long userId, long cityId);
     }
 }

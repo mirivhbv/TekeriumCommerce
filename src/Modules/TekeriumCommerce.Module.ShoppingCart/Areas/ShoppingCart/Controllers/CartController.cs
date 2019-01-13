@@ -83,6 +83,16 @@ namespace TekeriumCommerce.Module.ShoppingCart.Areas.ShoppingCart.Controllers
             return await List();
         }
 
+        [HttpPost("cart/update-shipping-city")]
+        public async Task<IActionResult> UpdateCity([FromBody] long cityId)
+        {
+            var currentUser = await _workContext.GetCurrentUser();
+            await _cartService.ChangeShippingAddress(currentUser.Id, cityId);
+
+            // test:
+            return await List();
+        }
+
         [HttpPost("cart/remove")]
         public async Task<IActionResult> Remove([FromBody] long itemId)
         {

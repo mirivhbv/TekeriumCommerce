@@ -6,7 +6,7 @@ namespace TekeriumCommerce.Module.Shipping.Areas.Shipping.ViewModels
         
         public string Name { get; set; }
 
-        public double Cost { get; set; }
+        public decimal Cost { get; set; }
 
         public string CostString => Cost.ToString("C");
     }

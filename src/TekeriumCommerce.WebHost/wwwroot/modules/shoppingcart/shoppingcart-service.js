@@ -21,10 +21,16 @@
                             });
                     }
 
+                    function updateCity(cityId) {
+                        console.log('city-id:' + cityId);
+                        return $http.post('cart/update-shipping-city', cityId);
+                    }
+
                     return {
                         getShoppingCartItems: getShoppingCartItems,
                         removeShoppingCartItem: removeShoppingCartItem,
-                        updateQuantity: updateQuantity
+                        updateQuantity: updateQuantity,
+                        updateCity: updateCity
                     };
                 }
             ]);

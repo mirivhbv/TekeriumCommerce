@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Module.Core.Services;
+using TekeriumCommerce.Module.Shipping.Models;
 using TekeriumCommerce.Module.ShoppingCart.Areas.ShoppingCart.ViewModels;
 using TekeriumCommerce.Module.ShoppingCart.Models;
 
@@ -14,24 +15,30 @@ namespace TekeriumCommerce.Module.ShoppingCart.Services
         private readonly IRepository<Cart> _cartRepository;
         private readonly IRepository<CartItem> _cartItemRepository;
         private readonly IMediaService _mediaService;
+        private readonly IRepository<City> _cityRepository;
 
-        public CartService(IRepository<Cart> cartRepository, IRepository<CartItem> cartItemRepository, IMediaService mediaService)
+        public CartService(IRepository<Cart> cartRepository, IRepository<CartItem> cartItemRepository, IRepository<City> cityRepository, IMediaService mediaService)
         {
             _cartRepository = cartRepository;
             _cartItemRepository = cartItemRepository;
+            _cityRepository = cityRepository;
             _mediaService = mediaService;
         }
 
         public async Task AddToCart(long userId, long productId, int quantity)
         {
-            var cart = _cartRepository.Query().Include(x => x.Items)
+            var cart = _cartRepository.Query().Include(x => x.Items).Include(x => x.City)
                 .FirstOrDefault(x => x.UserId == userId && x.IsActive);
+
+            var city = _cityRepository.Query().FirstOrDefault(x => x.Name.ToLowerInvariant() == "baku");
 
             if (cart is null)
             {
                 cart = new Cart
                 {
-                    UserId = userId
+                    UserId = userId,
+                    City = city,
+                    ShippingAmount = city?.Cost
                 };
                 _cartRepository.Add(cart);
             }
@@ -59,8 +66,9 @@ namespace TekeriumCommerce.Module.ShoppingCart.Services
         // TODO: separate getting product thumbnail, varation options from here
         public async Task<CartVm> GetCart(long userId)
         {
-            var cart = _cartRepository.Query().Include(x => x.Items)
+            var cart = _cartRepository.Query().Include(x => x.Items).Include(x => x.City)
                 .FirstOrDefault(x => x.UserId == userId && x.IsActive);
+
             if (cart is null)
             {
                 return new CartVm();
@@ -69,7 +77,8 @@ namespace TekeriumCommerce.Module.ShoppingCart.Services
             var cartVm = new CartVm
             {
                 Id = cart.Id,
-                ShippingAmount = cart.ShippingAmount,
+                ShippingAmount = cart.City.Cost,
+                City = cart.City,
                 Items = _cartItemRepository
                     .Query()
                     .Include(x => x.Product).ThenInclude(x => x.ThumbnailImage)
@@ -88,6 +97,18 @@ namespace TekeriumCommerce.Module.ShoppingCart.Services
             cartVm.SubTotal = cartVm.Items.Sum(x => x.Quantity * x.ProductPrice);
 
             return cartVm;
+        }
+
+        public async Task ChangeShippingAddress(long userId, long cityId)
+        {
+            var cart = _cartRepository.Query().Include(x => x.Items).Include(x => x.City)
+                .FirstOrDefault(x => x.UserId == userId && x.IsActive);
+            if (cart != null)
+            {
+                cart.CityId = cityId;
+            }
+
+            await _cartRepository.SaveChangesAsync();
         }
     }
 }

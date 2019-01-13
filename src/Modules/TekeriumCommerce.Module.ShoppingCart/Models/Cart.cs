@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TekeriumCommerce.Infrastructure.Models;
 using TekeriumCommerce.Module.Core.Models;
+using TekeriumCommerce.Module.Shipping.Models;
 
 namespace TekeriumCommerce.Module.ShoppingCart.Models
 {
@@ -26,6 +27,10 @@ namespace TekeriumCommerce.Module.ShoppingCart.Models
         public decimal? ShippingAmount { get; set; }
 
         public IList<CartItem> Items { get; set; } = new List<CartItem>();
+
+        //testing:
+        public long? CityId { get; set; }
+        public City City { get; set; }
 
         /// <summary>
         /// Json serialized of shipping form

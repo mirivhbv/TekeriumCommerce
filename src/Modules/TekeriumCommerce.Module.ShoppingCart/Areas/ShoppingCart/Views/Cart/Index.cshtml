@@ -47,7 +47,7 @@
                     <div class="col-8 col-sm-8 col-lg-5">
                         <div class="form-group">
                             <label for="shippingCity">Select city:</label>
-                            <select name="shippingCity" id="shippingCity" ng-model="vm.shippingCity" ng-change="vm.shippingCityChanged()" ng-options="city.name for city in vm.allCities track by city.id"></select>
+                            <select name="shippingCity" id="shippingCity" ng-change="vm.shippingCityChanged()" ng-options="city.name for city in vm.allCities track by city.id" ng-model="vm.shippingCity"></select>
                         </div>
                     </div>
                 </div>
@@ -64,11 +64,11 @@
                             </li>
                             <li>
                                 <label> Shipping cost:</label>
-                                <p> {{vm.shippingCity.cost}}</p>
+                                <p> {{vm.cart.shippingAmountString}}</p>
                             </li>
                             <li>
                                 <label> Order total:</label>
-                                <p> {{vm.orderTotal}}</p>
+                                <p> {{vm.cart.orderTotalString}}</p>
                             </li>
                         </ul>
                     </div>
