@@ -22,10 +22,10 @@
             border: solid grey 1px;
         }
 
-            .bloc select {
-                padding: 10px;
-                margin: -5px -20px -5px -5px;
-            }
+        .bloc select {
+            padding: 10px;
+            margin: -5px -20px -5px -5px;
+        }
     </style>
     @* css going to here *@
     <link teker-append-version="true" rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
@@ -94,6 +94,11 @@
     <script teker-append-version="true" src="~/modules/shipping/admin/city/city-form.js"></script>
     <script teker-append-version="true" src="~/modules/shipping/admin/city/city-service.js"></script>
 
+    @*Orders*@
+    <script teker-append-version="true" src="~/modules/orders/admin/orders.module.js"></script>
+    <script teker-append-version="true" src="~/modules/orders/admin/order/order-service.js"></script>
+    <script teker-append-version="true" src="~/modules/orders/admin/order/order-list.js"></script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse">
@@ -107,47 +112,43 @@
                 <a href="~/Admin" class="navbar-brand">TekeriumCommerce Admin</a>
             </div>
             <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Site <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a ui-sref="users">Users</a></li>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Site <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="users">Users</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalog <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="category">Category</a></li>
+                            <li><a ui-sref="brand">Brands</a></li>
+                            <li><a ui-sref="tyre">Tyre</a></li>
+                            <li><a ui-sref="product">Product</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sales <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="order">Orders</a></li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalog <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a ui-sref="category">Category</a></li>
-                    <li><a ui-sref="brand">Brands</a></li>
-                    <li><a ui-sref="tyre">Tyre</a></li>
-                    <li><a ui-sref="product">Product</a></li>
-                </ul>
-            </li>
-        </ul>
-        <form asp-area="Core" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="Core" asp-controller="Manage" asp-action="Index" title="Manage">Hello admin</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
-            </li>
-        </ul>
-    </form>
-    </div>
-    
+                <form asp-area="Core" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a asp-area="Core" asp-controller="Manage" asp-action="Index" title="Manage">Hello admin</a>
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
         </div>
     </div>
-    <ol>
-        <li><a ui-sref="users">Users</a></li>
-        <li><a ui-sref="brand">Brands</a></li>
-        <li><a ui-sref="tyre">Tyre</a></li>
-        <li><a ui-sref="category">Category</a></li>
-        <li><a ui-sref="product">Product</a></li>
-        <li><a ui-sref="city">City</a></li>
-    </ol>
-    <ui-view></ui-view>
-    
+
     <div class="container-fluid body-content">
         <div ui-view></div>
         <hr>

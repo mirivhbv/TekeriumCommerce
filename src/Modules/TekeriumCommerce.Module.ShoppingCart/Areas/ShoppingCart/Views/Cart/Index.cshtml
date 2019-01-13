@@ -35,6 +35,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div ng-if="!vm.cart.items.length">
+                            <p>
+                                There is no item in this cart. <a href="~/">Go to shopping</a>
+                            </p>
+                        </div>
                     </div>
                     <div class="btn-remove col-1 col-sm-1 col-lg-1">
                         <button class="btn btn-link" ng-click="vm.removeShoppingCartItem(cartItem)">
@@ -73,7 +78,7 @@
                         </ul>
                     </div>
                     <p class="text-right">
-                        <a href="~/checkout/shipping" class="btn btn-primary">Process to Checkout</a>
+                        <a href="~/checkout" class="btn btn-primary">Process to Checkout</a>
                     </p>
                 </div>
             </div>

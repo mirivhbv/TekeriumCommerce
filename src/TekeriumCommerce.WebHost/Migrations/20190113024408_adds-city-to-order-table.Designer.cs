@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TekeriumCommerce.Module.Core.Data;
 
 namespace TekeriumCommerce.WebHost.Migrations
 {
     [DbContext(typeof(TekerDbContext))]
-    partial class TekerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190113024408_adds-city-to-order-table")]
+    partial class addscitytoordertable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -648,13 +650,7 @@ namespace TekeriumCommerce.WebHost.Migrations
 
                     b.Property<DateTimeOffset>("CreatedOn");
 
-                    b.Property<string>("CustomerEmail");
-
-                    b.Property<string>("CustomerName");
-
                     b.Property<int>("OrderStatus");
-
-                    b.Property<decimal>("OrderTotal");
 
                     b.Property<long?>("ShippingCityId");
 

@@ -22,5 +22,9 @@
   {
     "id": "TekeriumCommerce.Module.Shipping",
     "version": "1.0.0"
+  },
+  {
+    "id": "TekeriumCommerce.Module.Orders",
+    "version": "1.0.0" 
   }
 ]

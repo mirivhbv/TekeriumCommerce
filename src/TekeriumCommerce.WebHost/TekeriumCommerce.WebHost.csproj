@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Content Remove="Modules\TekeriumCommerce.Module.Catalog\module.json" />
+    <Content Remove="Modules\TekeriumCommerce.Module.Orders\module.json" />
     <Content Remove="Modules\TekeriumCommerce.Module.Search\module.json" />
     <Content Remove="Modules\TekeriumCommerce.Module.ShoppingCart\module.json" />
     <Content Remove="Modules\TekeriumCommerce.Module.StorageLocal\module.json" />
@@ -13,12 +14,14 @@
 
   <ItemGroup>
     <None Include="Modules\TekeriumCommerce.Module.Catalog\module.json" />
+    <None Include="Modules\TekeriumCommerce.Module.Orders\module.json" />
     <None Include="Modules\TekeriumCommerce.Module.Search\module.json" />
     <None Include="Modules\TekeriumCommerce.Module.ShoppingCart\module.json" />
     <None Include="Modules\TekeriumCommerce.Module.StorageLocal\module.json" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Modules\TekeriumCommerce.Module.Orders\TekeriumCommerce.Module.Orders.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.Shipping\TekeriumCommerce.Module.Shipping.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.ShoppingCart\TekeriumCommerce.Module.ShoppingCart.csproj" />
     <ProjectReference Include="..\Modules\TekeriumCommerce.Module.StorageLocal\TekeriumCommerce.Module.StorageLocal.csproj" />

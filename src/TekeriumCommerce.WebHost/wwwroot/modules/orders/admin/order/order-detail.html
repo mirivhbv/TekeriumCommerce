@@ -1,0 +1,171 @@
+﻿<div class="page-header">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Order details: #{{vm.order.id}}</h2>
+        </div>
+        <div class="col-md-4 text-right">
+            <a href="/api/invoices/print/{{vm.order.id}}" target="_blank" class="btn btn-info"><span class="glyphicon glyphicon-download-alt"></span> {{::vm.translate.get('Download Invoice')}}</a>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Order and Customer information</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Order #{{vm.order.id}}</h5>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Order Date</td>
+                        <td>{{vm.order.createdOn | date:'medium'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Order Status</td>
+                        <td>{{vm.order.orderStatusString}}</td>
+                    </tr>
+                    <tr>
+                        <td>Order Total</td>
+                        <td>{{vm.order.orderTotalString}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h5>Customer Information</h5>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Customer Name</td>
+                        <td><a ui-sref="user-edit({id: vm.order.customerId})">{{vm.order.customerName}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{vm.order.customerEmail}}</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping City</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Product Information</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped order-item-list">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Quantity</th>
+                    <th class="text-right">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in vm.order.orderItems">
+                    <td>
+                        <a ui-sref="product-edit({id: item.productId})">{{item.productName}}</a>
+                    </td>
+                    <td class="text-right">{{item.productPriceString}}</td>
+                    <td class="text-right">
+                        Ordered {{item.quantity}}<!--<span ng-if="item.shippedQuantity"><br />Shipped {{item.shippedQuantity}}</span>-->
+                    </td>
+                    <td class="text-right">{{item.totalString}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Order Note</h3>
+    </div>
+    <div class="panel-body">
+        {{vm.order.orderNote}}
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Order Total & Action</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>History & Action</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Changed by</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.orderHistories">
+                            <td>{{item.createdOn | date:'medium'}}</td>
+                            <td><span ng-if="item.oldStatus">{{item.oldStatus}} &rarr; </span>{{item.newStatus}}</td>
+                            <td>
+                                <a ng-if="item.createdById >= 10" ui-sref="user-edit({id: item.createdById})">{{item.createdByFullName}}</a>
+                                <span ng-if="item.createdById < 10">{{item.createdByFullName}}</span>
+                            </td>
+                            <td>{{item.note}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <form name="orderStatusForm" class="form-horizontal">
+                    <div class="col-sm-offset-2 bg-danger" ng-show="vm.validationErrors">
+                        <ul>
+                            <li ng-repeat="error in vm.validationErrors">{{error}}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Order Status</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="vm.order.orderStatus" ng-options="s.id as s.name for s in vm.orderStatus"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Note</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" ng-model="vm.orderStatusNote" rows="3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-primary" ng-click="vm.changeOrderStatus()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Subtotal</td>
+                        <td class="text-right">{{vm.order.subtotalString}}</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td class="text-right">{{vm.order.shippingAmountString}}</td>
+                    </tr>
+                    <tr>
+                        <td>Order Total</td>
+                        <td class="text-right"><strong>{{vm.order.orderTotalString}}</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <button ui-sref="order" class="btn btn-default">Back</button>
+</div>
