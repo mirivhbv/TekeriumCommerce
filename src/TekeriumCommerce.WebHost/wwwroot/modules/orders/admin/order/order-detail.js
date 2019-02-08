@@ -13,6 +13,7 @@
         vm.orderHistories = [];
 
         vm.changeOrderStatus = function () {
+            console.log('test');
             orderService.changeOrderStatus(vm.order.id, { statusId: vm.order.orderStatus, note: vm.orderStatusNote })
                 .then(function () {
                     vm.order.orderStatusString = vm.orderStatus.find(function (item) { return item.id === vm.order.orderStatus; }).name;

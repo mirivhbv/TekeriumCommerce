@@ -37,7 +37,7 @@ namespace TekeriumCommerce.Module.Orders.Models
 
         public string CustomerEmail { get; set; }
 
-        // todo: shipping address   
+        // todo: shipping address 
 
         public IList<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 

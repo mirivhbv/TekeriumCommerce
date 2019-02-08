@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Module.Core.Extensions;
 using TekeriumCommerce.Module.Orders.Areas.Orders.ViewModels;
+using TekeriumCommerce.Module.Orders.Events;
 using TekeriumCommerce.Module.Orders.Models;
 using TekeriumCommerce.Module.ShoppingCart.Models;
 
@@ -17,12 +19,17 @@ namespace TekeriumCommerce.Module.Orders.Areas.Orders.Controllers
         private readonly IRepository<Cart> _cartRepository;
         private readonly IRepository<Order> _orderRepository;
         private readonly IWorkContext _workContext;
+        private readonly IMediator _mediator;
 
-        public CheckoutController(IRepository<Cart> cartRepository, IWorkContext workContext, IRepository<Order> orderRepository)
+        public CheckoutController(IRepository<Cart> cartRepository,
+                                IWorkContext workContext,
+                                IRepository<Order> orderRepository,
+                                IMediator mediator)
         {
             _cartRepository = cartRepository;
             _workContext = workContext;
             _orderRepository = orderRepository;
+            _mediator = mediator;
         }
 
         [HttpGet("checkout")]
@@ -112,7 +119,10 @@ namespace TekeriumCommerce.Module.Orders.Areas.Orders.Controllers
                 cart.IsActive = false;
 
                 // done(works)! todo: check whether order repo save changes would effect to cart repo or not...
+
                 await _orderRepository.SaveChangesAsync();
+
+                await _mediator.Publish(new OrderCreated { OrderId = order.Id, Order = order, UserId = order.CreatedById });
 
                 return Redirect("~/congratulation");
             }

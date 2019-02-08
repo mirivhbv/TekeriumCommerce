@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -60,10 +61,6 @@ namespace TekeriumCommerce.WebHost
             // done! todo: add IRepositoryWithTypeId as Transient
             services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
 
-            // done! todo: add MediatR and IMediator as Scoped
-            services.AddMediatR();
-            services.AddScoped<IMediator, SequentialMediator>();
-
             // todo: add customized location
             // it would be inside of module.localization
 
@@ -94,6 +91,10 @@ namespace TekeriumCommerce.WebHost
             {
                 moduleInitializer.ConfigureServices(services);
             }
+
+            // done! todo: add MediatR and IMediator as Scoped
+            services.AddScoped<ServiceFactory>(p => p.GetService);
+            services.AddScoped<IMediator, SequentialMediator>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
