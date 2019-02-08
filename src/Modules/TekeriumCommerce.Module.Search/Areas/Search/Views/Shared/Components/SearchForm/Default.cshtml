@@ -31,7 +31,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <h3>Cars</h3>
+                                    <h3>@Localizer["Car"]</h3>
                                 </div>
                             </div>
                             <form class="mt-4" method="get" action="~/search">
@@ -42,11 +42,11 @@
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    WIDTH
+                                                    @Localizer["Width"].Value.ToUpper()
                                                 </div>
                                             </div>
                                             <select name="width" asp-for="Width" asp-items="Model.AvailableWidths" class="form-control">
-                                                <option value="choose">Choose</option>
+                                                <option value="choose">@Localizer["Choose"]</option>
                                             </select>
                                         </div>
                                     </div>
@@ -56,11 +56,11 @@
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    PROFILE
+                                                    @Localizer["Profile"].Value.ToUpper()
                                                 </div>
                                             </div>
                                             <select name="profile" asp-for="Profile" asp-items="Model.AvailableProfiles" class="form-control">
-                                                <option value="choose">Choose</option>
+                                                <option value="choose">@Localizer["Choose"]</option>
                                             </select>
                                         </div>
                                     </div>
@@ -69,39 +69,39 @@
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    RIM
+                                                    @Localizer["Rim"].Value.ToUpper()
                                                 </div>
                                             </div>
                                             <select name="rimSize" asp-for="RimSize" asp-items="Model.AvailableRimSizes" class="form-control">
-                                                <option value="choose">Choose</option>
+                                                <option value="choose">@Localizer["Choose"]</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-12 col-sm order-12 order-sm-1">
-                                        <h4>Tyre type:</h4>
+                                        <h4>@Localizer["Season"]:</h4>
                                         <div class="btn-group btn-group-toggle mt-4" data-toggle="buttons">
                                             <label class="btn btn-secondary active">
                                                 <input type="radio" asp-for="@Model.ProductSeason" value="all" autocomplete="off" checked />
-                                                All
+                                                @Localizer["All"]
                                             </label>
                                             <label class="btn btn-secondary">
                                                 <input type="radio" asp-for="@Model.ProductSeason" value="summer" autocomplete="off" />
-                                                Summer
+                                                @Localizer["Summer"]
                                             </label>
                                             <label class="btn btn-secondary">
                                                 <input type="radio" asp-for="@Model.ProductSeason" value="winter" autocomplete="off" />
-                                                Winter
+                                                @Localizer["Winter"]
                                             </label>
                                             <label class="btn btn-secondary">
                                                 <input type="radio" asp-for="@Model.ProductSeason" value="universal" autocomplete="off" />
-                                                Universal
+                                                @Localizer["Universal"]
                                             </label>
                                         </div>
                                         <br /><br />
                                         <button type="submit" class="btn btn-outline-secondary btn-block">
-                                            Search
+                                            @Localizer["Search"]
                                         </button>
                                     </div>
                                     <div class="col-12 col-sm order-1 order-sm-12 mb-4 mb-sm-0">
