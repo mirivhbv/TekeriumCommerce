@@ -53,15 +53,15 @@
                                     <h4>Short description</h4>
                                     <ul>
                                         <li>
-                                            <label>Width</label>
+                                            <label>@Localizer["Width"]</label>
                                             <p>@Model.Width</p>
                                         </li>
                                         <li>
-                                            <label>Profile</label>
+                                            <label>@Localizer["Profile"]</label>
                                             <p>@Model.Profile</p>
                                         </li>
                                         <li>
-                                            <label>Rim</label>
+                                            <label>@Localizer["Rim"]</label>
                                             <p>@Model.Rim</p>
                                         </li>
                                     </ul>
@@ -84,7 +84,7 @@
                                             <div class="value-button" id="decrease" value="-"><i class="fas fa-minus"></i></div>
                                             <input type="number" id="number" readonly="readonly" name="qty" value="1">
                                             <div class="value-button" id="increase" value="+"><i class="fas fa-plus"></i></div>
-                                            <button type="button" class="btn btn-lg btn-add-cart">ADD TO CART</button>
+                                            <button type="button" class="btn btn-lg btn-add-cart">@Localizer["Add to cart"]</button>
                                         </div>
                                     </form>
                                     @*todo: later add compare*@
@@ -118,17 +118,17 @@
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <ul>
                                 <li>
-                                    <label>Manufacturer country</label>
+                                    <label>@Localizer["Manufacturer country"]</label>
                                     <p>@Model.Country.Name</p>
                                 </li>
                                 <li>
                                     @*todo: add this to product table*@
-                                    <label>Speed Index</label>
+                                    <label>@Localizer["Speed Index"]</label>
                                     <p>@Model.Name</p>
                                 </li>
                                 <li>
                                     @*todo: add this to product table*@
-                                    <label>Weight Index</label>
+                                    <label>@Localizer["Weight Index"]</label>
                                     <p>@Model.Category.Name</p>
                                 </li>
                             </ul>

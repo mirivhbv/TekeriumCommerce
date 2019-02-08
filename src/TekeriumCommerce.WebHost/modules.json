@@ -25,6 +25,10 @@
   },
   {
     "id": "TekeriumCommerce.Module.Orders",
-    "version": "1.0.0" 
+    "version": "1.0.0"
+  },
+  {
+    "id": "TekeriumCommerce.Module.Localization",
+    "version": "1.0.0"
   }
 ]

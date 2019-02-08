@@ -12,6 +12,7 @@ using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Infrastructure.Modules;
 using TekeriumCommerce.Infrastructure.Web;
 using TekeriumCommerce.Module.Core.Data;
+using TekeriumCommerce.Module.Localization.Extensions;
 using TekeriumCommerce.WebHost.Extensions;
 
 namespace TekeriumCommerce.WebHost
@@ -61,8 +62,8 @@ namespace TekeriumCommerce.WebHost
             // done! todo: add IRepositoryWithTypeId as Transient
             services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
 
-            // todo: add customized location
-            // it would be inside of module.localization
+            // done! todo: add customized location
+            services.AddCustomizedLocalization();
 
             // done! todo: add customized mvc
             services.AddCustomizedMvc(GlobalConfiguration.Modules);
@@ -122,8 +123,9 @@ namespace TekeriumCommerce.WebHost
             app.UseCookiePolicy();
             // done! todo: use customized identity
             app.UseCutomizedIdentity();
-            // todo: use customized request location
+            // done! todo: use customized request location
             // ps. method created but not functioning cos need to add module localization
+            // it is done
             app.UseCustomizedRequestLocalization();
             // done! todo: use customized mvc
             app.UseCustomizedMvc();

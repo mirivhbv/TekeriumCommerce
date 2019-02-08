@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
+using TekeriumCommerce.Infrastructure;
+using TekeriumCommerce.Infrastructure.Data;
+using TekeriumCommerce.Infrastructure.Localization;
 using TekeriumCommerce.Module.Core.Extensions;
+using TekeriumCommerce.Module.Localization;
 
 namespace TekeriumCommerce.WebHost.Extensions
 {
@@ -96,23 +102,23 @@ namespace TekeriumCommerce.WebHost.Extensions
 
         public static IApplicationBuilder UseCustomizedRequestLocalization(this IApplicationBuilder app)
         {
-            // todo: after adding localization module uncomment this
+            // done! todo: after adding localization module uncomment this
 
-            //using (var scope = app.ApplicationServices.CreateScope())
-            //{
-            //    var cultureRepository =
-            //        scope.ServiceProvider.GetRequiredService<IRepositoryWithTypedId<Culture, string>>();
-            //    GlobalConfiguration.Cultures = cultureRepository.Query().ToList();
-            //}
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var cultureRepository =
+                    scope.ServiceProvider.GetRequiredService<IRepositoryWithTypedId<Culture, string>>();
+                GlobalConfiguration.Cultures = cultureRepository.Query().ToList();
+            }
 
-            //var supportedCultures = GlobalConfiguration.Cultures.Select(c => c.Id).ToArray();
-            //app.UseRequestLocalization(options =>
-            //{
-            //    options.AddSupportedCultures(supportedCultures)
-            //        .AddSupportedUICultures(supportedCultures)
-            //        .SetDefaultCulture(GlobalConfiguration.DefaultCulture)
-            //        .RequestCultureProviders.Insert(0, new EfRequestCultureProvider());
-            //});
+            var supportedCultures = GlobalConfiguration.Cultures.Select(c => c.Id).ToArray();
+            app.UseRequestLocalization(options =>
+            {
+                options.AddSupportedCultures(supportedCultures)
+                    .AddSupportedUICultures(supportedCultures)
+                    .SetDefaultCulture(GlobalConfiguration.DefaultCulture)
+                    .RequestCultureProviders.Insert(0, new EfRequestCultureProvider());
+            });
 
             return app;
         }
