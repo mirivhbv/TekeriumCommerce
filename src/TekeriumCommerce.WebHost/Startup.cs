@@ -29,7 +29,7 @@ namespace TekeriumCommerce.WebHost
 
             // it is for product currency
             // todo: later shift this to normal place
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("az-Latn");
+            //CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("az-Latn");
         }
 
         public void ConfigureServices(IServiceCollection services)

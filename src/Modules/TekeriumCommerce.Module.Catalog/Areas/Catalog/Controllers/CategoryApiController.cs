@@ -12,6 +12,7 @@ using TekeriumCommerce.Infrastructure.Data;
 using TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels;
 using TekeriumCommerce.Module.Catalog.Models;
 using TekeriumCommerce.Module.Catalog.Services;
+using TekeriumCommerce.Module.Core.Extensions;
 using TekeriumCommerce.Module.Core.Models;
 using TekeriumCommerce.Module.Core.Services;
 
@@ -26,13 +27,19 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IMediaService _mediaService;
         private readonly IRepository<ProductSeason> _productSeasonRepository;
+        private readonly IWorkContext _workContext;
 
-        public CategoryApiController(IRepository<Category> categoryRepository, ICategoryService categoryService, IMediaService mediaService, IRepository<ProductSeason> productSeasonRepository)
+        public CategoryApiController(IRepository<Category> categoryRepository, 
+                                    ICategoryService categoryService, 
+                                    IMediaService mediaService, 
+                                    IRepository<ProductSeason> productSeasonRepository,
+                                    IWorkContext workContext)
         {
             _categoryRepository = categoryRepository;
             _categoryService = categoryService;
             _mediaService = mediaService;
             _productSeasonRepository = productSeasonRepository;
+            _workContext = workContext;
         }
 
         public async Task<IActionResult> Get()
@@ -45,7 +52,12 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.Controllers
         public async Task<IActionResult> Get(long id)
         {
             var category = await _categoryRepository.Query().Include(x => x.ThumbnailImage)
+                .Include(x => x.Locales)
                 .FirstOrDefaultAsync(x => x.Id == id);
+
+            category.Name = category.GetLocalized<Category>("Name", _workContext);
+
+
             var model = new CategoryForm
             {
                 Id = category.Id,

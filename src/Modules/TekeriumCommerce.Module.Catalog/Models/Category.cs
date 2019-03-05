@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using TekeriumCommerce.Infrastructure.Models;
 using TekeriumCommerce.Module.Core.Models;
 
 namespace TekeriumCommerce.Module.Catalog.Models
 {
-    public class Category : EntityBase
+    public class Category : EntityBase, ILocalizedEntity
     {
         [Required]
         [StringLength(450)]
@@ -37,5 +38,7 @@ namespace TekeriumCommerce.Module.Catalog.Models
         //public IList<Category> Children { get; protected set; } = new List<Category>(); // for use no need
 
         public Media ThumbnailImage { get; set; }
+
+        public IList<LocalizedProperty> Locales { get; set; }
     }
 }
