@@ -39,6 +39,12 @@ namespace TekeriumCommerce.Module.Catalog.Models
 
         public Media ThumbnailImage { get; set; }
 
-        public IList<LocalizedProperty> Locales { get; set; }
+        public IList<LocalizedProperty> Locales { get; set; } = new List<LocalizedProperty>();
+
+        public void AddLocale(LocalizedProperty localizedProperty)
+        {
+            localizedProperty.EntityId = this.Id;
+            this.Locales.Add(localizedProperty);
+        }
     }
 }

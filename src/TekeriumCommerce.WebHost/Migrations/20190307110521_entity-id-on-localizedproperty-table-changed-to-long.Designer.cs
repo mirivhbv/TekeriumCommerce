@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TekeriumCommerce.Module.Core.Data;
 
 namespace TekeriumCommerce.WebHost.Migrations
 {
     [DbContext(typeof(TekerDbContext))]
-    partial class TekerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190307110521_entity-id-on-localizedproperty-table-changed-to-long")]
+    partial class entityidonlocalizedpropertytablechangedtolong
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

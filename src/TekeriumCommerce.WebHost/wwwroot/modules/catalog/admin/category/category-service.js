@@ -12,7 +12,8 @@
             getCategories: getCategories,
             getProducts: getProducts,
             saveProduct: saveProduct,
-            getSeasons: getSeasons
+            getSeasons: getSeasons,
+            getCultures: getCultures
         };
         return service;
 
@@ -53,6 +54,10 @@
 
         function getSeasons() {
             return $http.get('api/categories/seasons');
+        }
+
+        function getCultures() {
+	        return $http.get('api/categories/getCultures'); // todo: move it to localization module later
         }
     }
 })();

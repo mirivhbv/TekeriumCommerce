@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using TekeriumCommerce.Infrastructure.Modules;
 
+
 namespace TekeriumCommerce.Module.Localization
 {
     class ModuleInitializer : IModuleInitializer

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
 namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
@@ -9,7 +11,7 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         [Required]
         public string Slug { get; set; }
-
+         
         [Required]
         public string Name { get; set; }
 
@@ -30,5 +32,16 @@ namespace TekeriumCommerce.Module.Catalog.Areas.Catalog.ViewModels
         public IFormFile ThumbnailImage { get; set; }
 
         public string ThumbnailImageUrl { get; set; }
+
+        public IList<CategoryLocalizedForm> Locales { get; set; }
+    }
+
+    public class CategoryLocalizedForm
+    {
+        public string CultureId { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }

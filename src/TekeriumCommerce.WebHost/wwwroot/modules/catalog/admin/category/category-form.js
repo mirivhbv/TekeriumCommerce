@@ -7,8 +7,11 @@
         var vm = this, tableStateRef;
 
         vm.category = { isPublished: true };
+        vm.category.locales = [];
         vm.categories = [];
         vm.products = [];
+        vm.locales = [];
+        vm.cultures = [];
         vm.categoryId = $stateParams.id;
         vm.isEditMode = vm.categoryId > 0;
 
@@ -22,6 +25,12 @@
             vm.category.metaTitle = vm.category.metaTitle === null ? '' : vm.category.metaTitle;
             vm.category.metaKeywords = vm.category.metaKeywords === null ? '' : vm.category.metaKeywords;
             vm.category.metaDescription = vm.category.metaDescription === null ? '' : vm.category.metaDescription;
+
+            // locale
+            vm.category.locales.forEach(e => {
+	            e.name = e.name === null ? '' : e.name;
+	            e.description = e.description === null ? '' : e.description;
+            });
 
             if (vm.isEditMode) {
                 promise = categoryService.editCategory(vm.category);
@@ -86,6 +95,8 @@
                     categoryService.getCategory(vm.categoryId)
                 ])
                     .then(function (result) {
+                        console.log(result);
+
                         var index;
                         vm.categories = result[0].data;
                         vm.category = result[1].data;
@@ -97,6 +108,19 @@
                 categoryService.getCategories().then(function (result) {
                     vm.categories = result.data;
                 });
+
+                categoryService.getCultures().then((r) => {
+	                vm.cultures = r.data;
+	                //console.log(vm.cultures); // remove later
+	                vm.cultures.forEach((e) => {
+                        vm.category.locales.push({
+	                        cultureId: e.id,
+                            name: null,
+	                        description: null
+						});
+                    });
+                    console.log(vm.category.locales);
+				});
             }
         }
 

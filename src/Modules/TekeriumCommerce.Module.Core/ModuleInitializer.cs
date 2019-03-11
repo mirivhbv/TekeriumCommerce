@@ -19,6 +19,8 @@ namespace TekeriumCommerce.Module.Core
             serviceCollection.AddScoped<SignInManager<User>, TekeriumSignInManager<User>>();
             serviceCollection.AddScoped<IWorkContext, WorkContext>();
             serviceCollection.AddScoped<ICountryService, CountryService>();
+            serviceCollection.AddScoped<ICountryService, CountryService>();
+            serviceCollection.AddScoped<ILocalizationService, LocalizationService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

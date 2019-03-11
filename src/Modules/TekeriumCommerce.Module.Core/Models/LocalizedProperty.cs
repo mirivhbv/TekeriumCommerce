@@ -8,6 +8,11 @@ namespace TekeriumCommerce.Module.Core.Models
     public class LocalizedProperty : EntityBase
     {
         /// <summary>
+        /// Gets or sets the entity identifier
+        /// </summary>
+        public long EntityId { get; set; }
+
+        /// <summary>
         /// Gets or sets the language identifier
         /// </summary>
         public string LanguageId { get; set; }
